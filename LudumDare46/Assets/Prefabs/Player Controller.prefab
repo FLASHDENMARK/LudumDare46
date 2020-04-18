@@ -10,6 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 81908045}
   - component: {fileID: 81908046}
+  - component: {fileID: 8734278725794401268}
+  - component: {fileID: 7894246258848195296}
+  - component: {fileID: 655112160885239823}
+  - component: {fileID: 8723798081804321612}
+  - component: {fileID: 3715298754241553615}
+  - component: {fileID: 8567534957733444585}
   m_Layer: 0
   m_Name: Silenced Pistol
   m_TagString: Untagged
@@ -42,9 +48,160 @@ MonoBehaviour:
   m_GameObject: {fileID: 81908044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38b717919efa244ebbcbc3383632574, type: 3}
+  m_Script: {fileID: 11500000, guid: a976a004d60aff34a81a1a225459a60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ammo: 32
+  SpareAmmo: 96
+  MaxAmmo: 32
+  MaxSpareAmmo: 192
+  ShootDistance: 100
+  ShootTime: 0.11
+  ReloadTime: 1.25
+  Camera: {fileID: 7499300170041797731}
+  WeaponSound:
+    Source: {fileID: 0}
+    Shoot: []
+    Reload: []
+    Equip: []
+    Unequip: []
+    Zoom: []
+  WeaponAnimation:
+    Shoot: {fileID: 0}
+    Reload: {fileID: 0}
+    Equip: {fileID: 0}
+    Unequip: {fileID: 0}
+    Zoom: {fileID: 0}
+  WeaponBehavior:
+    Shoot: {fileID: 8734278725794401268}
+    Reload: {fileID: 7894246258848195296}
+    Equip: {fileID: 655112160885239823}
+    Unequip: {fileID: 8723798081804321612}
+    ShootEffect: {fileID: 8567534957733444585}
+--- !u!114 &8734278725794401268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81908044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 145115fc6d7f7584d92f1f46c0da6780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitEffectTest: {fileID: 400012, guid: 4124bcd25ead6874eb9c83ebc2b1586b, type: 3}
+--- !u!114 &7894246258848195296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81908044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 074ce531cf62380488562040ff518c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &655112160885239823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81908044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4936d73fa3e014f4497adef7d3cdb39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8723798081804321612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81908044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac50c07e10f7134fa2bf466c7b04430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!108 &3715298754241553615
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81908044}
+  m_Enabled: 0
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &8567534957733444585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81908044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4834ff8f2251254f9ffd8250d60a482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialIntensity: 6
+  dissipationTime: 0.01
 --- !u!1 &270073225
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +453,6 @@ MonoBehaviour:
   bobSpeed: 200
   breathHeight: 0.014
   moveAmount: 0.015
-  test: 10
 --- !u!1 &1610774646
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +1031,7 @@ MonoBehaviour:
   playerCamera: {fileID: 7499300170041797730}
   inventoryManager: {fileID: 5824961549379573289}
   inventoryMovement: {fileID: 1410024759}
+  inspect: 0
 --- !u!143 &7499300171069922424
 CharacterController:
   m_ObjectHideFlags: 0
