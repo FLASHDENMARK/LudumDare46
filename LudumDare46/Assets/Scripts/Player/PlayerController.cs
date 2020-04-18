@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 move = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         Vector2 look = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        bool shoot = Input.GetMouseButton(0);
+        bool zoom = Input.GetMouseButton(1);
         bool inspect = Input.GetKeyDown(KeyCode.E);
         bool watch = Input.GetKey(KeyCode.Q);
 
@@ -51,6 +54,10 @@ public class PlayerController : MonoBehaviour
 
         ToggleWatch(watch);
 
+        ShootWeapon(shoot);
+        
+        ZoomWeapon(zoom);
+
         if (inspect)
         {
             InspectObject();
@@ -62,6 +69,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ZoomWeapon(bool zoom)
+    {
+        inventoryManager.ZoomWeapon(zoom);
+    }
+
+    private void ShootWeapon(bool shoot)
+    {
+        inventoryManager.ShootWeapon(shoot);
+    }
+
     private void Move (Vector2 vector)
     {
         if (_characterController.isGrounded)
@@ -70,7 +87,7 @@ public class PlayerController : MonoBehaviour
             // move direction directly from axes
             _moveDirection = new Vector3(vector.y, 0.0f, vector.x);
 
-            _moveDirection = playerCamera.transform.TransformDirection(_moveDirection);
+            _moveDirection = transform.TransformDirection(_moveDirection);
             _moveDirection *= moveSpeed;
 
         }
