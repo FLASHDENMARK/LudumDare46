@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
+    private bool _allowLook = true;
+    private PlayerInteraction _interaction;
+    public bool inspect;
 
     private void OnEnable()
     {
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _interaction = GetComponent<PlayerInteraction>();
     }
 
 
@@ -40,9 +44,9 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 move = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         Vector2 look = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        bool shoot = Input.GetMouseButton(0);
-        bool zoom = Input.GetMouseButton(1);
-        bool inspect = Input.GetKeyDown(KeyCode.E);
+        bool leftMouse = Input.GetMouseButton(0);
+        bool rightMouse = Input.GetMouseButton(1);
+        bool use = Input.GetKeyDown(KeyCode.E);
         bool watch = Input.GetKey(KeyCode.Q);
 
         // TODO May need to be expanded if we need more weapons
@@ -50,33 +54,61 @@ public class PlayerController : MonoBehaviour
 
         Move(move);
 
-        Look(look);
-
         ToggleWatch(watch);
 
-        ShootWeapon(shoot);
-        
-        ZoomWeapon(zoom);
+        Inspect(leftMouse, rightMouse, look);
 
-        if (inspect)
+        if(_allowLook)
         {
-            InspectObject();
-        }
+            Look(look);
+        } 
 
         if (weapon)
         {
             ToggleWeapon();
         }
+
+        if (leftMouse)
+        {
+            ShootWeapon();
+        }
     }
 
-    private void ZoomWeapon(bool zoom)
+    private void Inspect (bool leftMouse, bool rightMouse, Vector2 look)
     {
-        inventoryManager.ZoomWeapon(zoom);
-    }
+        if (inventoryManager.isWeaponEquipped)
+        {
+            return;
+        }
 
-    private void ShootWeapon(bool shoot)
-    {
-        inventoryManager.ShootWeapon(shoot);
+        if (leftMouse)
+        {
+            if (_interaction.InteractionPossible())
+            {
+                inventoryManager.ToggleWatch(false);
+
+                inspect = true;
+                _interaction.PickUp();
+            }
+        }
+        else
+        {
+            if (inspect)
+            {
+                _interaction.LetGo();
+                inspect = false;
+            }
+        }
+
+        if (inspect && rightMouse)
+        {
+            _allowLook = false;
+            _interaction.Rotate(look);
+        }
+        else
+        {
+            _allowLook = true;
+        }
     }
 
     private void Move (Vector2 vector)
@@ -87,7 +119,7 @@ public class PlayerController : MonoBehaviour
             // move direction directly from axes
             _moveDirection = new Vector3(vector.y, 0.0f, vector.x);
 
-            _moveDirection = transform.TransformDirection(_moveDirection);
+            _moveDirection = playerCamera.transform.TransformDirection(_moveDirection);
             _moveDirection *= moveSpeed;
 
         }
@@ -116,18 +148,25 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.localEulerAngles = new Vector3(rotationY, 0, 0);
     }
 
-    private void InspectObject ()
-    {
-        // TODO Røgen
-    }
-
     private void ToggleWatch (bool isActive)
     {
-        inventoryManager.ToggleWatch(isActive);
+        if (inspect == false)
+        {
+            inventoryManager.ToggleWatch(isActive);
+        }
     }
 
     private void ToggleWeapon ()
     {
         inventoryManager.ToggleWeapon();
+    }
+
+    private void ShootWeapon()
+    {
+        // We cannot shoot while inspecting an object
+        if (!inspect)
+        {
+            inventoryManager.ShootWeapon();
+        }
     }
 }

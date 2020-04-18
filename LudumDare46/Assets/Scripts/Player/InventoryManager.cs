@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public List<WeaponBase> weapons;
 
     public Transform watch;
+    public bool isWeaponEquipped { get => _currentWeapon.gameObject.activeSelf; }
     private WeaponBase _currentWeapon;
 
     private void Awake()
@@ -25,17 +26,14 @@ public class InventoryManager : MonoBehaviour
         ToggleWatch(false);
     }
 
-    public void ShootWeapon (bool isShooting)
+    public void ShootWeapon ()
     {
         if (!_currentWeapon.gameObject.activeSelf)
         {
             return;
         }
 
-        if (isShooting)
-        {
-            _currentWeapon.Shoot();
-        }
+        _currentWeapon.Shoot();
     }
 
     public void ZoomWeapon (bool isZooming)
@@ -59,6 +57,18 @@ public class InventoryManager : MonoBehaviour
     public void ToggleWeapon()
     {
         EquipWeapon(_currentWeapon.gameObject.activeSelf ? null : _currentWeapon);
+    }
+
+    public void ToggleWeapon (bool isActive)
+    {
+        if (isActive)
+        {
+            EquipWeapon(_currentWeapon);
+        }
+        else
+        {
+            EquipWeapon(null);
+        }
     }
 
     public void ToggleWatch (bool isActive)
