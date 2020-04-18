@@ -41,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public bool InteractionPossible()
     {
-        Ray aimRay = new Ray(cam.transform.position, cam.transform.forward);
+        Ray aimRay = new Ray(cam.transform.position, cam.transform.forward);// cam.ScreenPointToRay(Input.mousePosition);
         return Physics.SphereCast(aimRay, spherecastRadius, SpherecastDistance, InteractableMask);
     }
 
@@ -112,7 +112,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         Gizmos.DrawRay(cam.transform.position, cam.transform.forward * SpherecastDistance);
         Gizmos.DrawWireSphere(cam.transform.position + cam.transform.forward * SpherecastDistance, spherecastRadius);
-
     }
 
 
@@ -121,6 +120,7 @@ public class PlayerInteraction : MonoBehaviour
         Ray aimRay = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
         Interactable item;
+
         if (Physics.SphereCast(aimRay, spherecastRadius, out hit, SpherecastDistance, InteractableMask))
         {
             item = hit.transform.GetComponent<Interactable>();
@@ -130,8 +130,4 @@ public class PlayerInteraction : MonoBehaviour
         }
 
     }
-
-
-
-
 }

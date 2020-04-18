@@ -30,13 +30,12 @@ public class InventoryMovement : MonoBehaviour
 
     private Vector3 final;
 
-    public float test = 1;
     public void Update ()
     {
         Breath();
 
         _breath = new Vector3(0, GetCurveValue(_breathAmount) * breathHeight, 0);
-        _movement = Vector3.Lerp(_movement, new Vector3(-_moveAmount.y, 0, -_moveAmount.x) * moveAmount, test);
+        _movement = Vector3.Lerp(_movement, new Vector3(-_moveAmount.y, 0, -_moveAmount.x) * moveAmount, 1);
 
         final = _breath + _movement;
 
