@@ -130,3 +130,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e21130fcc0fcb4897641a2a9f87ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinWaitTime: 10
+  MaxWaitTime: 30
