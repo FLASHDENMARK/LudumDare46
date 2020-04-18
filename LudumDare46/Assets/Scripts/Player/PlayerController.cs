@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         float rotationX = transform.localEulerAngles.y + vector.x * lookSensitivity;
         float rotationY = playerCamera.transform.localEulerAngles.x - vector.y * lookSensitivity;
 
-        //rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
+        // TODO Clamp rotationY
 
         transform.localEulerAngles = new Vector3(0, rotationX, 0);
         playerCamera.transform.localEulerAngles = new Vector3(rotationY, 0, 0);
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     private void InspectObject ()
     {
-
+        // TODO Røgen
     }
 
     private void ToggleWatch ()
