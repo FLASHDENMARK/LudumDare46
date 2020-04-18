@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity;
 
     public Camera playerCamera;
+    public InventoryManager inventoryManager;
 
     
 
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 move = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         Vector2 look = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        bool watch = Input.GetKeyDown(KeyCode.Q);
+        bool watch = Input.GetKey(KeyCode.Q);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -68,6 +69,9 @@ public class PlayerController : MonoBehaviour
             _allowLook = true;
         }
 
+        // TODO May need to be expanded if we need more weapons
+        bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
+
         Move(move);
 
         if(_allowLook)
@@ -75,14 +79,16 @@ public class PlayerController : MonoBehaviour
             Look(look);
         } 
 
+        ToggleWatch(watch);
+
         if (inspect)
         {
             InspectObject(look);
         }
 
-        if (watch)
+        if (weapon)
         {
-            ToggleWatch();
+            ToggleWeapon();
         }
     }
 
@@ -112,7 +118,7 @@ public class PlayerController : MonoBehaviour
         float rotationX = transform.localEulerAngles.y + vector.x * lookSensitivity;
         float rotationY = playerCamera.transform.localEulerAngles.x - vector.y * lookSensitivity;
 
-        //rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
+        // TODO Clamp rotationY
 
         transform.localEulerAngles = new Vector3(0, rotationX, 0);
         playerCamera.transform.localEulerAngles = new Vector3(rotationY, 0, 0);
@@ -125,10 +131,16 @@ public class PlayerController : MonoBehaviour
             _allowLook = false;
             _interaction.Rotate(look);
         }
+        // TODO Røgen
     }
 
-    private void ToggleWatch ()
+    private void ToggleWatch (bool isActive)
     {
+        inventoryManager.ToggleWatch(isActive);
+    }
 
+    private void ToggleWeapon ()
+    {
+        inventoryManager.ToggleWeapon();
     }
 }
