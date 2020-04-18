@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -40,7 +41,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public bool InteractionPossible()
     {
-        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
+        Ray aimRay = new Ray(cam.transform.position, cam.transform.forward);
         return Physics.SphereCast(aimRay, spherecastRadius, SpherecastDistance, InteractableMask);
     }
 
@@ -114,9 +115,10 @@ public class PlayerInteraction : MonoBehaviour
 
     }
 
+
     public void PickUp()
     {
-        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
+        Ray aimRay = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
         Interactable item;
         if (Physics.SphereCast(aimRay, spherecastRadius, out hit, SpherecastDistance, InteractableMask))
