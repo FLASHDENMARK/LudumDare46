@@ -118,7 +118,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.SphereCast(aimRay, spherecastRadius, out hit, SpherecastDistance, InteractableMask))
         {
-            Debug.Log("Picking up");
             item = hit.transform.GetComponent<Interactable>();
             DesiredRotation = Vector3.zero;
             PickedUpInteractable = item;

@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Civilian : MonoBehaviour
+public class Civilian : ControllerBase
 {
     public int MinWaitTime;
     public int MaxWaitTime;
@@ -65,5 +63,10 @@ public class Civilian : MonoBehaviour
         }
 
         return hasReachedDestination;
+    }
+
+    public override void Die (IDamageGiver damageGiver)
+    {
+        
     }
 }
