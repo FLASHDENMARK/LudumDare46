@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 public class Civilian : ControllerBase
 {
+    public int MinWaitTime;
+    public int MaxWaitTime;
+
     private HotspotManager hotspotManager;
     private NavMeshAgent navMeshAgent;
     private bool roam;
@@ -37,7 +40,7 @@ public class Civilian : ControllerBase
             bool hasReachedDestination = await HasReachedDestination(navMeshAgent);
 
             if (hasReachedDestination) {
-                await Task.Delay(Random.Range(5, 11) * 1000);
+                await Task.Delay(Random.Range(MinWaitTime, MaxWaitTime) * 1000);
                 nextHotspot.LeavePosition(nextPosition);
             }
         }
