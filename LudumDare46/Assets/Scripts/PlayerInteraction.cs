@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -40,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public bool InteractionPossible()
     {
-        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
+        Ray aimRay = new Ray(cam.transform.position, cam.transform.forward);// cam.ScreenPointToRay(Input.mousePosition);
         return Physics.SphereCast(aimRay, spherecastRadius, SpherecastDistance, InteractableMask);
     }
 
@@ -111,16 +108,17 @@ public class PlayerInteraction : MonoBehaviour
     {
         Gizmos.DrawRay(cam.transform.position, cam.transform.forward * SpherecastDistance);
         Gizmos.DrawWireSphere(cam.transform.position + cam.transform.forward * SpherecastDistance, spherecastRadius);
-
     }
 
     public void PickUp()
     {
-        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
+        Ray aimRay = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
         Interactable item;
+
         if (Physics.SphereCast(aimRay, spherecastRadius, out hit, SpherecastDistance, InteractableMask))
         {
+            Debug.Log("Picking up");
             item = hit.transform.GetComponent<Interactable>();
             DesiredRotation = Vector3.zero;
             PickedUpInteractable = item;
@@ -128,8 +126,4 @@ public class PlayerInteraction : MonoBehaviour
         }
 
     }
-
-
-
-
 }
