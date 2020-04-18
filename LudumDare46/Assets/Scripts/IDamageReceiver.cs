@@ -1,6 +1,8 @@
 ﻿public interface IDamageReceiver
 {
-    float Health { get; set; }
+    float Health { get; }
 
-    void ReceiveDamage(float damage, IDamageGiver projectileBase);
+    void ReceiveDamage(float damage, IDamageGiver damageGiver);
+
+    void Die(IDamageGiver damageGiver);
 }

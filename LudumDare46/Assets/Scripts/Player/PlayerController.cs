@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : ControllerBase
 {
     public float moveSpeed = 5.0F;
     public float jumpSpeed = 8.0f;
@@ -168,5 +168,10 @@ public class PlayerController : MonoBehaviour
         {
             inventoryManager.ShootWeapon();
         }
+    }
+
+    public override void Die (IDamageGiver damageGiver)
+    {
+        
     }
 }
