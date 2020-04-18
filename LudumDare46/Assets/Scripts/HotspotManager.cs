@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HotspotManager : MonoBehaviour
 {
-    public List<GameObject> hotspots;
+    public List<GameObject> Hotspots;
 
     // Start is called before the first frame update
     void Start()
     {
-        hotspots = new List<GameObject>(GameObject.FindGameObjectsWithTag("Hotspot"));
+        Hotspots = new List<GameObject>(GameObject.FindGameObjectsWithTag("Hotspot"));
     }
 }

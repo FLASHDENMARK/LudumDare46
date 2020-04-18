@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcc2d57e9807de4a96d9b4312a365ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotspots: []
+  Hotspots: []
