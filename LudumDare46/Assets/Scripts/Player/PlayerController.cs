@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity;
 
     public Camera playerCamera;
+    public InventoryManager inventoryManager;
 
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
@@ -38,20 +39,25 @@ public class PlayerController : MonoBehaviour
         Vector2 move = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         Vector2 look = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         bool inspect = Input.GetKeyDown(KeyCode.E);
-        bool watch = Input.GetKeyDown(KeyCode.Q);
+        bool watch = Input.GetKey(KeyCode.Q);
+
+        // TODO May need to be expanded if we need more weapons
+        bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
 
         Move(move);
 
         Look(look);
+
+        ToggleWatch(watch);
 
         if (inspect)
         {
             InspectObject();
         }
 
-        if (watch)
+        if (weapon)
         {
-            ToggleWatch();
+            ToggleWeapon();
         }
     }
 
@@ -92,8 +98,13 @@ public class PlayerController : MonoBehaviour
         // TODO Røgen
     }
 
-    private void ToggleWatch ()
+    private void ToggleWatch (bool isActive)
     {
+        inventoryManager.ToggleWatch(isActive);
+    }
 
+    private void ToggleWeapon ()
+    {
+        inventoryManager.ToggleWeapon();
     }
 }
