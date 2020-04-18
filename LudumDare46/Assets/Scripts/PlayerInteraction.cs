@@ -32,55 +32,47 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        CheckPickup();
-
-
+        if(PickedUpInteractable != null)
+        RotateObject();
 
     }
 
+
+    public bool InteractionPossible()
+    {
+        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
+        return Physics.SphereCast(aimRay, spherecastRadius, SpherecastDistance, InteractableMask);
+    }
+
+    public void LetGo()
+    {
+        if(PickedUpInteractable != null)
+        {
+            PickedUpInteractable.RB.useGravity = true;
+            PickedUpInteractable = null;
+        }
+    }
 
     private void FixedUpdate()
     {
         if (PickedUpInteractable != null)
         {
             Hold();
-            Rotate();
         }
     }
 
 
-    private void CheckPickup()
+    public void Rotate(Vector2 input)
     {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.SphereCast(aimRay, spherecastRadius, out hit, SpherecastDistance, InteractableMask))
-            {
-                PickUp(hit.transform.GetComponent<Interactable>());
-            }
-
-            Vector2 MouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * 100f * Time.deltaTime;
-            DesiredRotation.x += MouseInput.y;
-            DesiredRotation.y += MouseInput.x;
-        }
-    }
-
-    private void Rotate()
-    {
-        if (Input.GetMouseButton(1))
-        {
-            PickedUpInteractable.transform.LookAt(transform);
-            PickedUpInteractable.transform.Rotate(DesiredRotation);
-        }
+        DesiredRotation.x += input.y;
+        DesiredRotation.y += input.x;
     }
 
     private void Hold()
     {
         float freeDist = FreeSpaceDist();
-        Vector3 DesiredHoldPos = transform.position + (cam.transform.forward * freeDist);
+        Vector3 DesiredHoldPos = cam.transform.position + (cam.transform.forward * freeDist);
+
         if(Vector3.Distance(PickedUpInteractable.transform.position, DesiredHoldPos) > SnappingThreshold)
         {
             PickedUpInteractable.transform.position = DesiredHoldPos;
@@ -90,26 +82,51 @@ public class PlayerInteraction : MonoBehaviour
         {
             Vector3 movementVector = DesiredHoldPos - PickedUpInteractable.transform.position;
             PickedUpInteractable.RB.velocity = movementVector * Mathf.Clamp(100 * movementVector.magnitude, 0, SmoothingAmount);
+        } else
+        {
+            PickedUpInteractable.RB.velocity = Vector3.zero;
         }
+    }
+
+    private void RotateObject()
+    {
+        PickedUpInteractable.transform.LookAt(transform);
+        PickedUpInteractable.transform.Rotate(DesiredRotation);
     }
 
     float FreeSpaceDist()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, cam.transform.forward, out hit, HoldDistance, EnvironmentMask))
+        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, HoldDistance, EnvironmentMask))
         {
-            return Vector3.Distance(transform.position, hit.point);
+            return Vector3.Distance(cam.transform.position, hit.point);
         } else
         {
             return HoldDistance;
         }
     }
 
-    void PickUp(Interactable item)
+
+    private void OnDrawGizmosSelected()
     {
-        DesiredRotation = Vector3.zero;
-        PickedUpInteractable = item;
-        item.transform.LookAt(transform.position);
+        Gizmos.DrawRay(cam.transform.position, cam.transform.forward * SpherecastDistance);
+        Gizmos.DrawWireSphere(cam.transform.position + cam.transform.forward * SpherecastDistance, spherecastRadius);
+
+    }
+
+    public void PickUp()
+    {
+        Ray aimRay = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Interactable item;
+        if (Physics.SphereCast(aimRay, spherecastRadius, out hit, SpherecastDistance, InteractableMask))
+        {
+            item = hit.transform.GetComponent<Interactable>();
+            DesiredRotation = Vector3.zero;
+            PickedUpInteractable = item;
+            PickedUpInteractable.RB.useGravity = false;
+        }
+
     }
 
 

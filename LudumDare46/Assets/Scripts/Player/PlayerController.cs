@@ -13,8 +13,13 @@ public class PlayerController : MonoBehaviour
 
     public Camera playerCamera;
 
+    
+
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
+    private bool _allowLook = true;
+    private PlayerInteraction _interaction;
+    bool inspect = false;
 
     private void OnEnable()
     {
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _interaction = GetComponent<PlayerInteraction>();
     }
 
 
@@ -37,16 +43,41 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 move = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         Vector2 look = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        bool inspect = Input.GetKeyDown(KeyCode.E);
         bool watch = Input.GetKeyDown(KeyCode.Q);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (_interaction.InteractionPossible())
+            {
+                inspect = true;
+                _interaction.PickUp();
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (inspect)
+            {
+                _interaction.LetGo();
+                inspect = false;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            _allowLook = true;
+        }
 
         Move(move);
 
-        Look(look);
+        if(_allowLook)
+        {
+            Look(look);
+        } 
 
         if (inspect)
         {
-            InspectObject();
+            InspectObject(look);
         }
 
         if (watch)
@@ -87,9 +118,13 @@ public class PlayerController : MonoBehaviour
         playerCamera.transform.localEulerAngles = new Vector3(rotationY, 0, 0);
     }
 
-    private void InspectObject ()
+    private void InspectObject (Vector2 look)
     {
-
+        if (Input.GetMouseButton(1))
+        {
+            _allowLook = false;
+            _interaction.Rotate(look);
+        }
     }
 
     private void ToggleWatch ()
