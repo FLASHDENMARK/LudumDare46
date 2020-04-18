@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float lookSensitivity;
 
     public Camera playerCamera;
+    public InventoryManager inventoryManager;
 
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
@@ -40,6 +41,9 @@ public class PlayerController : MonoBehaviour
         bool inspect = Input.GetKeyDown(KeyCode.E);
         bool watch = Input.GetKeyDown(KeyCode.Q);
 
+        // TODO May need to be expanded if we need more weapons
+        bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
+
         Move(move);
 
         Look(look);
@@ -52,6 +56,11 @@ public class PlayerController : MonoBehaviour
         if (watch)
         {
             ToggleWatch();
+        }
+
+        if (weapon)
+        {
+            ToggleWeapon();
         }
     }
 
@@ -94,6 +103,11 @@ public class PlayerController : MonoBehaviour
 
     private void ToggleWatch ()
     {
+        inventoryManager.ToggleWatch();
+    }
 
+    private void ToggleWeapon ()
+    {
+        inventoryManager.ToggleWeapon();
     }
 }
