@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
         if (leftMouse)
         {
-            if (_interaction.InteractionPossible())
+            if (!inspect && _interaction.InteractionPossible())
             {
                 inventoryManager.ToggleWatch(false);
 

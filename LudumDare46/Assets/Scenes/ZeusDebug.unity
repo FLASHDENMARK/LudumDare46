@@ -1248,15 +1248,59 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 81908044, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 270073225, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 433967554, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410024756, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610774646, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676373783, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903251451513425610, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5221048793027996433, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5824961549379573289, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
       propertyPath: weapons.Array.data[0]
       value: 
       objectReference: {fileID: 81908049}
+    - target: {fileID: 7499300170041797728, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7499300171069922418, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
       propertyPath: m_Name
       value: Player Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499300171069922418, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7499300171069922430, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
