@@ -927,6 +927,7 @@ GameObject:
   - component: {fileID: 7499300171069922431}
   - component: {fileID: 7499300171069922424}
   - component: {fileID: 780255627}
+  - component: {fileID: 477490652296493981}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -1075,3 +1076,19 @@ MonoBehaviour:
   InteractableMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!208 &477490652296493981
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499300171069922418}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 2
