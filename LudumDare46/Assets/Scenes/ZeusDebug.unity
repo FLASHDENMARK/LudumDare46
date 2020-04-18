@@ -121,24 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &81908044 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 81908044, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7499300171238218084}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &81908045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81908044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38b717919efa244ebbcbc3383632574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1164483326
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,33 +213,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1410024756 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1410024756, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7499300171238218084}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1410024757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410024756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2253fe2f20d2a40b39bffeb8b5e1be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 81908045}
-  watch: {fileID: 1610774647}
---- !u!4 &1610774647 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1610774647, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7499300171238218084}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1828619978
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,10 +313,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1410024756, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
-      propertyPath: m_Name
-      value: Inventory Manager
-      objectReference: {fileID: 0}
     - target: {fileID: 7499300171069922418, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
       propertyPath: m_Name
@@ -422,10 +373,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7499300171069922431, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
-        type: 3}
-      propertyPath: inventoryManager
-      value: 
-      objectReference: {fileID: 1410024757}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
