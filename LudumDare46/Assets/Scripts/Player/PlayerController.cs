@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
             // move direction directly from axes
             _moveDirection = new Vector3(vector.y, 0.0f, vector.x);
 
-            _moveDirection = playerCamera.transform.TransformDirection(_moveDirection);
+            _moveDirection = transform.TransformDirection(_moveDirection);
             _moveDirection *= moveSpeed;
 
         }
