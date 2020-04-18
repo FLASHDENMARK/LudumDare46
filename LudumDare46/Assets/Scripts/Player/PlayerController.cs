@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public Camera playerCamera;
     public InventoryManager inventoryManager;
+    public InventoryMovement inventoryMovement;
 
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
@@ -71,7 +72,10 @@ public class PlayerController : MonoBehaviour
 
             _moveDirection = playerCamera.transform.TransformDirection(_moveDirection);
             _moveDirection *= moveSpeed;
+
         }
+        
+        inventoryMovement.Move(vector);
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
@@ -84,6 +88,8 @@ public class PlayerController : MonoBehaviour
 
     private void Look (Vector2 vector)
     {
+        inventoryMovement.Look(vector);
+
         float rotationX = transform.localEulerAngles.y + vector.x * lookSensitivity;
         float rotationY = playerCamera.transform.localEulerAngles.x - vector.y * lookSensitivity;
 
