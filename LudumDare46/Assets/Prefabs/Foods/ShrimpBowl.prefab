@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSuspicious: 0
-  CanBePickedUp: 0
+  CanBePickedUp: 1
   RB: {fileID: 0}
 --- !u!1001 &8984449077973356650
 PrefabInstance:
