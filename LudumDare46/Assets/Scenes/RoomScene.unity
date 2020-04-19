@@ -37432,7 +37432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adad5344e64d0104a94cb20158c8bd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeScale: 0
+  TimeScale: 10
   StartHours: 12
   time:
     hour: 0
