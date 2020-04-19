@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour
+public class InteractableController : MonoBehaviour
 {
 
     public Camera cam;
@@ -17,9 +17,6 @@ public class PlayerInteraction : MonoBehaviour
     public float MovementThreshold;
     public float SnappingThreshold, SmoothingAmount, HoldDistance;
     public LayerMask EnvironmentMask, InteractableMask;
-
-
-
 
     private Vector3 DesiredRotation;
 
@@ -34,8 +31,9 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         if(PickedUpInteractable != null)
-        RotateObject();
-
+        {
+            RotateObject();
+        }
     }
 
 

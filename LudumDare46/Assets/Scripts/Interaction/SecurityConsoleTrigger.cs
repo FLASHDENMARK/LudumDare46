@@ -1,8 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SecurityConsoleInteraction : InteractionBase
+/// <summary>
+/// Just changes the texture of screens
+/// </summary>
+public class SecurityConsoleTrigger : TriggerBase
 {
     public List<SecurityCamera> cameras = new List<SecurityCamera>();
     public List<GameObject> screens = new List<GameObject>();
@@ -12,27 +14,10 @@ public class SecurityConsoleInteraction : InteractionBase
     private float _noiseGrainChangeRate = 0.05F;
     private int _noiseGrainIndex = 0;
 
-    private void Awake()
+    /*private void Awake()
     {
-        Off();
-
         _noiseGrainChangeRate = noiseGrainChangeRate;
-    }
-
-    public override void ToggleUse()
-    {
-        on = !on;
-
-        if (on)
-        {
-            On();
-        }
-        else
-        {
-            Off();
-        }
-    }
-
+    }*/
     
     private void Update()
     {
@@ -42,11 +27,11 @@ public class SecurityConsoleInteraction : InteractionBase
         {
             if (_noiseGrainChangeRate <= 0)
             {
-                _noiseGrainIndex += 1; // Random.Range(0, noiseGrain.Count);
+                _noiseGrainIndex += 1;
                 _noiseGrainIndex %= noiseGrain.Count;
+
                 foreach (GameObject screen in screens)
                 {
-                    Debug.Log("Index " + _noiseGrainIndex);
                     _noiseGrainChangeRate = noiseGrainChangeRate;
                     
                     screen.GetComponent<MeshRenderer>().material = noiseGrain[_noiseGrainIndex];

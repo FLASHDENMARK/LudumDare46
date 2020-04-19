@@ -10,7 +10,6 @@ public class Interactable : MonoBehaviour
 
     private void Awake()
     {
-
         if(CanBePickedUp && GetComponent<Rigidbody>() == null)
         {
             RB = gameObject.AddComponent<Rigidbody>();
