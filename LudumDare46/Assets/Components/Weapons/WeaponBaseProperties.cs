@@ -1,7 +1,6 @@
 ﻿using Assets.Components.Weapons.Behavior;
 using Assets.Components.Weapons.Effects;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Components.Weapons
@@ -13,7 +12,6 @@ namespace Assets.Components.Weapons
 
         public int MaxAmmo = 32;
         public int MaxSpareAmmo = 192;
-        public int ShootDistance = 100;
         public float ShootTime = 0.11F;
 
         public float ReloadTime = 1.25F;
