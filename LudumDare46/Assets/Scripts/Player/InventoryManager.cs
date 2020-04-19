@@ -8,7 +8,9 @@ public class InventoryManager : MonoBehaviour
 {
     public List<WeaponBase> weapons;
 
-    public Transform watch;
+    public GadgetBase watch;
+    public GadgetBase flashlight;
+
     public bool isWeaponEquipped { get => _currentWeapon.gameObject.activeSelf; }
     private WeaponBase _currentWeapon;
 
@@ -23,7 +25,8 @@ public class InventoryManager : MonoBehaviour
 
         // Disable everything from the start
         EquipWeapon(null);
-        ToggleWatch(false);
+        ToggleGadget(watch, false);
+        ToggleGadget(flashlight, false);
     }
 
     public void ShootWeapon ()
@@ -71,15 +74,15 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void ToggleWatch (bool isActive)
+    public void ToggleGadget (GadgetBase gadget, bool isActive)
     {
-        watch.gameObject.SetActive(isActive);
+        gadget.gameObject.SetActive(isActive);
     }
 
-    public void ToggleWatch ()
+    /*-public void ToggleGadget()
     {
-        ToggleWatch(!watch.gameObject.activeSelf);
-    }
+        Togglegadget(!watch.gameObject.activeSelf);
+    }*/
 
     private void EquipWeapon(WeaponBase toEquip)
     {

@@ -2,19 +2,20 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Civilian : ControllerBase
+public class CivilianController : ControllerBase
 {
     public int MinWaitTime;
     public int MaxWaitTime;
+    public float randomDeathForce = 20.0F;
 
     private HotspotManager hotspotManager;
     private NavMeshAgent navMeshAgent;
     private bool roam;
 
-    void Awake() {
+    void Awake()
+    {
         Random.InitState(0);
     }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +23,6 @@ public class Civilian : ControllerBase
         navMeshAgent = GetComponent<NavMeshAgent>();
         roam = true;
         Roam();
-    }
-    void OnDestroy() {
-        roam = false;
     }
 
     private async void Roam() {
@@ -65,8 +63,26 @@ public class Civilian : ControllerBase
         return hasReachedDestination;
     }
 
+    private void OnDestroy()
+    {
+        roam = false;
+    }
+
     public override void Die (IDamageGiver damageGiver)
     {
-        
+        roam = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        this.enabled = false;
+
+        Vector3 force = new Vector3(Random.Range(-randomDeathForce, randomDeathForce), -20.0F, Random.Range(-randomDeathForce, randomDeathForce));
+
+        Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
+
+        // This is to give a bit of randomness to the "ragdolls" however it doesn't even look that good 
+        rigidbody.AddForce(force);
+
+        // This is to avoid collision with the player, other AIs and other corpses
+        // TODO If this could be done with a LayerMask instead of a string that would be cool
+        gameObject.layer = LayerMask.NameToLayer("Corpse");
     }
 }

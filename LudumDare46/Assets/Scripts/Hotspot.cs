@@ -10,7 +10,7 @@ public class Hotspot : MonoBehaviour
 {
     private List<Tuple<Vector3, bool>> internalPositions;
 
-    async void Start()
+    void Start()
     {
         internalPositions = new List<Tuple<Vector3, bool>>();
 

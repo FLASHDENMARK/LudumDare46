@@ -15,33 +15,62 @@ public class PlayerController : ControllerBase
     public Camera playerCamera;
     public InventoryManager inventoryManager;
     public InventoryMovement inventoryMovement;
+    private TriggerBase trigger;
 
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
     private bool _allowLook = true;
-    private PlayerInteraction _interaction;
-    public bool inspect;
-
-    private void OnEnable()
-    {
-
-    }
+    private InteractableController _interaction;
+    private bool inspect;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        _interaction = GetComponent<PlayerInteraction>();
+        _interaction = GetComponent<InteractableController>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-
-    private void OnDisable()
+    /// <summary>
+    /// Called by a trigger when the player steps inside it
+    /// </summary>
+    /// <param name="interaction"></param>
+    public void OnPlayerInsideInteractionTrigger (TriggerBase inter)
     {
+        trigger = inter;
+    }
+
+    public void OnPlayerOutsideInteractionTrigger ()
+    {
+        trigger = null;
+    }
+
+    private void OnGUI()
+    {
+        if (trigger != null && trigger.isEnabled)
+        {
+            bool hasTriggerText = trigger.on ? !string.IsNullOrEmpty(trigger.triggerOffText) : !string.IsNullOrEmpty(trigger.triggerOnText);
+            string triggerText = null;
+
+            if (hasTriggerText)
+            {
+                string action = trigger.on ? trigger.triggerOffText : trigger.triggerOnText;
+                triggerText = $"Press E to {action}"; 
+            }
+            else
+            {
+                // If no trigger text is set this will be the default UI text
+                string onOff = trigger.on ? "off" : "on";
+
+                triggerText = $"Press E to switch {trigger.gameObject.name} " + onOff;
+            }
+
+            GUI.Label(new Rect(30, 30, 400, 30), triggerText);
+        }
     }
 
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         Vector2 move = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
         Vector2 look = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -49,15 +78,25 @@ public class PlayerController : ControllerBase
         bool rightMouse = Input.GetMouseButton(1);
         bool use = Input.GetKeyDown(KeyCode.E);
         bool watch = Input.GetKey(KeyCode.Q);
+        bool flashlight = Input.GetKey(KeyCode.Tab);
 
         // TODO May need to be expanded if we need more weapons
         bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
 
         Move(move);
 
-        ToggleWatch(watch);
-
         Inspect(leftMouse, rightMouse, look);
+
+        // Only toggle the watch if the flashlight is unequipped
+        if (!flashlight)
+        {
+            ToggleGadget(inventoryManager.watch, watch);
+        }
+
+        if (!watch)
+        {
+            ToggleGadget(inventoryManager.flashlight, flashlight);
+        }
 
         if(_allowLook)
         {
@@ -73,6 +112,19 @@ public class PlayerController : ControllerBase
         {
             ShootWeapon();
         }
+
+        if (use)
+        {
+            TriggerInteraction();
+        }
+    }
+
+    private void TriggerInteraction()
+    {
+        if (trigger != null)
+        {
+            trigger.ToggleUse();
+        }
     }
 
     private void Inspect (bool leftMouse, bool rightMouse, Vector2 look)
@@ -86,7 +138,9 @@ public class PlayerController : ControllerBase
         {
             if (!inspect && _interaction.InteractionPossible())
             {
-                inventoryManager.ToggleWatch(false);
+                // TODO If we get more gadgets may need a more general system
+                inventoryManager.ToggleGadget(inventoryManager.flashlight, false);
+                inventoryManager.ToggleGadget(inventoryManager.watch, false);
 
                 inspect = true;
                 _interaction.PickUp();
@@ -124,7 +178,7 @@ public class PlayerController : ControllerBase
             _moveDirection *= moveSpeed;
 
         }
-        
+
         inventoryMovement.Move(vector);
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
@@ -149,11 +203,11 @@ public class PlayerController : ControllerBase
         playerCamera.transform.localEulerAngles = new Vector3(rotationY, 0, 0);
     }
 
-    private void ToggleWatch (bool isActive)
+    private void ToggleGadget (GadgetBase gadget, bool isActive)
     {
         if (inspect == false)
         {
-            inventoryManager.ToggleWatch(isActive);
+            inventoryManager.ToggleGadget(gadget, isActive);
         }
     }
 
