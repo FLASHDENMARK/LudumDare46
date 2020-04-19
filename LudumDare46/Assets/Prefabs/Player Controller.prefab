@@ -90,11 +90,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   shootDistance: 100
-  rigidbodyForce: 5
+  rigidbodyForce: 10
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  hitEffectTest: {fileID: 400012, guid: 4124bcd25ead6874eb9c83ebc2b1586b, type: 3}
+    m_Bits: 3383
+  hitEffectTest: {fileID: 400012, guid: 79e5c2720bfff514abf9939e110c701d, type: 3}
 --- !u!114 &7894246258848195296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,7 +1509,7 @@ GameObject:
   - component: {fileID: 477490652296493981}
   m_Layer: 9
   m_Name: Player Controller
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
