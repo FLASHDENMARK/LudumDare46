@@ -1,4 +1,4 @@
 Flashlight + Watch ved at holde + slippe knapperne
 
 
-
+Er Random.Range deterministisk med det seed vi har lavet?
