@@ -1,13 +1,16 @@
 ﻿using Assets.Scripts.Managers;
 using UnityEngine;
 
-public abstract class ControllerBase : MonoBehaviour, IDamageReceiver
+public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGiver
 {
     public float health;
     public float Health { get => health; }
 
-    public bool IsDead { get; private set; }
-    public TriggerBase trigger;
+    public bool IsDead { get; protected set; }
+
+    public ControllerBase DamageGiver => this;
+
+    protected TriggerBase _trigger;
 
     public void ReceiveDamage (float damage, IDamageGiver damageGiver)
     {
@@ -28,12 +31,12 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver
 
     public void OnPlayerInsideInteractionTrigger(TriggerBase inter)
     {
-        trigger = inter;
+        _trigger = inter;
     }
 
     public void OnPlayerOutsideInteractionTrigger()
     {
-        trigger = null;
+        _trigger = null;
     }
 
     public abstract void Die (IDamageGiver damageGiver);

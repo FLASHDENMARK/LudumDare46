@@ -41,7 +41,7 @@ public class Timeline : MonoBehaviour
             Waypoint waypoint = detour.Waypoints.Find(wp => curTime >= wp.ExecutionTime);
             if (waypoint != null)
             {
-                civilian.NavMeshAgent.SetDestination(waypoint.Position);
+                civilian.SetNavMeshDestination(waypoint.Position);
                 detour.Waypoints.Remove(waypoint);
             }
             yield return new WaitForSeconds(0.05f);

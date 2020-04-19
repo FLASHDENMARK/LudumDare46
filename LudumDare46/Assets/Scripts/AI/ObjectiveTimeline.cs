@@ -8,7 +8,7 @@ public class ObjectiveTimeline : MonoBehaviour
     public Color gizmoColor = Color.yellow;
     public AIController controller;
     public List<ObjectiveBase> objectives;
-    private ObjectiveBase _currentObjective;
+    public ObjectiveBase _currentObjective;
 
     public bool loopTimeline;
 
@@ -16,7 +16,7 @@ public class ObjectiveTimeline : MonoBehaviour
     {
         objectives.ForEach(o => o.Initialize(controller, gizmoColor));
 
-        if (_currentObjective == null)
+        if (_currentObjective == null && objectives.Count > 0)
         {
             _currentObjective = objectives.First();
             _currentObjective.Begin(OnObjectiveCompleted);
@@ -83,7 +83,10 @@ public class ObjectiveTimeline : MonoBehaviour
 
         if (loopTimeline)
         {
-            Gizmos.DrawLine(objectives.First().GetBeginningVector(), previous.GetEndingVector());
+            if (objectives.Count > 0)
+            {
+                Gizmos.DrawLine(objectives.First().GetBeginningVector(), previous.GetEndingVector());
+            }
         }
     }
 }
