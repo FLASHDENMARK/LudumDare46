@@ -47,6 +47,7 @@ public class InteractableController : MonoBehaviour
     {
         if(PickedUpInteractable != null)
         {
+            if(PickedUpInteractable.RB != null)
             PickedUpInteractable.RB.useGravity = true;
             PickedUpInteractable = null;
         }
@@ -69,6 +70,14 @@ public class InteractableController : MonoBehaviour
 
     private void Hold()
     {
+        if (PickedUpInteractable.RB == null)
+        {
+            LetGo();
+            return;
+        }
+            
+
+
         float freeDist = FreeSpaceDist();
         Vector3 DesiredHoldPos = cam.transform.position + (cam.transform.forward * freeDist);
 
