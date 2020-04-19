@@ -39,9 +39,9 @@ namespace Assets.Scripts.Managers
         private void Update()
         {
             UpdateIngameTime();
-            time.hour = GameTime.hour;
-            time.minute = GameTime.minute;
-            time.second = GameTime.second;
+            GameTime.hour = time.hour;
+            GameTime.minute = time.minute;
+            GameTime.second = time.second;
 
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
@@ -55,9 +55,9 @@ namespace Assets.Scripts.Managers
         private void UpdateIngameTime()
         {
             float currentTime = Time.time * TimeScale + (StartHours * 3600);
-            GameTime.hour = Mathf.FloorToInt(currentTime / 3600);
-            GameTime.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
-            GameTime.second = Mathf.FloorToInt((currentTime % 3600) % 60);
+            time.hour = Mathf.FloorToInt(currentTime / 3600);
+            time.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
+            time.second = Mathf.FloorToInt((currentTime % 3600) % 60);
         }
 
         void OnHandleControllerKilled (ControllerBase controller, IDamageGiver attacker)
