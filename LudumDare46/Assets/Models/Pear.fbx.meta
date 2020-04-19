@@ -3,7 +3,17 @@ guid: 93ae84c4925b8a54aa496e506cf7f948
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pear
+    second: {fileID: 2100000, guid: e624d2e1be5c9d44bad2b9f08faf6760, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stalk
+    second: {fileID: 2100000, guid: 2d3a3f744efb5e448b86aaf8c05a5db2, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

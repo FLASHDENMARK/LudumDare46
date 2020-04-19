@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: adf327e009ff80744a9058bc1bcd1684
+guid: f38a49a7823412c429e573c1c3c0084f
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bread
+    second: {fileID: 2100000, guid: bc59c6b1c272850469b2b701c668e5e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OrangeKaviar
+    second: {fileID: 2100000, guid: 73d30e35d9663524a8e7a8cdae9e2a6f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
