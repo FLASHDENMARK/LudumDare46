@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: bd23a8e09639f434b947ac3c48be8f0e,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -13932,10 +13932,38 @@ PrefabInstance:
     - target: {fileID: 9163934757980436066, guid: 36af14f6a611a354b8d3b58af68e1a06,
         type: 3}
       propertyPath: m_Name
-      value: Civilian (5)
+      value: Hitman #1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36af14f6a611a354b8d3b58af68e1a06, type: 3}
+--- !u!1 &1682795794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9163934757980436066, guid: 36af14f6a611a354b8d3b58af68e1a06,
+    type: 3}
+  m_PrefabInstance: {fileID: 1682795793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1682795795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682795794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2de55b07e1446b439c280a085919367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviations:
+  - Waypoints:
+    - Position: {x: -29.03, y: 1, z: -20.76}
+      ExecutionTime: 5
+    - Position: {x: -28.82, y: 1, z: 0}
+      ExecutionTime: 10
+    - Position: {x: -29.29, y: 1, z: 17.02}
+      ExecutionTime: 15
+    Starttime: 10
+    color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &1684105759
 PrefabInstance:
   m_ObjectHideFlags: 0
