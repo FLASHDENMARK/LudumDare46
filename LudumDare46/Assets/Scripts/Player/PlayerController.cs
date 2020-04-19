@@ -20,7 +20,7 @@ public class PlayerController : ControllerBase
     private Vector3 _moveDirection = Vector3.zero;
     private bool _allowLook = true;
     private PlayerInteraction _interaction;
-    public bool inspect;
+    private bool inspect;
 
     private void OnEnable()
     {
@@ -49,15 +49,25 @@ public class PlayerController : ControllerBase
         bool rightMouse = Input.GetMouseButton(1);
         bool use = Input.GetKeyDown(KeyCode.E);
         bool watch = Input.GetKey(KeyCode.Q);
+        bool flashlight = Input.GetKey(KeyCode.Tab);
 
         // TODO May need to be expanded if we need more weapons
         bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
 
         Move(move);
 
-        ToggleWatch(watch);
-
         Inspect(leftMouse, rightMouse, look);
+
+        // Only toggle the watch if the flashlight is unequipped
+        if (!flashlight)
+        {
+            ToggleGadget(inventoryManager.watch, watch);
+        }
+
+        if (!watch)
+        {
+            ToggleGadget(inventoryManager.flashlight, flashlight);
+        }
 
         if(_allowLook)
         {
@@ -86,7 +96,9 @@ public class PlayerController : ControllerBase
         {
             if (!inspect && _interaction.InteractionPossible())
             {
-                inventoryManager.ToggleWatch(false);
+                // TODO If we get more gadgets may need a more general system
+                inventoryManager.ToggleGadget(inventoryManager.flashlight, false);
+                inventoryManager.ToggleGadget(inventoryManager.watch, false);
 
                 inspect = true;
                 _interaction.PickUp();
@@ -149,11 +161,11 @@ public class PlayerController : ControllerBase
         playerCamera.transform.localEulerAngles = new Vector3(rotationY, 0, 0);
     }
 
-    private void ToggleWatch (bool isActive)
+    private void ToggleGadget (GadgetBase gadget, bool isActive)
     {
         if (inspect == false)
         {
-            inventoryManager.ToggleWatch(isActive);
+            inventoryManager.ToggleGadget(gadget, isActive);
         }
     }
 
