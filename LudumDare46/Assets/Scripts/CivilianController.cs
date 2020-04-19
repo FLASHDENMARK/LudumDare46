@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,8 +10,14 @@ public class CivilianController : ControllerBase
     public float randomDeathForce = 20.0F;
 
     private HotspotManager hotspotManager;
-    private NavMeshAgent navMeshAgent;
+    public NavMeshAgent NavMeshAgent;
     private bool roam;
+
+    Hotspot nextHotspot = null;
+    Vector3 nextPosition = Vector3.zero;
+
+    public Vector3 OverridePos;
+    public bool IsOverridden;
 
     void Awake()
     {
@@ -20,44 +27,53 @@ public class CivilianController : ControllerBase
     void Start()
     {
         hotspotManager = GameObject.Find("HotspotManager").GetComponent<HotspotManager>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        NavMeshAgent = GetComponent<NavMeshAgent>();
         roam = true;
-        Roam();
+        StartCoroutine(Roam());
     }
 
-    private async void Roam() {
-        while (roam) { // Roam around forever
-            Hotspot nextHotspot;
-            Vector3 nextPosition;
+    IEnumerator Roam()
+    {
+        while (roam)
+        { // Roam around forever
 
-            do {
-                nextHotspot = hotspotManager.Hotspots[Random.Range(0, hotspotManager.Hotspots.Count)].GetComponent<Hotspot>();
-            } while (nextHotspot.TakePosition(out nextPosition) == false);
+            if (IsOverridden == false)
+            {
 
-            navMeshAgent.SetDestination(nextPosition);
-            bool hasReachedDestination = await HasReachedDestination(navMeshAgent);
+                if (HasReachedDestination())
+                {
+                    Vector3 newPos;
+                    Hotspot newHotspot;
+                    if(hotspotManager.RequestHotspot(out newPos, out newHotspot))
+                    {
+                        if(nextHotspot != null) { 
+                            nextHotspot.LeavePosition(nextPosition);
+                        }
 
-            if (hasReachedDestination) {
-                await Task.Delay(Random.Range(MinWaitTime, MaxWaitTime) * 1000);
-                nextHotspot.LeavePosition(nextPosition);
+                        nextPosition = newPos;
+                        nextHotspot = newHotspot;
+                        NavMeshAgent.SetDestination(nextPosition);
+                    }
+                    yield return new WaitForSeconds(Random.Range(MinWaitTime, MaxWaitTime));
+                }
             }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
-    private async Task<bool> HasReachedDestination(NavMeshAgent navMeshAgent) {
+    private bool HasReachedDestination() {
         bool hasReachedDestination = false;
 
         // Based on https://answers.unity.com/questions/324589/how-can-i-tell-when-a-navmesh-has-reached-its-dest.html
-        while (roam && hasReachedDestination == false) {
-            if (navMeshAgent.pathPending == false) {
-                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance) {
-                    if (navMeshAgent.hasPath == false || navMeshAgent.velocity.sqrMagnitude == 0f) {
+        if(roam) {
+            if (NavMeshAgent.pathPending == false) {
+                if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance) {
+                    if (NavMeshAgent.hasPath == false || NavMeshAgent.velocity.sqrMagnitude == 0f) {
                         hasReachedDestination = true;
                     }
                 }
             }
             
-            await Task.Delay(100);
         }
 
         return hasReachedDestination;

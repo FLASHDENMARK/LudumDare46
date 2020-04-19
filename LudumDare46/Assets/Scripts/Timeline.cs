@@ -9,11 +9,13 @@ public class Timeline : MonoBehaviour
 {
     [SerializeField]
     public List<Deviation> deviations = new List<Deviation>();
+    CivilianController civilian;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        civilian = GetComponent<CivilianController>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class Timeline : MonoBehaviour
             Deviation detour = deviations.Find(deviation => Time.time >= deviation.Starttime);
             if(detour != null)
             {
-                //STOP WANDERING, EXECUTE DEVIATION
+                civilian.IsOverridden = true;
                 StartCoroutine(RunDeviation(detour));
             }
         }
@@ -35,15 +37,17 @@ public class Timeline : MonoBehaviour
     {
         while (detour.Waypoints.Count > 0)
         {
-            //Waypoint wp = detour.Waypoints.Find(wp => (detour.Starttime - Time.time) >= wp.ExecutionTime);
-            //if (wp != null)
-            //{
-            //    //EXECUTE WP DETOUR WITH NAVMESHAGENT
-            //    detour.Waypoints.Remove(wp);
-            //    //START WANDERING
-            //}
+            float curTime = (Time.time - detour.Starttime);
+            Waypoint waypoint = detour.Waypoints.Find(wp => curTime >= wp.ExecutionTime);
+            if (waypoint != null)
+            {
+                civilian.NavMeshAgent.SetDestination(waypoint.Position);
+                detour.Waypoints.Remove(waypoint);
+            }
             yield return new WaitForSeconds(0.05f);
         }
+        deviations.Remove(detour);
+        civilian.IsOverridden = false;
     }
 
     private void OnDrawGizmosSelected()
@@ -53,7 +57,7 @@ public class Timeline : MonoBehaviour
             Gizmos.color = deviation.color;
             for (int i = 0; i < deviation.Waypoints.Count; i++)
             {
-                Gizmos.DrawWireSphere(deviation.Waypoints[i].Position, 0.25f);
+                Gizmos.DrawWireSphere(deviation.Waypoints[i].Position, 0.5f);
 
                 if (i < deviation.Waypoints.Count - 1)
                 {
