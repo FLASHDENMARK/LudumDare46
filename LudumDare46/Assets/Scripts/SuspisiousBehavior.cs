@@ -8,7 +8,7 @@ public class SuspisiousBehavior : MonoBehaviour
 
 	public static void AlertNearbyAI(Vector3 location, float radius, ControllerBase alerter, bool lineCast = false)
 	{
-1		Collider[] hitColliders = Physics.OverlapSphere(location, radius);
+		Collider[] hitColliders = Physics.OverlapSphere(location, radius);
 
 		int i = 0;
 		while (i < hitColliders.Length)
