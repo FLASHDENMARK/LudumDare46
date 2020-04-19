@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 5552121130154430467}
   - component: {fileID: 8380277700185959478}
   - component: {fileID: 2119473155589361846}
-  - component: {fileID: 29261911468237586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Solid7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &29261911468237586
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3700368426685436228}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1709378290324581762, guid: 3ebc4095db60d5b42a89307f8e6f9e69, type: 3}
 --- !u!1 &4036838351023166112
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1035514345041043635}
   - component: {fileID: 2451811221852948999}
-  m_Layer: 0
+  - component: {fileID: -8102783913822561310}
+  - component: {fileID: 3397844828969516908}
+  m_Layer: 8
   m_Name: Bottle6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,3 +126,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPoisonous: 0
+--- !u!114 &-8102783913822561310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036838351023166112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdd8b353b456694ebf2c2f03245097c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSuspicious: 0
+  CanBePickedUp: 1
+  RB: {fileID: 0}
+--- !u!65 &3397844828969516908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036838351023166112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.037142944, y: 0.082502745, z: 0.050714877}
+  m_Center: {x: -0.00036468505, y: 0.041119386, z: 0.00024251938}
