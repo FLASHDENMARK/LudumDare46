@@ -173,10 +173,15 @@ public class AIController : ControllerBase
         roam = false;
     }
 
+    public GameObject happyFace;
+    public GameObject deadFace;
+
     public override void Die (IDamageGiver damageGiver)
     {
         if (!IsDead)
         {
+            happyFace.SetActive(false);
+            deadFace.SetActive(true);
             IsDead = true;
 
             roam = false;
