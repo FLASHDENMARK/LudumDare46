@@ -20,6 +20,9 @@ public class InteractableController : MonoBehaviour
 
     private Vector3 DesiredRotation;
 
+    public bool isHoldingSuspiciousItem => PickedUpInteractable == null ? false : PickedUpInteractable.isSuspicious;
+    public string suspiciousItemName => PickedUpInteractable == null ? null : PickedUpInteractable.name;
+
 
     // Start is called before the first frame update
     void Start()

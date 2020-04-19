@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Interactable : MonoBehaviour
 {
+    public bool isSuspicious = false;
     public bool CanBePickedUp = false;
     public Rigidbody RB;
 

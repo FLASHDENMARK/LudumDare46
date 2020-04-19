@@ -44,7 +44,7 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGi
     public void Alert(ControllerBase damageGiver)
     {
         // You cannot alert yourself
-        if (damageGiver != this)
+        if (damageGiver != this && !IsDead)
         {
             HUD.DisplaySubtitles("An NPC was alerted", "FAIL", 1F);
         }

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -54,23 +55,17 @@ public class AIController : ControllerBase
             {
                 HUD.DisplaySubtitles("You have you weapon out", "Fail", 1F);
             }
+
+            if (playerController._interaction.isHoldingSuspiciousItem)
+            {
+                HUD.DisplaySubtitles($"You are carrying a {playerController._interaction.suspiciousItemName}. That's illegal!" , "Fail", 1F);
+            }
         }
     }
 
     private bool IsLookingAtPlayer (PlayerController controller)
     {
-        Vector3 target = controller.transform.position;
-        target.y = 0;
-        Vector3 tra = transform.position;
-        tra.y = 0;
-
-        float cosAngle = Vector3.Dot((target - tra).normalized, transform.forward);
-        float angle = Mathf.Acos(cosAngle) * Mathf.Rad2Deg;
-
-        if (float.IsNaN(angle))
-        {
-            angle = 0;
-        }
+        float angle = Utility.GetAngle(controller.transform);
 
         return angle <= observeAngle;
     }
@@ -109,8 +104,6 @@ public class AIController : ControllerBase
             return false;
         }
     }
-
-
 
     IEnumerator Roam()
     {
@@ -193,6 +186,14 @@ public class AIController : ControllerBase
             Vector3 force = new Vector3(UnityEngine.Random.Range(-randomDeathForce, randomDeathForce), -20.0F, UnityEngine.Random.Range(-randomDeathForce, randomDeathForce));
 
             Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
+            var interactable = gameObject.AddComponent<Interactable>();
+            var sb = gameObject.AddComponent<SuspisiousBehavior>();
+
+            sb.damageGiver = damageGiver.DamageGiver;
+            sb.lineCast = true;
+            gameObject.name = "corpse";
+
+            interactable.isSuspicious = true;
 
             // This is to give a bit of randomness to the "ragdolls" however it doesn't even look that good 
             rigidbody.AddForce(force);
