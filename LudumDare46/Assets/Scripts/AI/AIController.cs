@@ -96,9 +96,18 @@ public class AIController : ControllerBase
     {
         RaycastHit hit;
 
+        //Debug.DrawLine(transform.position, controller.transform.position)
+
         bool isHit = Physics.Linecast(transform.position, controller.transform.position, out hit/*, playerLineMask*/);
 
-        return isHit;
+        if (isHit && hit.collider.GetComponent<PlayerController>())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 
