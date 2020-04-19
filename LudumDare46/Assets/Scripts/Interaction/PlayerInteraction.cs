@@ -101,7 +101,8 @@ public class PlayerInteraction : MonoBehaviour
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, HoldDistance, EnvironmentMask))
         {
             return Vector3.Distance(cam.transform.position, hit.point);
-        } else
+        } 
+        else
         {
             return HoldDistance;
         }
