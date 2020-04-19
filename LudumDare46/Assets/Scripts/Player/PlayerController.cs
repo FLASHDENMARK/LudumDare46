@@ -31,6 +31,7 @@ public class PlayerController : ControllerBase
     {
         _characterController = GetComponent<CharacterController>();
         _interaction = GetComponent<PlayerInteraction>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 

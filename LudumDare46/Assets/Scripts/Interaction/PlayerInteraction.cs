@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -109,6 +113,7 @@ public class PlayerInteraction : MonoBehaviour
         Gizmos.DrawRay(cam.transform.position, cam.transform.forward * SpherecastDistance);
         Gizmos.DrawWireSphere(cam.transform.position + cam.transform.forward * SpherecastDistance, spherecastRadius);
     }
+
 
     public void PickUp()
     {
