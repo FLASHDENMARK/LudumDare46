@@ -36,22 +36,22 @@ public class PlayerController : ControllerBase
 
     private void OnGUI()
     {
-        if (trigger != null && trigger.isEnabled)
+        if (_trigger != null && _trigger.isEnabled)
         {
-            bool hasTriggerText = trigger.on ? !string.IsNullOrEmpty(trigger.triggerOffText) : !string.IsNullOrEmpty(trigger.triggerOnText);
+            bool hasTriggerText = _trigger.on ? !string.IsNullOrEmpty(_trigger.triggerOffText) : !string.IsNullOrEmpty(_trigger.triggerOnText);
             string triggerText = null;
 
             if (hasTriggerText)
             {
-                string action = trigger.on ? trigger.triggerOffText : trigger.triggerOnText;
+                string action = _trigger.on ? _trigger.triggerOffText : _trigger.triggerOnText;
                 triggerText = $"Press E to {action}"; 
             }
             else
             {
                 // If no trigger text is set this will be the default UI text
-                string onOff = trigger.on ? "off" : "on";
+                string onOff = _trigger.on ? "off" : "on";
 
-                triggerText = $"Press E to switch {trigger.gameObject.name} " + onOff;
+                triggerText = $"Press E to switch {_trigger.gameObject.name} " + onOff;
             }
 
             GUI.Label(new Rect(30, 30, 400, 30), triggerText);
@@ -117,9 +117,9 @@ public class PlayerController : ControllerBase
 
     private void TriggerInteraction()
     {
-        if (trigger != null)
+        if (_trigger != null)
         {
-            trigger.ToggleUse();
+            _trigger.ToggleUse();
         }
     }
 

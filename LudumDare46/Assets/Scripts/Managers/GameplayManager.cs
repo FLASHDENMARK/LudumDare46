@@ -5,6 +5,7 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        private static PlayerController player;
         public delegate void OnControllerKilled (ControllerBase controller, IDamageGiver attacker);
         private string tempSpeaker = "GAME";
         public static OnControllerKilled OnControllerKilledEvent;
@@ -19,7 +20,9 @@ namespace Assets.Scripts.Managers
 
         private void OnEnable ()
         {
+            // Deterministic randomness for the win!
             UnityEngine.Random.InitState(0);
+
             OnControllerKilledEvent += OnHandleControllerKilled;
         }
 
@@ -32,6 +35,16 @@ namespace Assets.Scripts.Managers
         public class IngameTime
         {
             public int hour, minute, second;
+        }
+
+        public static PlayerController GetPlayer()
+        {
+            if (player == null)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            }
+
+            return player;
         }
 
         bool _displayControls = false;
@@ -67,6 +80,10 @@ namespace Assets.Scripts.Managers
                 // The player died. Reset
                 HUD.DisplaySubtitles(tempSpeaker, "You died.", 5.0F);
             }
+            else if (controller is HitmanController)
+            {
+                HUD.DisplaySubtitles(tempSpeaker, "A hitman has been killed. Good work.", 5.0F);
+            }
             else if (controller is AIController)
             {
                 // A civilian died.
@@ -94,10 +111,6 @@ namespace Assets.Scripts.Managers
                 {
                     HUD.DisplaySubtitles(tempSpeaker, "A hitman has killed a target. Do not let them get away with that.", 5.0F);
                 }
-            }
-            else if (controller is HitmanController)
-            {
-                HUD.DisplaySubtitles(tempSpeaker, "A hitman has been killed. Good work.", 5.0F);
             }
         }
     }

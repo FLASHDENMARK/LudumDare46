@@ -6,4 +6,5 @@
     void ReceiveDamage(float damage, IDamageGiver damageGiver);
 
     void Die(IDamageGiver damageGiver);
+    void Alert(ControllerBase damageGiver);
 }

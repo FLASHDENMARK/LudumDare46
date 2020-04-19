@@ -2,11 +2,13 @@
 using System;
 using UnityEngine;
 
+public enum StateEquilibrium { On, Off, Both }
+
 public class TriggerObjective : ObjectiveBase
 {
+    public StateEquilibrium stateEquilibrium = StateEquilibrium.Both;
     public TriggerBase trigger;
     public float triggerRange = 3.0F;
-    private bool _hasTriggeredOnce = false;
 
     public override void Begin(Action<ObjectiveOutcome> endCallback)
     {
@@ -15,24 +17,52 @@ public class TriggerObjective : ObjectiveBase
         base.Begin(endCallback);
     }
 
-    public float distanceTest;
-
     protected override void UpdateObjective()
     {
-        distanceTest = Vector3.Distance(_controller.transform.position, trigger.transform.position);
+        float distance = Vector3.Distance(_controller.transform.position, trigger.transform.position);
 
-        if (distanceTest <= triggerRange)
+        if (distance <= triggerRange)
         {
             _controller.OnPlayerInsideInteractionTrigger(trigger);
 
-            if (_controller.trigger != null && !_hasTriggeredOnce)
-            {
-                _hasTriggeredOnce = true;
+            ToggleTrigger();
+        }
+        else
+        {
+            _controller.OnPlayerOutsideInteractionTrigger();
+        }
+    }
+
+    private void ToggleTrigger ()
+    {
+        switch (stateEquilibrium)
+        {
+            case StateEquilibrium.On:
+
+                if (!trigger.on)
+                {
+                    trigger.ToggleUse();
+                }
+
+                break;
+            case StateEquilibrium.Off:
+
+                if (trigger.on)
+                {
+                    trigger.ToggleUse();
+                }
+
+                break;
+            case StateEquilibrium.Both:
+
                 trigger.ToggleUse();
 
-                End();
-            }
+                break;
         }
+
+        trigger.ToggleUse();
+
+        End();
     }
 
     private void OnDrawGizmosSelected()
@@ -45,8 +75,6 @@ public class TriggerObjective : ObjectiveBase
     public override void Reset()
     {
         base.Reset();
-
-        _hasTriggeredOnce = false;
     }
 
     public override Vector3 GetBeginningVector()

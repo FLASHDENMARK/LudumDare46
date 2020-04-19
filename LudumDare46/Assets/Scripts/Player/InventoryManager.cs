@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    public bool isWeaponsEquipped => weapons.Any(w => w.gameObject.activeSelf);
+
     public List<WeaponBase> weapons;
 
     public GadgetBase watch;
