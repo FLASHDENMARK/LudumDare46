@@ -8,9 +8,15 @@ public class SecurityConsoleInteraction : InteractionBase
     public List<GameObject> screens = new List<GameObject>();
     public List<Material> noiseGrain = new List<Material>();
 
+    public float noiseGrainChangeRate = 0.05F;
+    private float _noiseGrainChangeRate = 0.05F;
+    private int _noiseGrainIndex = 0;
+
     private void Awake()
     {
         Off();
+
+        _noiseGrainChangeRate = noiseGrainChangeRate;
     }
 
     public override void ToggleUse()
@@ -27,14 +33,24 @@ public class SecurityConsoleInteraction : InteractionBase
         }
     }
 
+    
     private void Update()
     {
+        _noiseGrainChangeRate -= Time.deltaTime;
+
         if (!on)
         {
-            foreach (GameObject screen in screens)
+            if (_noiseGrainChangeRate <= 0)
             {
-                int index = Random.Range(0, noiseGrain.Count);
-                screen.GetComponent<MeshRenderer>().material = noiseGrain[index];
+                _noiseGrainIndex += 1; // Random.Range(0, noiseGrain.Count);
+                _noiseGrainIndex %= noiseGrain.Count;
+                foreach (GameObject screen in screens)
+                {
+                    Debug.Log("Index " + _noiseGrainIndex);
+                    _noiseGrainChangeRate = noiseGrainChangeRate;
+                    
+                    screen.GetComponent<MeshRenderer>().material = noiseGrain[_noiseGrainIndex];
+                }
             }
         }
     }

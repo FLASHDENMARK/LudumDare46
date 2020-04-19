@@ -259,7 +259,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fb110ad14e1f8b64c9cb1825318a863a, type: 2}
+  - {fileID: 2100000, guid: d4b75e8fd30b6a640b9d42a85d7ce811, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -352,7 +352,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 029b8fe39419f4d459bc34ae87b236f2, type: 2}
+  - {fileID: 2100000, guid: 2a177f2b97a6fdf4d8d39d20c2080b95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e9bf69f0a55154c975c1d3f81230b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 1
+  on: 0
   cameras:
   - {fileID: 0}
   - {fileID: 0}
@@ -506,3 +506,6 @@ MonoBehaviour:
   noiseGrain:
   - {fileID: 2100000, guid: 2a177f2b97a6fdf4d8d39d20c2080b95, type: 2}
   - {fileID: 2100000, guid: d4b75e8fd30b6a640b9d42a85d7ce811, type: 2}
+  - {fileID: 2100000, guid: 678591014c909e14dbe02961540a20b0, type: 2}
+  noiseGrainChangeRate: 0.25
+  test: {x: 0, y: 0}
