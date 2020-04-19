@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Civilian : ControllerBase
+public class CivilianController : ControllerBase
 {
     public int MinWaitTime;
     public int MaxWaitTime;

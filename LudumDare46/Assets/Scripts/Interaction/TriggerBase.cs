@@ -17,7 +17,7 @@ public abstract class TriggerBase : MonoBehaviour
 
     public virtual void On () { }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (on)
         {

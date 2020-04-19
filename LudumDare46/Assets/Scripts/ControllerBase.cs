@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Managers;
+using UnityEngine;
 
 public abstract class ControllerBase : MonoBehaviour, IDamageReceiver
 {
@@ -15,6 +16,8 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver
         {
             if (!IsDead)
             {
+                GameplayManager.OnControllerKilledEvent(this);
+
                 Die(damageGiver);
             }
 

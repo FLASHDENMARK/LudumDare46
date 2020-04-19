@@ -8,6 +8,16 @@ public class CurtainsTrigger : TriggerBase
     public Transform onPosition;
     public Transform OffPosition;
 
+    public float buttonSpeed;
+
+    public Transform onButton;
+    public Transform onButtonOnPosition;
+    public Transform onButtonOffPosition;
+
+    public Transform offButton;
+    public Transform offButtonOffPosition;
+    public Transform offButtonOnPosition;
+
     private Transform _currentPosition;
 
     public override void Off ()
@@ -23,5 +33,16 @@ public class CurtainsTrigger : TriggerBase
     private void Update()
     {
         curtain.position = Vector3.MoveTowards(curtain.position, _currentPosition.position, openCloseSpeed * Time.deltaTime);
+
+        if (on)
+        {
+            onButton.position = Vector3.MoveTowards(onButton.position, onButtonOffPosition.position, buttonSpeed * Time.deltaTime);
+            offButton.position = Vector3.MoveTowards(offButton.position, offButtonOnPosition.position, buttonSpeed * Time.deltaTime);
+        }
+        else
+        {
+            onButton.position = Vector3.MoveTowards(onButton.position, onButtonOnPosition.position, buttonSpeed * Time.deltaTime);
+            offButton.position = Vector3.MoveTowards(offButton.position, offButtonOffPosition.position, buttonSpeed * Time.deltaTime);
+        }
     }
 }
