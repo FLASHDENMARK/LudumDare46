@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Components.Weapons.Behavior
 {
@@ -12,6 +11,14 @@ namespace Assets.Components.Weapons.Behavior
 		public Transform hitEffectTest;
 
 		public override bool IsExecuting { get; set; }
+
+		public ControllerBase DamageGiver { get; set; }
+
+		// This can be done better
+		private void Awake()
+		{
+			DamageGiver = transform.root.GetComponent<ControllerBase>();
+		}
 
 		public override void Execute (WeaponBase weapon)
 		{

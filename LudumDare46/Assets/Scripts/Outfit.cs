@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class Outfit : MonoBehaviour
 {
-    public List<Material> testMat;
+    public List<Material> materials;
     void Awake()
     {
         Initialize();
@@ -16,7 +16,7 @@ public class Outfit : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            Material material = testMat[Random.Range(0, testMat.Count)];
+            Material material = materials[Random.Range(0, materials.Count)];
 
             child.GetComponent<Clothing>().Initialize(material);
         }
