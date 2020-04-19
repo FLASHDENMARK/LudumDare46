@@ -3,7 +3,17 @@ guid: a766342fcebe7994b80bf2ff4ffe1755
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bowl
+    second: {fileID: 2100000, guid: 4d909b7f472afb9418a86d1e7ae2709e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scrimp
+    second: {fileID: 2100000, guid: 588cb1dfb3f1fca49b10780f7d324331, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
