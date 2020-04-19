@@ -54,7 +54,6 @@ MonoBehaviour:
   SpareAmmo: 96
   MaxAmmo: 32
   MaxSpareAmmo: 192
-  ShootDistance: 100
   ShootTime: 0.11
   ReloadTime: 1.25
   Camera: {fileID: 7499300170041797731}
@@ -89,6 +88,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145115fc6d7f7584d92f1f46c0da6780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
+  shootDistance: 100
+  rigidbodyForce: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   hitEffectTest: {fileID: 400012, guid: 4124bcd25ead6874eb9c83ebc2b1586b, type: 3}
 --- !u!114 &7894246258848195296
 MonoBehaviour:
@@ -1477,7 +1482,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1597,7 +1602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2201f9fe03f264681bb1dfc6d67630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 0
+  health: 0
   moveSpeed: 5
   jumpSpeed: 8
   gravity: 20
@@ -1607,7 +1612,6 @@ MonoBehaviour:
   playerCamera: {fileID: 7499300170041797730}
   inventoryManager: {fileID: 5824961549379573289}
   inventoryMovement: {fileID: 1410024759}
-  inspect: 0
 --- !u!143 &7499300171069922424
 CharacterController:
   m_ObjectHideFlags: 0
