@@ -7,6 +7,7 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver
     public float Health { get => health; }
 
     public bool IsDead { get; private set; }
+    public TriggerBase trigger;
 
     public void ReceiveDamage (float damage, IDamageGiver damageGiver)
     {
@@ -16,13 +17,23 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver
         {
             if (!IsDead)
             {
-                GameplayManager.OnControllerKilledEvent(this);
+                GameplayManager.OnControllerKilledEvent(this, damageGiver);
 
                 Die(damageGiver);
             }
 
             IsDead = true;
         }
+    }
+
+    public void OnPlayerInsideInteractionTrigger(TriggerBase inter)
+    {
+        trigger = inter;
+    }
+
+    public void OnPlayerOutsideInteractionTrigger()
+    {
+        trigger = null;
     }
 
     public abstract void Die (IDamageGiver damageGiver);

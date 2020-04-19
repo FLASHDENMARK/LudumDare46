@@ -7,6 +7,8 @@ public class ProjectileBase : MonoBehaviour, IDamageGiver
 
     public Transform Transform { get; private set; }
 
+    public ControllerBase DamageGiver { get; set; }
+
     public void Initialize (/*ISpawnParameters spawnParameters*/)
     {
         /*ProjectileSpawnParameters parameters = (ProjectileSpawnParameters)spawnParameters;

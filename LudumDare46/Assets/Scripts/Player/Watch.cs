@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Managers;
 using UnityEngine;
 
 /// <summary>
@@ -37,6 +38,9 @@ public class Watch : MonoBehaviour
             _blinkTimer = 0.5F;
             _timer = 1;
         }
+
+        _hours = GameplayManager.GameTime.hour;
+        _minutes = GameplayManager.GameTime.minute;
 
         Blink();
 

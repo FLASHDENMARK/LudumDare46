@@ -45,7 +45,7 @@ public abstract class TriggerBase : MonoBehaviour
 
     private void OnTriggerEnter (Collider collider)
     {
-        PlayerController controller = collider.GetComponent<PlayerController>();
+        ControllerBase controller = collider.GetComponent<ControllerBase>();
 
         if (controller != null)
         {

@@ -15,8 +15,7 @@ public class PlayerController : ControllerBase
     public Camera playerCamera;
     public InventoryManager inventoryManager;
     public InventoryMovement inventoryMovement;
-    private TriggerBase trigger;
-
+    
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
     private bool _allowLook = true;
@@ -34,15 +33,6 @@ public class PlayerController : ControllerBase
     /// Called by a trigger when the player steps inside it
     /// </summary>
     /// <param name="interaction"></param>
-    public void OnPlayerInsideInteractionTrigger (TriggerBase inter)
-    {
-        trigger = inter;
-    }
-
-    public void OnPlayerOutsideInteractionTrigger ()
-    {
-        trigger = null;
-    }
 
     private void OnGUI()
     {
@@ -79,6 +69,7 @@ public class PlayerController : ControllerBase
         bool use = Input.GetKeyDown(KeyCode.E);
         bool watch = Input.GetKey(KeyCode.Q);
         bool flashlight = Input.GetKey(KeyCode.Tab);
+        bool esc = Input.GetKey(KeyCode.Escape);
 
         // TODO May need to be expanded if we need more weapons
         bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
@@ -86,6 +77,11 @@ public class PlayerController : ControllerBase
         Move(move);
 
         Inspect(leftMouse, rightMouse, look);
+
+        if (Input.GetKeyDown(KeyCode.Escape) && inspect == false)
+        {
+            _allowLook = !_allowLook;
+        }
 
         // Only toggle the watch if the flashlight is unequipped
         if (!flashlight)
