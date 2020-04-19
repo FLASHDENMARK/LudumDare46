@@ -54,6 +54,11 @@ public class AIController : ControllerBase
             {
                 HUD.DisplaySubtitles("You have you weapon out", "Fail", 1F);
             }
+
+            if (playerController._interaction.isHoldingSuspiciousItem)
+            {
+                HUD.DisplaySubtitles($"You are carrying a {playerController._interaction.suspiciousItemName}. That's illegal!" , "Fail", 1F);
+            }
         }
     }
 
@@ -109,8 +114,6 @@ public class AIController : ControllerBase
             return false;
         }
     }
-
-
 
     IEnumerator Roam()
     {
@@ -193,6 +196,14 @@ public class AIController : ControllerBase
             Vector3 force = new Vector3(UnityEngine.Random.Range(-randomDeathForce, randomDeathForce), -20.0F, UnityEngine.Random.Range(-randomDeathForce, randomDeathForce));
 
             Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
+            var interactable = gameObject.AddComponent<Interactable>();
+            var sb = gameObject.AddComponent<SuspisiousBehavior>();
+
+            sb.damageGiver = damageGiver.DamageGiver;
+
+
+
+            interactable.isSuspicious = true;
 
             // This is to give a bit of randomness to the "ragdolls" however it doesn't even look that good 
             rigidbody.AddForce(force);

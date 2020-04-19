@@ -33,11 +33,12 @@ namespace Assets.Components.Weapons.Behavior
 
 			bool isHit = Physics.Raycast(ray, out hit, shootDistance, layerMask);
 
-			AlertNearbyAI(transform.position);
+			SuspisiousBehavior.AlertNearbyAI(transform.position, noiseRadius, DamageGiver);
+			//AlertNearbyAI(transform.position);
 
 			if (isHit)
 			{
-				AlertNearbyAI(hit.point);
+				SuspisiousBehavior.AlertNearbyAI(hit.point, noiseRadius, DamageGiver);
 
 				IDamageReceiver damageReceiver = hit.collider.GetComponent<IDamageReceiver>();
 
@@ -59,24 +60,6 @@ namespace Assets.Components.Weapons.Behavior
 			}
 
 			weapon.Ammo--;
-		}
-
-		void AlertNearbyAI (Vector3 location)
-		{
-			Collider[] hitColliders = Physics.OverlapSphere(location, noiseRadius);
-
-			int i = 0;
-			while (i < hitColliders.Length)
-			{
-				IDamageReceiver damageReceiver = hitColliders[i].GetComponent<IDamageReceiver>();
-
-				if (damageReceiver != null)
-				{
-					damageReceiver.Alert(DamageGiver);
-				}
-
-				i++;
-			}
 		}
 	}
 }

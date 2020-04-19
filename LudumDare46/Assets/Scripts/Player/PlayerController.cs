@@ -19,7 +19,7 @@ public class PlayerController : ControllerBase
     private CharacterController _characterController;
     private Vector3 _moveDirection = Vector3.zero;
     private bool _allowLook = true;
-    private InteractableController _interaction;
+    public InteractableController _interaction;
     private bool inspect;
 
     private void Awake()
