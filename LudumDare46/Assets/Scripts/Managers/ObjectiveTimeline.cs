@@ -9,14 +9,14 @@ public class ObjectiveTimeline : MonoBehaviour
 
     public CivilianController controller;
     public List<ObjectiveBase> objectives;
-    public ObjectiveBase _currentObjective;
-
-    public float timer = 0.0F;
+    private ObjectiveBase _currentObjective;
 
     public bool loopTimeline;
 
     private void Awake()
     {
+        objectives.ForEach(o => o.Initialize(controller));
+
         if (_currentObjective == null)
         {
             _currentObjective = objectives.First();
@@ -26,7 +26,12 @@ public class ObjectiveTimeline : MonoBehaviour
 
     private void OnObjectiveCompleted (ObjectiveOutcome outcome)
     {
-        int current = _currentObjective.order;
+        if (outcome.controllerDied)
+        {
+            _currentObjective = null;
+        }
+
+        int current = objectives.IndexOf(_currentObjective);
 
         if (objectives.Count > current + 1)
         {

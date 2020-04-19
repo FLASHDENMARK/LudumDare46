@@ -5,9 +5,9 @@ public class AttackTargetObjective : ObjectiveBase
     public Transform target;
     public ObjectiveBase prerequisite; // This objective must be completed before this objective can be made. It this needed?
 
-    public override void CheckEndCondition()
+    protected override void UpdateObjective()
     {
-        throw new System.NotImplementedException();
+        base.SetNavMeshDestination(target.position);
     }
 
     public override Vector3 GetBeginningVector()

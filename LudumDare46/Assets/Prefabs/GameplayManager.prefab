@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6482514042619008238}
   - component: {fileID: 6482514042619008232}
   - component: {fileID: 6482514042619008235}
+  - component: {fileID: 1689361620}
+  - component: {fileID: 1689361621}
   m_Layer: 0
   m_Name: Assassination timeline
   m_TagString: Untagged
@@ -50,13 +52,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   objectives:
-  - {fileID: 6482514042619008239}
-  - {fileID: 6482514042619008233}
+  - {fileID: 1689361621}
   - {fileID: 6482514042619008238}
-  - {fileID: 6482514042619008232}
   - {fileID: 6482514042619008235}
-  _currentObjective: {fileID: 0}
-  timer: 0
   loopTimeline: 1
 --- !u!114 &6482514042619008239
 MonoBehaviour:
@@ -65,23 +63,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514042619008210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ecc898e8b4ad8d40991fdc9e2e0800d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 0
-  description: Moving to a navigation point
+  description: Navigation behavior
   inProgress: 0
   isComplete: 0
-  completionTime: 5
-  controller: {fileID: 0}
+  completionTime: 25
   waypoints:
   - {fileID: 6482514044535367970}
   - {fileID: 6482514043324831472}
   - {fileID: 6482514043599695281}
   - {fileID: 6482514043971607548}
   - {fileID: 6482514044550293367}
+  currentWaypoint: {fileID: 0}
+  nextWaypointDistance: 2
 --- !u!114 &6482514042619008233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,17 +87,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514042619008210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f1e6d55941bf2343931deaf79e78130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 1
-  description: 
+  description: Picking up an object
   inProgress: 0
   isComplete: 0
-  completionTime: 5
-  controller: {fileID: 0}
+  completionTime: 10
   pickup: {fileID: 6482514043988904001}
   pickupDistance: 4
 --- !u!114 &6482514042619008238
@@ -109,18 +105,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514042619008210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef0861670c250654f9d8b651c3164eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 2
-  description: 
+  description: Triggering an object
   inProgress: 0
   isComplete: 0
-  completionTime: 5
-  controller: {fileID: 0}
+  completionTime: 15
   trigger: {fileID: 0}
+  triggerRange: 5
+  distanceTest: 0
 --- !u!114 &6482514042619008232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,17 +124,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514042619008210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ecc898e8b4ad8d40991fdc9e2e0800d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 3
-  description: 
+  description: NAvigating another
   inProgress: 0
   isComplete: 0
   completionTime: 5
-  controller: {fileID: 0}
   waypoints:
   - {fileID: 6482514042766064363}
   - {fileID: 6482514043920111332}
@@ -149,6 +143,8 @@ MonoBehaviour:
   - {fileID: 6482514043912348034}
   - {fileID: 6482514043450981283}
   - {fileID: 6482514043457315242}
+  currentWaypoint: {fileID: 0}
+  nextWaypointDistance: 2
 --- !u!114 &6482514042619008235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,18 +152,52 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514042619008210}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef0861670c250654f9d8b651c3164eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 4
-  description: 
+  description: Trigger objective
   inProgress: 0
   isComplete: 0
   completionTime: 5
-  controller: {fileID: 0}
   trigger: {fileID: 0}
+  triggerRange: 3
+  distanceTest: 0
+--- !u!114 &1689361620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482514042619008210}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71516edc5f87c224db58375d940f452e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Attacking target
+  inProgress: 0
+  isComplete: 0
+  completionTime: 50
+  target: {fileID: 0}
+  prerequisite: {fileID: 0}
+--- !u!114 &1689361621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482514042619008210}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc9b0dd90b8ebe488471e67148e7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
+  inProgress: 0
+  isComplete: 0
+  completionTime: 50
 --- !u!1 &6482514042689081574
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,9 +577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adad5344e64d0104a94cb20158c8bd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempSpeaker: GAME
-  timelines:
-  - {fileID: 6482514042619008236}
+  TimeScale: 2
+  StartHours: 12
+  time:
+    hour: 0
+    minute: 0
+    second: 0
 --- !u!1 &6482514043912348035
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514043988904010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.0363, y: 1.1926333, z: 9.276787}
+  m_LocalPosition: {x: 13.0363, y: 1.693, z: 9.276787}
   m_LocalScale: {x: 1, y: 0.18723, z: 1}
   m_Children:
   - {fileID: 6482514044205090560}
@@ -990,7 +1023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514044535367971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9637003, y: 0.4226333, z: 18.316788}
+  m_LocalPosition: {x: 1.3, y: 0.4226333, z: 18.316788}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6482514043663747610}
@@ -1033,7 +1066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6482514044550293364}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.4963, y: 0.4226333, z: 8.546787}
+  m_LocalPosition: {x: 23.42, y: 0.4226333, z: 5.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6482514043663747610}

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickupObjective : ObjectiveBase
 {
@@ -12,17 +11,6 @@ public class PickupObjective : ObjectiveBase
         Vector3 center = pickup.transform.position;
         center.y += 0.25f;
         Gizmos.DrawSphere(center, pickupDistance);
-    }
-    public override void CheckEndCondition ()
-    {
-       /*if (Vector3.Distance(controller.transform.position, pickup.transform.position) <= pickupDistance)
-        {
-
-        }
-        else
-        {
-            // Attempt to nav mesh to it
-        }*/
     }
 
     public override Vector3 GetBeginningVector()

@@ -7,20 +7,41 @@ using UnityEngine;
 public class NavigationObjective : ObjectiveBase
 {
     public List<Navpoint> waypoints = new List<Navpoint>();
+    public Navpoint currentWaypoint;
+    public float nextWaypointDistance = 2.0F;
 
     public override bool Begin(Action<ObjectiveOutcome> endCallback)
     {
-        var orderedWaypoints = waypoints.OrderBy(d => Vector3.Distance(controller.transform.position, d.transform.position));
+        List<Navpoint> orderedWaypoints = waypoints.OrderBy(d => Vector3.Distance(_controller.transform.position, d.transform.position)).ToList();
 
-        Navpoint closestToCurrentRoam = orderedWaypoints.FirstOrDefault();
+        currentWaypoint = orderedWaypoints.FirstOrDefault();
 
-        //controller.
-
-
+        base.SetNavMeshDestination(currentWaypoint.transform.position);
 
         return base.Begin(endCallback);
+    }
 
+    protected override void UpdateObjective ()
+    {
+        if (Vector3.Distance(currentWaypoint.transform.position, base._controller.transform.position) <= nextWaypointDistance)
+        {
+            GetNextWaypoint();
+        }
+    }
 
+    private void GetNextWaypoint()
+    {
+        int index = waypoints.IndexOf(currentWaypoint);
+
+        if (waypoints.Count > index + 1)
+        {
+            currentWaypoint = waypoints[index + 1];
+            base.SetNavMeshDestination(currentWaypoint.transform);
+        }
+        else
+        {
+            base.End();
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -44,14 +65,6 @@ public class NavigationObjective : ObjectiveBase
             previous = waypoint;
         }
 
-    }
-
-    public override void CheckEndCondition ()
-    {
-        /*if (controller is within last waypoint)
-        {
-
-        }*/
     }
 
     public override Vector3 GetBeginningVector()

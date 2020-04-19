@@ -1,18 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
-        public string tempSpeaker = "GAME";
-        public delegate void OnControllerKilled(ControllerBase controller, IDamageGiver attacker);
-        private bool _displayControls = false;
-
-        public List<ObjectiveTimeline> timelines = new List<ObjectiveTimeline>(); 
-
+        public delegate void OnControllerKilled (ControllerBase controller, IDamageGiver attacker);
+        private string tempSpeaker = "GAME";
         public static OnControllerKilled OnControllerKilledEvent;
+
+        [Header("InGame Time"), SerializeField]
+        public float TimeScale;
+        public float StartHours = 12;
+        public static IngameTime GameTime = new IngameTime();
+
+        [SerializeField]
+        IngameTime time;
+        
+
 
         private void OnEnable ()
         {
@@ -24,21 +29,36 @@ namespace Assets.Scripts.Managers
             OnControllerKilledEvent += OnHandleControllerKilled;
         }
 
-        private void Awake()
+        [Serializable]
+        public class IngameTime
         {
-            HUD.DisplaySubtitles(tempSpeaker, "Welcome to 'Target in danger. Keep It Alive at all cost.'", 5F);
-
-            //HUD.DisplaySubtitles(tempSpeaker, "This is a test", 5F);
+            public int hour, minute, second;
         }
-    
-        void Update ()
+
+        bool _displayControls = false;
+
+        private void Update()
         {
+            UpdateIngameTime();
+            time.hour = GameTime.hour;
+            time.minute = GameTime.minute;
+            time.second = GameTime.second;
+
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 _displayControls = !_displayControls;
             }
 
-            HUD.DisplayControls(_displayControls);
+            //HUD.DisplayControls(_displayControls);
+        }
+
+
+        private void UpdateIngameTime()
+        {
+            float currentTime = Time.time * TimeScale + (StartHours * 3600);
+            GameTime.hour = Mathf.FloorToInt(currentTime / 3600);
+            GameTime.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
+            GameTime.second = Mathf.FloorToInt((currentTime % 3600) % 60);
         }
 
         void OnHandleControllerKilled (ControllerBase controller, IDamageGiver attacker)
@@ -55,16 +75,17 @@ namespace Assets.Scripts.Managers
                 // The player has killed a civilian
                 if (attacker.DamageGiver is PlayerController)
                 {
-                    int i = Random.Range(0, 3);
+                    int i = UnityEngine.Random.Range(0, 3);
+
                     switch (i)
                     {
-                        case 1:
+                        case 0:
                             HUD.DisplaySubtitles(tempSpeaker, "Do not kill civilians.", 5.0F);
                             break;
-                        case 2:
+                        case 1:
                             HUD.DisplaySubtitles(tempSpeaker, "You will be punished for killing civilians.", 5.0F);
                             break;
-                        case 3:
+                        case 2:
                             HUD.DisplaySubtitles(tempSpeaker, "Bastian. Hold op med det.", 5.0F);
                             break;
 
