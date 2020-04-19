@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CivilianController : ControllerBase
+public class AIController : ControllerBase
 {
     public int MinWaitTime;
     public int MaxWaitTime;
@@ -21,7 +20,7 @@ public class CivilianController : ControllerBase
 
     void Awake()
     {
-        Random.InitState(0);
+
     }
     // Start is called before the first frame update
     void Start()
