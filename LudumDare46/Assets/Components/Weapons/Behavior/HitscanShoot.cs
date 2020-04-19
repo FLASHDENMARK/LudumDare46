@@ -4,6 +4,7 @@ namespace Assets.Components.Weapons.Behavior
 {
 	public class HitscanShoot : WeaponBehaviorBase, IDamageGiver
 	{
+		public float noiseRadius = 12.0F;
 		public float damage = 50.0F;
 		public int shootDistance = 100;
 		public float rigidbodyForce = 5.0F;
@@ -32,14 +33,19 @@ namespace Assets.Components.Weapons.Behavior
 
 			bool isHit = Physics.Raycast(ray, out hit, shootDistance, layerMask);
 
+			AlertNearbyAI(transform.position);
+
 			if (isHit)
 			{
+				AlertNearbyAI(hit.point);
+
 				IDamageReceiver damageReceiver = hit.collider.GetComponent<IDamageReceiver>();
 
 				if (damageReceiver != null)
 				{
 					damageReceiver.ReceiveDamage(damage, this);
 				}
+
 
 				Rigidbody rigidbody = hit.collider.GetComponent<Rigidbody>();
 
@@ -53,6 +59,24 @@ namespace Assets.Components.Weapons.Behavior
 			}
 
 			weapon.Ammo--;
+		}
+
+		void AlertNearbyAI (Vector3 location)
+		{
+			Collider[] hitColliders = Physics.OverlapSphere(location, noiseRadius);
+
+			int i = 0;
+			while (i < hitColliders.Length)
+			{
+				IDamageReceiver damageReceiver = hitColliders[i].GetComponent<IDamageReceiver>();
+
+				if (damageReceiver != null)
+				{
+					damageReceiver.Alert(DamageGiver);
+				}
+
+				i++;
+			}
 		}
 	}
 }

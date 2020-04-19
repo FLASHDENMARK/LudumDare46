@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &8609371432042294063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121046404236527971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.002230164, y: 0.0021898837, z: 0.0014320941}
+  m_Center: {x: -0.0010167848, y: -0.00013080593, z: -0.0002508532}
 --- !u!1 &1485440854888220089
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +22,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6898181636307532667}
+  - component: {fileID: 5349877759273236482}
   m_Layer: 0
   m_Name: ShrimpBowl
   m_TagString: Untagged
@@ -31,19 +45,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8609371432042294063
-BoxCollider:
+--- !u!114 &5349877759273236482
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121046404236527971}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 1485440854888220089}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.002230164, y: 0.0021898837, z: 0.0014320941}
-  m_Center: {x: -0.0010167848, y: -0.00013080593, z: -0.0002508532}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05cc5244be8ad4c49aae2a90b0c2eab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPoisonous: 0
 --- !u!1001 &8984449077973356650
 PrefabInstance:
   m_ObjectHideFlags: 0

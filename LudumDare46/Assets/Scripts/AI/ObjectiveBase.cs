@@ -4,10 +4,9 @@ using UnityEngine;
 
 public abstract class ObjectiveBase : MonoBehaviour
 {
-    public string description;
     public bool inProgress;
     public bool isComplete;
-    public float completionTime;
+    public float completionTime = 20.0F;
     private float _completionTime;
     protected Color _color;
     Action<ObjectiveOutcome> _endCallback;
@@ -15,7 +14,6 @@ public abstract class ObjectiveBase : MonoBehaviour
 
     public abstract Vector3 GetBeginningVector();
     public abstract Vector3 GetEndingVector();
-
     protected virtual void UpdateObjective() { }
 
 
@@ -25,7 +23,7 @@ public abstract class ObjectiveBase : MonoBehaviour
         _color = color;
     }
 
-    private void Awake()
+    private void Awake ()
     {
         _completionTime = completionTime;
     }
@@ -47,7 +45,7 @@ public abstract class ObjectiveBase : MonoBehaviour
     protected void SetNavMeshDestination (Vector3 position)
     {
         _controller.IsOverridden = true;
-        _controller.NavMeshAgent.SetDestination(position);
+        _controller.SetNavMeshDestination(position);
     }
 
     internal void SetNavMeshDestination(Transform transform)
@@ -60,6 +58,7 @@ public abstract class ObjectiveBase : MonoBehaviour
     {
         if (!inProgress)
         {
+            this.completionTime = _completionTime;
             this.enabled = true;
             this._endCallback = endCallback;
 

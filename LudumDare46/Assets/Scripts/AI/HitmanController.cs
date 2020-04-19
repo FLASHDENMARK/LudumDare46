@@ -1,10 +1,10 @@
 ﻿namespace Assets.Scripts
 {
-    public class HitmanController : ControllerBase
+    public class HitmanController : AIController
     {
-        public override void Die (IDamageGiver damageGiver)
+        /*public override void Die (IDamageGiver damageGiver)
         {
-            
-        }
+            base.Die()   
+        }*/
     }
 }
