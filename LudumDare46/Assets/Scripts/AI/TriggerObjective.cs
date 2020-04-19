@@ -8,11 +8,11 @@ public class TriggerObjective : ObjectiveBase
     public float triggerRange = 3.0F;
     private bool _hasTriggeredOnce = false;
 
-    public override bool Begin(Action<ObjectiveOutcome> endCallback)
+    public override void Begin(Action<ObjectiveOutcome> endCallback)
     {
         base.SetNavMeshDestination(trigger.transform);
 
-        return base.Begin(endCallback);
+        base.Begin(endCallback);
     }
 
     public float distanceTest;
@@ -37,11 +37,9 @@ public class TriggerObjective : ObjectiveBase
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 0.6F);
+        Gizmos.color = _color;
 
-        Vector3 center = trigger.transform.position;
-        center.y += 0.25f;
-        Gizmos.DrawSphere(center, triggerRange);
+        Gizmos.DrawSphere(transform.position, triggerRange);
     }
 
     public override void Reset()

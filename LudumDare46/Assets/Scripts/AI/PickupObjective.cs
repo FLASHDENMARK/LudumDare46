@@ -6,11 +6,8 @@ public class PickupObjective : ObjectiveBase
     public float pickupDistance = 4.0F;
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Color(Color.yellow.r, Color.yellow.g, Color.yellow.b, 0.6F);
-
-        Vector3 center = pickup.transform.position;
-        center.y += 0.25f;
-        Gizmos.DrawSphere(center, pickupDistance);
+        Gizmos.color = _color;
+        Gizmos.DrawSphere(pickup.transform.position, pickupDistance);
     }
 
     public override Vector3 GetBeginningVector()

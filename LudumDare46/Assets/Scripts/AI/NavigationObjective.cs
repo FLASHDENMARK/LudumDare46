@@ -10,7 +10,7 @@ public class NavigationObjective : ObjectiveBase
     public Navpoint currentWaypoint;
     public float nextWaypointDistance = 2.0F;
 
-    public override bool Begin(Action<ObjectiveOutcome> endCallback)
+    public override void Begin (Action<ObjectiveOutcome> endCallback)
     {
         List<Navpoint> orderedWaypoints = waypoints.OrderBy(d => Vector3.Distance(_controller.transform.position, d.transform.position)).ToList();
 
@@ -18,7 +18,7 @@ public class NavigationObjective : ObjectiveBase
 
         base.SetNavMeshDestination(currentWaypoint.transform.position);
 
-        return base.Begin(endCallback);
+        base.Begin(endCallback);
     }
 
     protected override void UpdateObjective ()
@@ -57,10 +57,8 @@ public class NavigationObjective : ObjectiveBase
                 Gizmos.DrawLine(waypoint.transform.position, previous.transform.position);
             }
 
-            Gizmos.color = Color.red;
-            Vector3 center = waypoint.transform.position;
-            center.y += 0.25f;
-            Gizmos.DrawCube(center, Vector3.one * 1f);
+            Gizmos.color = _color;
+            Gizmos.DrawCube(waypoint.transform.position, Vector3.one);
 
             previous = waypoint;
         }

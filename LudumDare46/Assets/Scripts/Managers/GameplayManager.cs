@@ -16,11 +16,10 @@ namespace Assets.Scripts.Managers
 
         [SerializeField]
         IngameTime time;
-        
-
 
         private void OnEnable ()
         {
+            UnityEngine.Random.InitState(0);
             OnControllerKilledEvent += OnHandleControllerKilled;
         }
 
@@ -68,7 +67,7 @@ namespace Assets.Scripts.Managers
                 // The player died. Reset
                 HUD.DisplaySubtitles(tempSpeaker, "You died.", 5.0F);
             }
-            else if (controller is CivilianController)
+            else if (controller is AIController)
             {
                 // A civilian died.
 

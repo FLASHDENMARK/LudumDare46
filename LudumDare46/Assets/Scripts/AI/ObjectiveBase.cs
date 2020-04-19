@@ -9,8 +9,9 @@ public abstract class ObjectiveBase : MonoBehaviour
     public bool isComplete;
     public float completionTime;
     private float _completionTime;
+    protected Color _color;
     Action<ObjectiveOutcome> _endCallback;
-    protected CivilianController _controller;
+    protected AIController _controller;
 
     public abstract Vector3 GetBeginningVector();
     public abstract Vector3 GetEndingVector();
@@ -18,9 +19,10 @@ public abstract class ObjectiveBase : MonoBehaviour
     protected virtual void UpdateObjective() { }
 
 
-    internal void Initialize(CivilianController controller)
+    internal void Initialize (AIController controller, Color color)
     {
         _controller = controller;
+        _color = color;
     }
 
     private void Awake()
@@ -54,7 +56,7 @@ public abstract class ObjectiveBase : MonoBehaviour
     }
 
 
-    public virtual bool Begin (Action<ObjectiveOutcome> endCallback)
+    public virtual void Begin (Action<ObjectiveOutcome> endCallback)
     {
         if (!inProgress)
         {
@@ -63,12 +65,6 @@ public abstract class ObjectiveBase : MonoBehaviour
 
             inProgress = true;
             isComplete = false;
-
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 

@@ -9,13 +9,13 @@ public class Timeline : MonoBehaviour
 {
     [SerializeField]
     public List<Deviation> deviations = new List<Deviation>();
-    CivilianController civilian;
+    AIController civilian;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        civilian = GetComponent<CivilianController>();
+        civilian = GetComponent<AIController>();
     }
 
     // Update is called once per frame

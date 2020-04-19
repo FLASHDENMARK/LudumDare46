@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class ObjectiveTimeline : MonoBehaviour
 {
-    // The AI in charge of this timeline
-
-    public CivilianController controller;
+    public Color gizmoColor = Color.yellow;
+    public AIController controller;
     public List<ObjectiveBase> objectives;
     private ObjectiveBase _currentObjective;
 
     public bool loopTimeline;
 
-    private void Awake()
+    private void Start ()
     {
-        objectives.ForEach(o => o.Initialize(controller));
+        objectives.ForEach(o => o.Initialize(controller, gizmoColor));
 
         if (_currentObjective == null)
         {
