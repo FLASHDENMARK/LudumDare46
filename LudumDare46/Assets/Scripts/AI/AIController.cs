@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -64,18 +65,7 @@ public class AIController : ControllerBase
 
     private bool IsLookingAtPlayer (PlayerController controller)
     {
-        Vector3 target = controller.transform.position;
-        target.y = 0;
-        Vector3 tra = transform.position;
-        tra.y = 0;
-
-        float cosAngle = Vector3.Dot((target - tra).normalized, transform.forward);
-        float angle = Mathf.Acos(cosAngle) * Mathf.Rad2Deg;
-
-        if (float.IsNaN(angle))
-        {
-            angle = 0;
-        }
+        float angle = Utility.GetAngle(controller.transform);
 
         return angle <= observeAngle;
     }
@@ -200,8 +190,8 @@ public class AIController : ControllerBase
             var sb = gameObject.AddComponent<SuspisiousBehavior>();
 
             sb.damageGiver = damageGiver.DamageGiver;
-
-
+            sb.lineCast = true;
+            gameObject.name = "corpse";
 
             interactable.isSuspicious = true;
 

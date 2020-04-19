@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145115fc6d7f7584d92f1f46c0da6780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseRadius: 12
   damage: 50
   shootDistance: 100
   rigidbodyForce: 10
@@ -1612,6 +1613,7 @@ MonoBehaviour:
   playerCamera: {fileID: 7499300170041797730}
   inventoryManager: {fileID: 5824961549379573289}
   inventoryMovement: {fileID: 1410024759}
+  _interaction: {fileID: 0}
 --- !u!143 &7499300171069922424
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1654,7 +1656,7 @@ MonoBehaviour:
     m_Bits: 1
   InteractableMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
 --- !u!208 &477490652296493981
 NavMeshObstacle:
   m_ObjectHideFlags: 0
