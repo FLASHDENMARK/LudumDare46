@@ -569,7 +569,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5170075717317071525}
   - component: {fileID: 5170075717317071526}
-  - component: {fileID: 5170075717317071520}
   - component: {fileID: 5170075717317071524}
   m_Layer: 0
   m_Name: Curtain rod
@@ -600,20 +599,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5170075717317071521}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!136 &5170075717317071520
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5170075717317071521}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!137 &5170075717317071524
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
