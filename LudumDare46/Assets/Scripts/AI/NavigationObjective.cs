@@ -10,7 +10,8 @@ public class NavigationObjective : ObjectiveBase
     private Navpoint _currentWaypoint;
     public bool startAtClosestWaypoint = false;
     public float nextWaypointDistance = 2.0F;
-    public bool loopUntilCompletionTime = false; 
+    public bool loopUntilCompletionTime = false;
+    public float distanceToCurrentWaypoint;
 
     public override void Begin (Action<ObjectiveOutcome> endCallback)
     {
@@ -32,7 +33,9 @@ public class NavigationObjective : ObjectiveBase
 
     protected override void UpdateObjective ()
     {
-        if (Vector3.Distance(_currentWaypoint.transform.position, base._controller.transform.position) <= nextWaypointDistance)
+        distanceToCurrentWaypoint = Vector3.Distance(_currentWaypoint.transform.position, base._controller.transform.position);
+
+        if (distanceToCurrentWaypoint <= nextWaypointDistance)
         {
             GetNextWaypoint();
         }
