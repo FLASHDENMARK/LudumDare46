@@ -34,15 +34,27 @@ public class AIController : ControllerBase
     public bool IsOverridden;
 
     // Start is called before the first frame update
-    void Awake ()
+    void Awake()
     {
         hotspotManager = GameObject.Find("HotspotManager").GetComponent<HotspotManager>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         roam = true;
+
+
+        Vector3 newPos;
+        Hotspot newHotspot;
+
+        if (hotspotManager.RequestHotspot(out newPos, out newHotspot) && UnityEngine.Random.Range(0, 4) == 1)
+        {
+            nextPosition = newPos;
+            nextHotspot = newHotspot;
+            _navMeshAgent.SetDestination(nextPosition);
+        }
+
         StartCoroutine(Roam());
     }
 
-    void Update ()
+    void Update()
     {
         PlayerController playerController = GameplayManager.GetPlayer();
 
@@ -52,7 +64,7 @@ public class AIController : ControllerBase
         bool isNearPlayer = IsNearPlayer(playerController);
         bool hasLineOfSightOnPlayer = HasLineOfSight(playerController);
 
-        if (isNearPlayer  && isLookingAtPlayer && hasLineOfSightOnPlayer)
+        if (isNearPlayer && isLookingAtPlayer && hasLineOfSightOnPlayer)
         {
             if (playerController.inventoryManager.isWeaponEquipped)
             {
@@ -61,12 +73,12 @@ public class AIController : ControllerBase
 
             if (playerController._interaction.isHoldingSuspiciousItem)
             {
-                HUD.DisplaySubtitles($"You are carrying a {playerController._interaction.suspiciousItemName}. That's illegal!" , "Fail", 1F);
+                HUD.DisplaySubtitles($"You are carrying a {playerController._interaction.suspiciousItemName}. That's illegal!", "Fail", 1F);
             }
         }
     }
 
-    private bool IsLookingAtPlayer (PlayerController controller)
+    private bool IsLookingAtPlayer(PlayerController controller)
     {
         Vector3 LookDir = transform.forward;
         Vector3 LookAtPLayerDir = controller.transform.position - transform.position;
@@ -75,7 +87,7 @@ public class AIController : ControllerBase
         return angle <= observeAngle;
     }
 
-    private void DebugObserveAngle ()
+    private void DebugObserveAngle()
     {
         int skipFraction = 10;
 
@@ -92,16 +104,16 @@ public class AIController : ControllerBase
         return Vector3.Distance(transform.position, controller.transform.position) <= observeDistance;
     }
 
-    private bool HasLineOfSight (PlayerController controller)
+    private bool HasLineOfSight(PlayerController controller)
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position, controller.transform.position - transform.position, out hit))
+        if (Physics.Raycast(transform.position, controller.transform.position - transform.position, out hit))
         {
-            if(hit.transform.tag == "Player")
+            if (hit.transform.tag == "Player")
             {
                 return true;
-            } 
+            }
         }
 
         return false;
@@ -119,18 +131,20 @@ public class AIController : ControllerBase
                 {
                     Vector3 newPos;
                     Hotspot newHotspot;
-                    if(hotspotManager.RequestHotspot(out newPos, out newHotspot))
+                    if (hotspotManager.RequestHotspot(out newPos, out newHotspot))
                     {
-                        if(nextHotspot != null) { 
+                        if (nextHotspot != null)
+                        {
                             nextHotspot.LeavePosition(nextPosition);
                         }
 
                         nextPosition = newPos;
                         nextHotspot = newHotspot;
                         _navMeshAgent.SetDestination(nextPosition);
+
+                        yield return new WaitForSeconds(UnityEngine.Random.Range(MinWaitTime, MaxWaitTime));
                     }
 
-                    yield return new WaitForSeconds(UnityEngine.Random.Range(MinWaitTime, MaxWaitTime));
                 }
             }
             yield return new WaitForSeconds(0.1f);
@@ -145,7 +159,7 @@ public class AIController : ControllerBase
         }
     }
 
-    public void Pickup (Pickupable pickup)
+    public void Pickup(Pickupable pickup)
     {
         PickupableToWeapon weap = weaponPickups.FirstOrDefault(p => p.weaponType == pickup.weapon);
 
@@ -161,24 +175,29 @@ public class AIController : ControllerBase
         }
     }
 
-    public void ShootWeapon ()
+    public void ShootWeapon()
     {
         currentWeapon.Shoot();
     }
 
-    private bool HasReachedDestination() {
+    private bool HasReachedDestination()
+    {
         bool hasReachedDestination = false;
 
         // Based on https://answers.unity.com/questions/324589/how-can-i-tell-when-a-navmesh-has-reached-its-dest.html
-        if(roam) {
-            if (_navMeshAgent.pathPending == false) {
-                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance) {
-                    if (_navMeshAgent.hasPath == false || _navMeshAgent.velocity.sqrMagnitude == 0f) {
+        if (roam)
+        {
+            if (_navMeshAgent.pathPending == false)
+            {
+                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+                {
+                    if (_navMeshAgent.hasPath == false || _navMeshAgent.velocity.sqrMagnitude == 0f)
+                    {
                         hasReachedDestination = true;
                     }
                 }
             }
-            
+
         }
 
         return hasReachedDestination;
@@ -192,7 +211,7 @@ public class AIController : ControllerBase
     public GameObject happyFace;
     public GameObject deadFace;
 
-    public override void Die (IDamageGiver damageGiver)
+    public override void Die(IDamageGiver damageGiver)
     {
         if (!IsDead)
         {

@@ -8,10 +8,12 @@ public class HotspotManager : MonoBehaviour
     public List<Hotspot> Hotspots;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Hotspots = new List<GameObject>(GameObject.FindGameObjectsWithTag("Hotspot")).Select(hotspot => hotspot.GetComponent<Hotspot>()).ToList();
     }
+
+
 
     public bool RequestHotspot(out Vector3 position, out Hotspot _hotspot)
     {
