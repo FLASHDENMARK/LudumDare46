@@ -19,6 +19,7 @@ public class AIController : ControllerBase
     public float observeAngle = 60.0F;
     public float alertTimeForWeapon = 1.0F;
     public float alertTimeForSuspeciousItem = 1.0F;
+    public float alertTimeAfterInitialDiscovery = 3.0F;
     public LayerMask playerLineMask;
 
     public AudioClip[] suspecionAudio;
@@ -61,8 +62,8 @@ public class AIController : ControllerBase
         StartCoroutine(Roam());
     }
 
-    private bool _playWeaponAudio = false;
-    private bool _playItemAudio = false;
+    private static bool _playWeaponAudio = false;
+    private static bool _playItemAudio = false;
 
     void Update()
     {
@@ -84,7 +85,7 @@ public class AIController : ControllerBase
                 {
                     //if (!_playWeaponAudio)
                    // {
-                        alertTimeForWeapon = 1.0F;
+                        alertTimeForWeapon = alertTimeAfterInitialDiscovery;
                       //  _playWeaponAudio = true;
                         Utility.PlayAudio(alertedAudio, gameObject);
                     //}
@@ -118,7 +119,7 @@ public class AIController : ControllerBase
                 {
                     // if (!_playWeaponAudio)
                     // {
-                    _alertTimeForSuspeciousItem = 1.0F;
+                    _alertTimeForSuspeciousItem = alertTimeAfterInitialDiscovery;
                         //_playWeaponAudio = true;
                         Utility.PlayAudio(alertedAudio, gameObject);
                     //}
@@ -297,7 +298,8 @@ public class AIController : ControllerBase
 
             Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
             var interactable = gameObject.AddComponent<Interactable>();
-            //var sb = gameObject.AddComponent<SuspisiousBehavior>();
+            var sb = gameObject.AddComponent<SuspisiousBehavior>();
+            sb.isOnlySuspicious = false;
 
             //sb.damageGiver = damageGiver.DamageGiver;
             //sb.lineCast = true;

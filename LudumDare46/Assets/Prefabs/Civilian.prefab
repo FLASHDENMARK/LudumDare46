@@ -2347,6 +2347,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   causeOfDamage: Gunshot wound
+  someoneDiedAudio:
+  - {fileID: 8300000, guid: 69731c262c4e61948aca4d71e07b9c48, type: 3}
+  - {fileID: 8300000, guid: a144a6438d782354d9eebe871a1b7b3a, type: 3}
+  - {fileID: 8300000, guid: 4ea5c76bb652c224f8928e79b2c400aa, type: 3}
   alertedAudio:
   - {fileID: 8300000, guid: a775dd39199c10849891ab497c0278cd, type: 3}
   - {fileID: 8300000, guid: 0be2145b2bad4f546ae2ff2946b31f22, type: 3}
@@ -2355,6 +2359,7 @@ MonoBehaviour:
   observeAngle: 70
   alertTimeForWeapon: 1
   alertTimeForSuspeciousItem: 1
+  alertTimeAfterInitialDiscovery: 3
   playerLineMask:
     serializedVersion: 2
     m_Bits: 0
@@ -2408,7 +2413,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2416,10 +2421,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5
-  MaxDistance: 20
+  MinDistance: 3
+  MaxDistance: 12
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
