@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8323746692534424694}
-  - component: {fileID: 3961293325962907376}
   - component: {fileID: 3961293325962907377}
+  - component: {fileID: 3530031213860290501}
+  - component: {fileID: 5713573139391049824}
+  - component: {fileID: 9215864832104461952}
   m_Layer: 8
   m_Name: WineGlass
   m_TagString: Untagged
@@ -33,20 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &3961293325962907376
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5032977491766945381}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1980609932522133479, guid: 903bce22611b79945a98d6ddd963dad0, type: 3}
 --- !u!114 &3961293325962907377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,8 +47,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdd8b353b456694ebf2c2f03245097c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSuspicious: 0
   CanBePickedUp: 1
   RB: {fileID: 0}
+--- !u!65 &3530031213860290501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5032977491766945381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.20512152, z: 0.7166085}
+  m_Center: {x: 0, y: 0.10713601, z: 0.017279863}
+--- !u!136 &5713573139391049824
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5032977491766945381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5518398
+  m_Height: 2.4100459
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2648946, z: -0.0034561157}
+--- !u!65 &9215864832104461952
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5032977491766945381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9170666, y: 0.20512152, z: 0.89631987}
+  m_Center: {x: 0.006911278, y: 2.38, z: 0.0034558773}
 --- !u!1 &6048432817990996943
 GameObject:
   m_ObjectHideFlags: 0

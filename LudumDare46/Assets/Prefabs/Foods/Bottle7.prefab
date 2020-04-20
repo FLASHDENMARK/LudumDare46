@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 9002523456125035544}
   - component: {fileID: 5021163425532336173}
   - component: {fileID: 3209828731876975789}
-  - component: {fileID: 1779725967522066056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Solid7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1779725967522066056
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195944895537997151}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1709378290324581762, guid: 8bbadfd84ef46ba428adf4c9610a8819, type: 3}
 --- !u!1 &713750950469641915
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,8 +88,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4592714417120072872}
-  m_Layer: 0
-  m_Name: Bottle7 (5)
+  - component: {fileID: 6953932222488552174}
+  - component: {fileID: -2281028067168652706}
+  - component: {fileID: 2134001302814204574}
+  m_Layer: 8
+  m_Name: Bottle7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,11 +105,52 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713750950469641915}
-  m_LocalRotation: {x: -0, y: 0.79453695, z: -0, w: -0.6072158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.304917, y: 48.117, z: 9.099368}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 9002523456125035544}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -465.22302, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6953932222488552174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713750950469641915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05cc5244be8ad4c49aae2a90b0c2eab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPoisonous: 0
+--- !u!114 &-2281028067168652706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713750950469641915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdd8b353b456694ebf2c2f03245097c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSuspicious: 0
+  CanBePickedUp: 1
+  RB: {fileID: 0}
+--- !u!65 &2134001302814204574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713750950469641915}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.036616523, y: 0.08280945, z: 0.047153473}
+  m_Center: {x: -0.0000009506941, y: 0.041272737, z: 0.0005138397}

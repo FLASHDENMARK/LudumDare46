@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2705206950019234619}
   - component: {fileID: 3681314143626661414}
   - component: {fileID: 5593849971612063589}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Solid6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,8 +88,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5119137257208864739}
-  - component: {fileID: 3492886492086471482}
-  m_Layer: 0
+  - component: {fileID: -8430481119997599791}
+  - component: {fileID: -3639637148745884942}
+  - component: {fileID: 5423346632466992220}
+  - component: {fileID: 5742902468118692760}
+  m_Layer: 8
   m_Name: Bottle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,8 +116,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &3492886492086471482
-MeshCollider:
+--- !u!114 &-8430481119997599791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165463654417837552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05cc5244be8ad4c49aae2a90b0c2eab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPoisonous: 0
+--- !u!114 &-3639637148745884942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165463654417837552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdd8b353b456694ebf2c2f03245097c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSuspicious: 0
+  CanBePickedUp: 1
+  RB: {fileID: 0}
+--- !u!65 &5423346632466992220
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,10 +154,23 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4790059341145326940, guid: d569311d17f1fcc45900698ed1d2ed4a, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.033019643, y: 0.010282898, z: 0.03276616}
+  m_Center: {x: -0.0000009506941, y: 0.0050094607, z: 0.0000000014901161}
+--- !u!136 &5742902468118692760
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165463654417837552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.02056775
+  m_Height: 0.08422547
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.045646667, z: -0.00014691353}
 --- !u!1 &8667218663590383898
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +182,7 @@ GameObject:
   - component: {fileID: 6275052334445470929}
   - component: {fileID: 6450791967636587419}
   - component: {fileID: 3689624177549806617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Solid5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +261,7 @@ GameObject:
   - component: {fileID: 4616441663649529076}
   - component: {fileID: 8010642388025988806}
   - component: {fileID: 5355682055947053997}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Srf2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
