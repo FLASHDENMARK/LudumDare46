@@ -30,7 +30,16 @@ public class LookAtTargetObjective : ObjectiveBase
     // Update is called once per frame
     void Update()
     {
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, _controller.transform.position);
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, _controller.transform.position - transform.position, out hit))
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, hit.point);
+        } else
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, _controller.transform.position);
+        }
+
     }
 }
