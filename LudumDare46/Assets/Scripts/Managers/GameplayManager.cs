@@ -206,6 +206,10 @@ namespace Assets.Scripts.Managers
                     notes.TargetDied(GameTime, cause);
                     OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
                 }
+                else if (attacker.CauseOfDamage == "Poison") {
+                    notes.TargetDied(GameTime, attacker.CauseOfDamage);
+                    OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
+                }
             }
         }
     }
