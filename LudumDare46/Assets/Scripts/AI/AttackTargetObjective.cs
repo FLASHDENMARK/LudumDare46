@@ -1,68 +1,78 @@
 ﻿using Assets.Components.Weapons;
 using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using System;
 using UnityEngine;
 
 public class AttackTargetObjective : ObjectiveBase
 {
     public ControllerBase target;
-    public WeaponBase weapon;
     public float killDistance = 4.0f;
+    public float pullWeaponDistance = 8.0F;
+    public float consealWeaponAfterKillWait = 4.0F;
+    private float _consealWeaponAfterKillWait = 4.0F;
     public ObjectiveBase prerequisite; // This objective must be completed before this objective can be made. It this needed?
+
+    public float distanceToTarget;
+    public float angleToTarget;
+    public float attackAngle = 5.0F;
 
     public override void Begin(Action<ObjectiveOutcome> endCallback)
     {
-        if (weapon != null)
-            weapon.gameObject.SetActive(false);
-
         base.Begin(endCallback);
-        
+
+        _consealWeaponAfterKillWait = consealWeaponAfterKillWait;
+
+        if (_controller.currentWeapon == null || target.IsDead)
+        {
+            base.End(false);
+        }
+
+        if (pullWeaponDistance < killDistance)
+        {
+            throw new Exception("Pull weapon distance should noit be less than shoot distance");
+        }
+
         if (prerequisite != null && !prerequisite.wasSuccesful)
         {
             base.End(false);
         }
     }
-
+    
     protected override void UpdateObjective()
     {
-        /*if (_controller.pickup == null)
+        distanceToTarget = Vector3.Distance(target.transform.position, _controller.transform.position);
+        angleToTarget = Utility.GetAngle(_controller.transform, target.transform);
+
+        if (!target.IsDead)
         {
-            End(false);
+            base.SetNavMeshDestination(target.transform.position);
 
-            return;
-        }*/
-
-
-        float distance = Vector3.Distance(target.transform.position, _controller.transform.position);
-
-        base.SetNavMeshDestination(target.transform.position);
-
-        if (weapon != null)
-        {
-                if (distance <= killDistance)
+            if (distanceToTarget <= pullWeaponDistance)
             {
-
-                weapon.gameObject.SetActive(true);
-                weapon.Shoot();
+                _controller.currentWeapon.gameObject.SetActive(true);
             }
             else
             {
-                weapon.gameObject.SetActive(false);
+                _controller.currentWeapon.gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            if (distance <= killDistance)
-            {
-                target.Die(_controller);
-            }
-                
-        }
 
+            if (distanceToTarget <= killDistance && angleToTarget <= attackAngle)
+            {
+                _controller.ShootWeapon();
+            }
+        }
 
         if (target.IsDead)
         {
-            End(true);
+            _consealWeaponAfterKillWait -= Time.deltaTime;
+
+            if (_consealWeaponAfterKillWait <= 0)
+            {
+                _controller.currentWeapon.gameObject.SetActive(false);
+                
+                End(true);
+            }
         }
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum WeaponTypeEnum { Knife, Pistol }
 
+[System.Serializable]
 public class PickupableToWeapon
 {
     public WeaponTypeEnum weaponType;
