@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.Scripts.Managers;
 using UnityEngine;
+using static Assets.Scripts.Managers.GameplayManager;
 
 /// <summary>
 /// This has to be on a object that does not become inactive or else the watch blinking wont work
@@ -51,35 +52,8 @@ public class Watch : MonoBehaviour
     {
         _blinkTimer -= Time.deltaTime;
 
-        string h;
-        string m;
-
-        // This is bad. But it works
-        if (_hours < 10)
-        {
-            h = "0" + _hours;
-        }
-        else if (_hours == 0)
-        {
-            h = "00";
-        }
-        else
-        {
-            h = _hours.ToString();
-        }
-
-        if (_minutes < 10)
-        {
-            m = "0" + _minutes;
-        }
-        else if (_minutes == 0)
-        {
-            m = "00";
-        }
-        else
-        {
-            m = _minutes.ToString();
-        }
+        string h = IngameTime.Convert(_hours);
+        string m = IngameTime.Convert(_minutes);
 
         if (_blinkTimer >= 0)
         {

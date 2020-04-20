@@ -7,6 +7,7 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        public bool noFailMode = false;
         private static PlayerController player;
         public delegate void OnControllerKilled (ControllerBase controller, IDamageGiver attacker);
         public delegate void OnFailed (string reason, string tip = null);
@@ -39,14 +40,18 @@ namespace Assets.Scripts.Managers
 
         private void OnHandledFailedEvent(string reason, string tip)
         {
-            string text = $"{reason}";
+            string failedTime = GameTime.ToString();
+            string text = $"You failed your target at '{failedTime}'. {reason}";
 
-            if (string.IsNullOrEmpty(tip))
+            if (!string.IsNullOrEmpty(tip))
             {
                 text += " Tip: " + tip;
             }
 
-            StartCoroutine(Fail(3, text));
+            if (!noFailMode)
+            {
+                StartCoroutine(Fail(3, text));
+            }
         }
 
         IEnumerator Fail(float waitTime, string failText = "You failed")
@@ -66,6 +71,35 @@ namespace Assets.Scripts.Managers
         public class IngameTime
         {
             public int hour, minute, second;
+
+            public static string Convert (int toConvert)
+            {
+                string result;
+
+                if (toConvert < 10)
+                {
+                    result = "0" + toConvert;
+                }
+                else if (toConvert == 0)
+                {
+                    result = "00";
+                }
+                else
+                {
+                    result = toConvert.ToString();
+                }
+
+                return result;
+            }
+
+            public override string ToString()
+            {
+                string h = Convert(hour);
+                string m = Convert(minute);
+                string s = Convert(second);
+
+                return $"{h}:{m}:{s}";
+            }
         }
 
         public static PlayerController GetPlayer()

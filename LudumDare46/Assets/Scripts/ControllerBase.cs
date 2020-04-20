@@ -44,7 +44,7 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGi
         // You cannot alert yourself
         if (damageGiver != this && !IsDead)
         {
-            HUD.DisplaySubtitles("An NPC was alerted", "FAIL", 1F);
+            GameplayManager.OnFailedEvent("A guest was alerted to suspicious behaviour during the party", null);
         }
     }
 }
