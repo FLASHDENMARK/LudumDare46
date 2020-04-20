@@ -20342,7 +20342,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9113213542077597246, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
 --- !u!1001 &773855757
 PrefabInstance:
@@ -30695,7 +30696,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9113213542077597246, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
 --- !u!1001 &1155638130
 PrefabInstance:
@@ -51609,6 +51611,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 410229814}
     m_Modifications:
+    - target: {fileID: 4714500865671139864, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4714500866468434532, guid: efbb6e6b59883cd4db6f8bce9285e22d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51668,6 +51675,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bartable (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714500866468434535, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714500867174237623, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714500867527259309, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efbb6e6b59883cd4db6f8bce9285e22d, type: 3}
@@ -52521,11 +52543,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Window
-      objectReference: {fileID: 0}
-    - target: {fileID: 3484427491780326899, guid: 321c42e5659f53a4cbb5d8b515ab6fba,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321c42e5659f53a4cbb5d8b515ab6fba, type: 3}
