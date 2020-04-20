@@ -23,11 +23,13 @@ public class InteractableController : MonoBehaviour
     public bool isHoldingSuspiciousItem => PickedUpInteractable == null ? false : PickedUpInteractable.isSuspicious;
     public string suspiciousItemName => PickedUpInteractable == null ? null : PickedUpInteractable.name;
 
+    private AudioSource yeet;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
+        yeet = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,6 +55,10 @@ public class InteractableController : MonoBehaviour
             if(PickedUpInteractable.RB != null)
             {
                 PickedUpInteractable.RB.useGravity = true;
+                
+                if (PickedUpInteractable.RB.velocity.magnitude > 12f) {
+                    yeet.Play();
+                }
             }
             PickedUpInteractable = null;
         }
