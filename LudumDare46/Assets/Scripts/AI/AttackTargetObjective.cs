@@ -7,7 +7,7 @@ public class AttackTargetObjective : ObjectiveBase
 {
     public ControllerBase target;
     public WeaponBase weapon;
-    public float killDistance = 2.0f;
+    public float killDistance = 4.0f;
     public ObjectiveBase prerequisite; // This objective must be completed before this objective can be made. It this needed?
 
     public override void Begin(Action<ObjectiveOutcome> endCallback)
@@ -52,7 +52,11 @@ public class AttackTargetObjective : ObjectiveBase
         }
         else
         {
-            _controller.Die(_controller);
+            if (distance <= killDistance)
+            {
+                target.Die(_controller);
+            }
+                
         }
 
 
