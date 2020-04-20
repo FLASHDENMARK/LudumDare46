@@ -39230,7 +39230,7 @@ PrefabInstance:
     - target: {fileID: 1961586559789967813, guid: 5871d7bd652653b4e97c84519a309675,
         type: 3}
       propertyPath: IsPoisonous
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5816069020372626315, guid: 5871d7bd652653b4e97c84519a309675,
         type: 3}
