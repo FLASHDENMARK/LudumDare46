@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class HotspotManager : MonoBehaviour
         _hotspot = null;
         position = Vector3.zero;
 
-        foreach (Hotspot hotspot in Hotspots)
+        foreach (Hotspot hotspot in Hotspots.Where(hotspot => hotspot.IsAllowed).OrderBy(_ => Guid.NewGuid()))
         {
             if(hotspot.TakePosition(out position))
             {

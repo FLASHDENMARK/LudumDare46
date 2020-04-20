@@ -52,13 +52,9 @@ public class AIController : ControllerBase
         _alertTimeForWeapon = alertTimeForWeapon;
         _alertTimeForSuspeciousItem = alertTimeForSuspeciousItem;
 
-        Vector3 newPos;
-        Hotspot newHotspot;
 
-        if (hotspotManager.RequestHotspot(out newPos, out newHotspot) && UnityEngine.Random.Range(0, 4) == 1)
+        if (hotspotManager.RequestHotspot(out nextPosition, out nextHotspot) && UnityEngine.Random.Range(0, 4) == 1)
         {
-            nextPosition = newPos;
-            nextHotspot = newHotspot;
             _navMeshAgent.SetDestination(nextPosition);
         }
 
@@ -201,13 +197,12 @@ public class AIController : ControllerBase
                     Hotspot newHotspot;
                     if (hotspotManager.RequestHotspot(out newPos, out newHotspot))
                     {
-                        if (nextHotspot != null)
-                        {
-                            nextHotspot.LeavePosition(nextPosition);
-                        }
+
+                        nextHotspot.LeavePosition(nextPosition);
 
                         nextPosition = newPos;
                         nextHotspot = newHotspot;
+
                         _navMeshAgent.SetDestination(nextPosition);
 
                         yield return new WaitForSeconds(UnityEngine.Random.Range(MinWaitTime, MaxWaitTime));

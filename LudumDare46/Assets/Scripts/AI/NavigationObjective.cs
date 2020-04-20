@@ -87,11 +87,11 @@ public class NavigationObjective : ObjectiveBase
 
     public override Vector3 GetBeginningVector()
     {
-        return waypoints.First().transform.position;
+        return waypoints.Any() ? waypoints.First().transform.position : Vector3.zero;
     }
 
     public override Vector3 GetEndingVector()
     {
-        return waypoints.Last().transform.position;
+        return waypoints.Any() ? waypoints.Last().transform.position : Vector3.zero;
     }
 }
