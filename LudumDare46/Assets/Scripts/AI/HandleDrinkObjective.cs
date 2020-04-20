@@ -9,38 +9,41 @@ public class HandleDrinkObjective : ObjectiveBase
     public ObjectState drinkState;
     public GameObject drinksTohandle;
     public AudioClip spawnSoundEffect;
+    public ObjectiveBase prerequisite;
 
     public override void Begin(Action<ObjectiveOutcome> endCallback)
     {
-        base.Begin(endCallback);
-
-        switch(drinkState)
+        if (prerequisite != null && !prerequisite.wasSuccesful)
         {
-            case ObjectState.Off:
-                drinksTohandle.SetActive(false);
-                break;
-
-            case ObjectState.On:
-                drinksTohandle.SetActive(true);
-                break;
-
-            case ObjectState.Toggle:
-                drinksTohandle.SetActive(!drinksTohandle.activeSelf);
-                break;
+            base.End(false);
         }
 
-        _controller.GetComponent<AudioSource>().PlayOneShot(spawnSoundEffect);
+        base.Begin(endCallback);
+
+        HandleDrink(drinksTohandle);
 
         base.End();
     }
 
-    protected override void UpdateObjective()
+    public void HandleDrink (GameObject obj)
     {
-        //base.UpdateObjective();
+        switch (drinkState)
+        {
+            case ObjectState.Off:
+                obj.SetActive(false);
+                break;
 
+            case ObjectState.On:
+                obj.SetActive(true);
+                break;
 
+            case ObjectState.Toggle:
+                obj.SetActive(!drinksTohandle.activeSelf);
+                break;
+        }
+
+        _controller.GetComponent<AudioSource>().PlayOneShot(spawnSoundEffect);
     }
-
 
     public override Vector3 GetBeginningVector()
     {

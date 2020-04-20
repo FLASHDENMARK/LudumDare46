@@ -9,6 +9,7 @@ public class LookAtTargetObjective : ObjectiveBase
     public Material SniperMat;
     public LineRenderer lineRenderer;
     public ControllerBase Target;
+    public AudioClip sniperfire;
     public override Vector3 GetBeginningVector()
     {
         _active = true;
@@ -23,7 +24,12 @@ public class LookAtTargetObjective : ObjectiveBase
 
     public override void End(bool success = false)
     {
-        
+        if (_controller.IsDead)
+        {
+            base.End(false);
+            return;
+        }
+
         lineRenderer.SetPosition(0, _controller.transform.position);
         lineRenderer.SetPosition(1, _controller.transform.position);
 
@@ -36,7 +42,16 @@ public class LookAtTargetObjective : ObjectiveBase
             if(CB != null && CB == Target)
             {
                 success = true;
-                Target.Die(_controller);
+                if (!Target.IsDead)
+                {
+                    Target.Die(_controller);
+
+                    _controller.GetComponent<AudioSource>().PlayOneShot(sniperfire);
+                }
+                else
+                {
+                    success = false;
+                }
             }
         }
 
@@ -51,23 +66,20 @@ public class LookAtTargetObjective : ObjectiveBase
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void UpdateObjective()
     {
-
         RaycastHit hit;
         Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
 
-        if(Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             lineRenderer.SetPosition(0, _controller.transform.position);
             lineRenderer.SetPosition(1, hit.point);
-        } else
+        }
+        else
         {
             lineRenderer.SetPosition(0, _controller.transform.position);
             lineRenderer.SetPosition(1, Target.transform.position);
         }
-
-
-
     }
 }
