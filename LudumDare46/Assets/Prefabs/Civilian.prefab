@@ -2344,6 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  causeOfDamage: Gunshot wounds
   observeDistance: 10
   observeAngle: 60
   playerLineMask:

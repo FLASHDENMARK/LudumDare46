@@ -1295,6 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  causeOfDamage: Stab holes
   observeDistance: 10
   observeAngle: 60
   playerLineMask:

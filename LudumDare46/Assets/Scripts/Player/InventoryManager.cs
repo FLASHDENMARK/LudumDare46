@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
 
     public GadgetBase watch;
     public GadgetBase flashlight;
+    public GadgetBase notes;
 
     public bool isWeaponEquipped { get => _currentWeapon.gameObject.activeSelf; }
     private WeaponBase _currentWeapon;

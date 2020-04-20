@@ -9,6 +9,8 @@ public class ProjectileBase : MonoBehaviour, IDamageGiver
 
     public ControllerBase DamageGiver { get; set; }
 
+    public string CauseOfDamage { get; }
+
     public void Initialize (/*ISpawnParameters spawnParameters*/)
     {
         /*ProjectileSpawnParameters parameters = (ProjectileSpawnParameters)spawnParameters;
