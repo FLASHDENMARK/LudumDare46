@@ -1298,12 +1298,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   causeOfDamage: Stabbed to death
+  alertedAudio:
+  - {fileID: 8300000, guid: 12d310821e853a04c9527f0074f36978, type: 3}
+  - {fileID: 8300000, guid: f2376378e4c51104ab4fc4394cd71c6e, type: 3}
   isTarget: 0
   observeDistance: 20
   observeAngle: 70
+  alertTimeForWeapon: 1
+  alertTimeForSuspeciousItem: 1
   playerLineMask:
     serializedVersion: 2
     m_Bits: 0
+  suspecionAudio:
+  - {fileID: 8300000, guid: c54fc1b1c0621944e9c5244f1179fdf4, type: 3}
+  - {fileID: 8300000, guid: 542335da0a3ec884d8b02826854185c0, type: 3}
+  - {fileID: 8300000, guid: 67ab35c99ccb787419172396ede46229, type: 3}
   MinWaitTime: 10
   MaxWaitTime: 30
   randomDeathForce: 20
@@ -1339,8 +1348,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 5
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1375,7 +1384,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

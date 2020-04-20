@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using UnityEngine;
 
 public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGiver {
@@ -13,6 +14,8 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGi
     public string CauseOfDamage { get => causeOfDamage; }
 
     protected TriggerBase _trigger;
+
+    public AudioClip[] alertedAudio;
 
     public void ReceiveDamage (float damage, IDamageGiver damageGiver)
     {
@@ -46,6 +49,8 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGi
         // You cannot alert yourself
         if (damageGiver != this && !IsDead)
         {
+            Utility.PlayAudio(alertedAudio, gameObject);
+
             GameplayManager.OnFailedEvent("A guest was alerted to suspicious behaviour during the party", null);
         }
     }

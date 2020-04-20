@@ -196,7 +196,14 @@ namespace Assets.Scripts.Managers
                 else if (attacker.DamageGiver is HitmanController)
                 {
                     HUD.DisplaySubtitles(tempSpeaker, "A hitman has killed a target. Do not let them get away with that.", 5.0F);
-                    notes.TargetDied(GameTime, attacker.DamageGiver.CauseOfDamage);
+                    string cause = attacker.DamageGiver.CauseOfDamage;
+
+                    if (cause == null)
+                    {
+                        cause = "This needs to be fixed before release...";
+                    }
+
+                    notes.TargetDied(GameTime, cause);
                     OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
                 }
             }

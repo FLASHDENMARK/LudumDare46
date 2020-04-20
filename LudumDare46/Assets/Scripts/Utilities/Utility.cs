@@ -44,5 +44,18 @@ namespace Assets.Scripts.Utility
 
             return angle;
         }
+
+        internal static void PlayAudio(AudioClip[] audio, GameObject gameObject)
+        {
+            System.Random r = new System.Random();
+
+            int index = r.Next(0, audio.Length);
+            PlayAudio(audio[index], gameObject);
+        }
+
+        public static void PlayAudio (AudioClip audio, GameObject gameObjectToPlay)
+        {
+            gameObjectToPlay.GetComponent<AudioSource>().PlayOneShot(audio);
+        }
     }
 }
