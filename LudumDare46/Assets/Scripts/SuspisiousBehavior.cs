@@ -20,6 +20,7 @@ public class SuspisiousBehavior : MonoBehaviour
 		Collider[] hitColliders = Physics.OverlapSphere(location, radius);
 
 		int i = 0;
+		int maxSusp = 2;
 		while (i < hitColliders.Length)
 		{
 			IDamageReceiver damageReceiver = hitColliders[i].GetComponent<IDamageReceiver>();
@@ -36,7 +37,13 @@ public class SuspisiousBehavior : MonoBehaviour
 					{
 						if (isSuspOnly)
 						{
+							maxSusp--;
 							damageReceiver.Alert(alerter);
+
+							if (maxSusp == 0)
+							{
+								break;
+							}
 						}
 						else
 						{
@@ -49,7 +56,14 @@ public class SuspisiousBehavior : MonoBehaviour
 				{
 					if (isSuspOnly)
 					{
+						maxSusp--;
+
 						damageReceiver.Alert(alerter);
+
+						if (maxSusp == 0)
+						{
+							break;
+						}
 					}
 					else
 					{
