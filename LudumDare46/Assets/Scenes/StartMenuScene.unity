@@ -368,7 +368,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4377657456875205539, guid: 788a57215277b544a9b3b222a026eaee, type: 3}
+  - {fileID: 2100000, guid: 42923ab849c33104c8da619fd04cf54a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4988,7 +4988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TARGET IN DANGER: KEEP IT ALIVE'
+  m_text: 'Time Agent: Protect the VIP'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -5058,10 +5058,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -852.4857, w: -58.76761}
   m_textInfo:
     textComponent: {fileID: 1688246621}
-    characterCount: 31
+    characterCount: 27
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -7942,6 +7942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a976a004d60aff34a81a1a225459a60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSemiAuto: 0
   Ammo: 32
   SpareAmmo: 96
   MaxAmmo: 32
@@ -11331,6 +11332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a976a004d60aff34a81a1a225459a60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSemiAuto: 0
   Ammo: 32
   SpareAmmo: 96
   MaxAmmo: 32
