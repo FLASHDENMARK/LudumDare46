@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Managers;
+using System;
 using UnityEngine;
 
 public class PlayerController : ControllerBase
@@ -67,12 +68,12 @@ public class PlayerController : ControllerBase
         bool leftMouse = Input.GetMouseButton(0);
         bool rightMouse = Input.GetMouseButton(1);
         bool use = Input.GetKeyDown(KeyCode.E);
-        bool watch = Input.GetKey(KeyCode.Q);
-        bool flashlight = Input.GetKey(KeyCode.Tab);
+        bool watch = Input.GetKey(KeyCode.Tab);
+        bool flashlight = Input.GetKey(KeyCode.F);
         bool esc = Input.GetKey(KeyCode.Escape);
 
         // TODO May need to be expanded if we need more weapons
-        bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
+        bool weapon = Input.GetKeyDown(KeyCode.Q);
 
         Move(move);
 
@@ -114,6 +115,8 @@ public class PlayerController : ControllerBase
         {
             TriggerInteraction();
         }
+
+        GameplayManager.DisplayControls(esc);
     }
 
     private void TriggerInteraction()

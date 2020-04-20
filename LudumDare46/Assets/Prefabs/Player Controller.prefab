@@ -1579,6 +1579,16 @@ PrefabInstance:
       propertyPath: layerMask.m_Bits
       value: 3383
       objectReference: {fileID: 0}
+    - target: {fileID: 5155648468571012166, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155648468571012166, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.408
+      objectReference: {fileID: 0}
     - target: {fileID: 5761967812554917406, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: m_IsActive
