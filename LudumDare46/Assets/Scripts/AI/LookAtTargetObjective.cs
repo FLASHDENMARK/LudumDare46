@@ -24,14 +24,13 @@ public class LookAtTargetObjective : ObjectiveBase
 
     public override void End(bool success = false)
     {
+        DisableLine();
+        
         if (_controller.IsDead)
         {
             base.End(false);
             return;
         }
-
-        lineRenderer.SetPosition(0, _controller.transform.position);
-        lineRenderer.SetPosition(1, _controller.transform.position);
 
         RaycastHit hit;
         Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
@@ -81,5 +80,10 @@ public class LookAtTargetObjective : ObjectiveBase
             lineRenderer.SetPosition(0, _controller.transform.position);
             lineRenderer.SetPosition(1, Target.transform.position);
         }
+    }
+
+    private void DisableLine()
+    {
+        lineRenderer.enabled = false;
     }
 }

@@ -11894,6 +11894,11 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 2024149578}
+    - target: {fileID: 6600793239469402844, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 3383
+      objectReference: {fileID: 0}
     - target: {fileID: 7499300171069922418, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
       propertyPath: m_Name
@@ -43166,7 +43171,7 @@ PrefabInstance:
     - target: {fileID: -8753770485708793021, guid: 355f61ae109213144b4b199027f1a139,
         type: 3}
       propertyPath: randomDeathForce
-      value: 4000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1290706281862927890, guid: 355f61ae109213144b4b199027f1a139,
         type: 3}
