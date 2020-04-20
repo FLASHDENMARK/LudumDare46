@@ -48,7 +48,7 @@ public class ObjectiveTimeline : MonoBehaviour
             }
             else
             {
-                HUD.DisplaySubtitles("", "Timeline is done");
+                //HUD.DisplaySubtitles("", "Timeline is done");
                 _currentObjective = null;
             }
         }

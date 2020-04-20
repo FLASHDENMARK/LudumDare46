@@ -628,7 +628,7 @@ MonoBehaviour:
   - {fileID: 5144906313989336156}
   watch: {fileID: 374422034}
   flashlight: {fileID: 193639735}
-  notes: {fileID: 0}
+  notes: {fileID: 2560059406455131413}
 --- !u!114 &1410024759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1334,6 +1334,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   causeOfDamage: 
+  alertedAudio:
+  - {fileID: 8300000, guid: 12d310821e853a04c9527f0074f36978, type: 3}
+  - {fileID: 8300000, guid: f2376378e4c51104ab4fc4394cd71c6e, type: 3}
   moveSpeed: 5
   jumpSpeed: 8
   gravity: 20
@@ -1413,7 +1416,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b5383e30d95561546bacc1ae12c22441, type: 3}
+  m_audioClip: {fileID: 8300000, guid: eb64a2101eb6afc4daae9fac3a8203e8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1511,6 +1514,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Container
       objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 7499300170041797731}
     - target: {fileID: 4926981407405764656, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1566,10 +1574,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5131139211014656310, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 3383
+      objectReference: {fileID: 0}
     - target: {fileID: 5761967812554917406, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405962098877326282, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405962098877326282, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614007327210821558, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: Camera
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f09e3c7358854c49a06b04579f23a5f, type: 3}
