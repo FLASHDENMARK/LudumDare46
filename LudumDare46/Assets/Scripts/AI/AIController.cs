@@ -95,9 +95,16 @@ public class AIController : ControllerBase
 
         bool isHit = Physics.Linecast(transform.position, controller.transform.position, out hit/*, playerLineMask*/);
 
-        if (isHit && hit.collider.GetComponent<PlayerController>())
+        if (isHit)
         {
-            return true;
+            if (hit.collider.GetComponent<PlayerController>())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -180,6 +187,8 @@ public class AIController : ControllerBase
     {
         if (!IsDead)
         {
+            GameplayManager.OnControllerKilledEvent(this, damageGiver);
+
             happyFace.SetActive(false);
             deadFace.SetActive(true);
             IsDead = true;
@@ -192,10 +201,10 @@ public class AIController : ControllerBase
 
             Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
             var interactable = gameObject.AddComponent<Interactable>();
-            var sb = gameObject.AddComponent<SuspisiousBehavior>();
+            //var sb = gameObject.AddComponent<SuspisiousBehavior>();
 
-            sb.damageGiver = damageGiver.DamageGiver;
-            sb.lineCast = true;
+            //sb.damageGiver = damageGiver.DamageGiver;
+            //sb.lineCast = true;
             gameObject.name = "corpse";
 
             interactable.isSuspicious = true;

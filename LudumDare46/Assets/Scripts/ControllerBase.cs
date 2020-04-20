@@ -20,8 +20,6 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGi
         {
             if (!IsDead)
             {
-                GameplayManager.OnControllerKilledEvent(this, damageGiver);
-
                 Die(damageGiver);
             }
 

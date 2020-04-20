@@ -11,6 +11,7 @@ public abstract class ObjectiveBase : MonoBehaviour
     protected Color _color;
     Action<ObjectiveOutcome> _endCallback;
     protected AIController _controller;
+    public bool wasSuccesful = false;
 
     public abstract Vector3 GetBeginningVector();
     public abstract Vector3 GetEndingVector();
@@ -35,6 +36,8 @@ public abstract class ObjectiveBase : MonoBehaviour
             End();
             return;
         }
+
+
 
         if (inProgress)
         {
@@ -67,7 +70,7 @@ public abstract class ObjectiveBase : MonoBehaviour
         }
     }
 
-    public virtual void End (ObjectiveOutcome outcome = null)
+    public virtual void End (bool success = true)
     {
         if (inProgress)
         {
@@ -75,14 +78,10 @@ public abstract class ObjectiveBase : MonoBehaviour
             inProgress = false;
             isComplete = true;
 
-            if (outcome == null)
-            {
-                _endCallback(new ObjectiveOutcome() { wasSuccessful = true });
-            }
-            else
-            {
-                _endCallback(outcome);
-            }
+
+            wasSuccesful = success;
+
+             _endCallback(new ObjectiveOutcome() { wasSuccessful = success });
         }
     }
 

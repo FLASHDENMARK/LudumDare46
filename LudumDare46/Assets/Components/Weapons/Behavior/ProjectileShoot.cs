@@ -35,6 +35,8 @@ public class ProjectileShoot : WeaponBehaviorBase
 
         SpawnPoint.transform.localPosition = _spawnPointPosition + randomness;
 
+        Instantiate(Projectile, SpawnPoint.transform.position, shooterTest.rotation);
+
         //Manager.Spawn(Projectile, SpawnPoint, spawnParameters);
     }
 }
