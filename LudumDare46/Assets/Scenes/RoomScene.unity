@@ -35392,7 +35392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 50
+  completionTime: 15
   wasSuccesful: 0
   SniperMat: {fileID: 2100000, guid: fc25878cfc5747f418c3c570e37131d4, type: 2}
   lineRenderer: {fileID: 1344418495}
@@ -49198,7 +49198,7 @@ PrefabInstance:
     - target: {fileID: 8793489532879038622, guid: 36af14f6a611a354b8d3b58af68e1a06,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.12
+      value: -21.11
       objectReference: {fileID: 0}
     - target: {fileID: 8793489532879038622, guid: 36af14f6a611a354b8d3b58af68e1a06,
         type: 3}
@@ -49208,7 +49208,7 @@ PrefabInstance:
     - target: {fileID: 8793489532879038622, guid: 36af14f6a611a354b8d3b58af68e1a06,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.72
+      value: -12.99
       objectReference: {fileID: 0}
     - target: {fileID: 8793489532879038622, guid: 36af14f6a611a354b8d3b58af68e1a06,
         type: 3}
