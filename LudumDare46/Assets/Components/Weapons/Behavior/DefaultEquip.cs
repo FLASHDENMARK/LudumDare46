@@ -5,6 +5,7 @@ namespace Assets.Components.Weapons.Behavior
 {
     public class DefaultEquip : WeaponBehaviorBase
     {
+
         public override bool IsExecuting { get; set; }
         
         public override void Execute (WeaponBase weapon)
@@ -14,17 +15,21 @@ namespace Assets.Components.Weapons.Behavior
 
         private IEnumerator Equip (WeaponBase weapon)
         {
-            IsExecuting = true;
+            if (!weapon.isEquipped)
+            {
+                weapon.isEquipped = true;
+                IsExecuting = true;
 
-            weapon.Play(weapon.WeaponAnimation.Equip);
+                weapon.Play(weapon.WeaponAnimation.Equip);
 
-            weapon.Play(weapon.WeaponSound.Equip);
+                weapon.Play(weapon.WeaponSound.Equip);
 
-            yield return new WaitForSeconds(weapon.EquipTime);
+                yield return new WaitForSeconds(weapon.EquipTime);
 
-            weapon.ReloadIfEmpty();
+                weapon.ReloadIfEmpty();
 
-            IsExecuting = false;
+                IsExecuting = false;
+            }
         }
     }
 }

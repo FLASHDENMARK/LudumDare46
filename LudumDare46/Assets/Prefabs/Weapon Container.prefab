@@ -837,7 +837,8 @@ MonoBehaviour:
     Shoot:
     - {fileID: 8300000, guid: 27f6b7e0072426a46b1fc794ce31e18c, type: 3}
     Reload: []
-    Equip: []
+    Equip:
+    - {fileID: 8300000, guid: 672a569e3433a0b4582ee9ffbd25f4bc, type: 3}
     Unequip: []
     Zoom: []
   WeaponAnimation:

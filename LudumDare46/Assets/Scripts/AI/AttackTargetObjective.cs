@@ -51,9 +51,11 @@ public class AttackTargetObjective : ObjectiveBase
             if (distanceToTarget <= pullWeaponDistance)
             {
                 _controller.currentWeapon.gameObject.SetActive(true);
+                _controller.currentWeapon.Equip();
             }
             else
             {
+                _controller.currentWeapon.Unequip();
                 _controller.currentWeapon.gameObject.SetActive(false);
             }
 
@@ -71,6 +73,7 @@ public class AttackTargetObjective : ObjectiveBase
 
             if (_consealWeaponAfterKillWait <= 0)
             {
+                _controller.currentWeapon.Unequip();
                 _controller.currentWeapon.gameObject.SetActive(false);
                 
                 End(true);
