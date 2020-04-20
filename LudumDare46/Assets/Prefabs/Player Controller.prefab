@@ -1516,9 +1516,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
+      propertyPath: WeaponSound.Shoot.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
       propertyPath: Camera
       value: 
       objectReference: {fileID: 7499300170041797731}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: Ammo
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: SpareAmmo
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: MaxAmmo
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: MaxSpareAmmo
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: WeaponSound.Shoot.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 70a16185092e5d740b0ae967e585dcb8, type: 3}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: WeaponSound.Shoot.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5dd173be9caf7b444aa2b9525173a473, type: 3}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: WeaponSound.Shoot.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5dd173be9caf7b444aa2b9525173a473, type: 3}
     - target: {fileID: 4926981407405764656, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: m_LocalPosition.x
