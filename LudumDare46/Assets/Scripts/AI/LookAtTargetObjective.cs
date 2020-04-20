@@ -41,7 +41,6 @@ public class LookAtTargetObjective : ObjectiveBase
         }
 
         base.End(success);
-
     }
 
     // Start is called before the first frame update
