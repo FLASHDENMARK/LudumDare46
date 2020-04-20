@@ -51,7 +51,9 @@ public class InteractableController : MonoBehaviour
         if(PickedUpInteractable != null)
         {
             if(PickedUpInteractable.RB != null)
-            PickedUpInteractable.RB.useGravity = true;
+            {
+                PickedUpInteractable.RB.useGravity = true;
+            }
             PickedUpInteractable = null;
         }
     }
@@ -136,7 +138,9 @@ public class InteractableController : MonoBehaviour
         {
             item = hit.transform.GetComponent<Interactable>();
             DesiredRotation = Vector3.zero;
+            item.transform.parent = null;
             PickedUpInteractable = item;
+            PickedUpInteractable.RB.isKinematic = false;
             PickedUpInteractable.RB.useGravity = false;
         }
 
