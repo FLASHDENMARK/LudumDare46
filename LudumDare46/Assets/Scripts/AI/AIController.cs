@@ -50,10 +50,8 @@ public class AIController : ControllerBase
         _alertTimeForWeapon = alertTimeForWeapon;
         _alertTimeForSuspeciousItem = alertTimeForSuspeciousItem;
 
-        Vector3 newPos;
-        Hotspot newHotspot;
 
-        if (hotspotManager.RequestHotspot(out newPos, out newHotspot) && UnityEngine.Random.Range(0, 4) == 1)
+        if (hotspotManager.RequestHotspot(out nextPosition, out nextHotspot) && UnityEngine.Random.Range(0, 4) == 1)
         {
             _navMeshAgent.SetDestination(nextPosition);
         }

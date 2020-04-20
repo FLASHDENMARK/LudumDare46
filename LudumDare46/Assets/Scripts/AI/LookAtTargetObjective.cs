@@ -39,9 +39,9 @@ public class LookAtTargetObjective : ObjectiveBase
                 if (CB != null && CB == Target)
                 {
                     success = true;
+                    _controller.GetComponent<AudioSource>().PlayOneShot(sniperfire);
                     Target.Die(_controller);
                 }
-                    _controller.GetComponent<AudioSource>().PlayOneShot(sniperfire);
             }
         }
 
@@ -90,5 +90,4 @@ public class LookAtTargetObjective : ObjectiveBase
 
 
 
-    }
 }
