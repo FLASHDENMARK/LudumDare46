@@ -40,4 +40,23 @@ public class HUD : MonoBehaviour
     {
         _interactionUI.ShowTriggerUI(triggerText);
     }
+
+    static float successScreenTime = 8.0F;
+
+    private void Update()
+    {
+        successScreenTime -= Time.deltaTime;
+
+        if (successScreenTime <= 0)
+        {
+            _failedScreen.DisplaySuccess("", false);
+        }
+    }
+
+    public static void DisplaySuccessScreen(string v)
+    {
+        successScreenTime = 10.0F;
+
+        _failedScreen.DisplaySuccess(v, true);
+    }
 }

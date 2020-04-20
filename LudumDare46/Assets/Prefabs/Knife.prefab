@@ -121,11 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc71570e028bdc45a849ad5ff6f458c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleSound: {fileID: 0}
+  toggleSound: {fileID: 8300000, guid: f322794f61874cf4ca39edc5b7555025, type: 3}
   on: 0
   isEnabled: 1
   triggerOnText: destroy knife
   triggerOffText: 
+  rendereToDisable: {fileID: 4524877641257832861}
 --- !u!1001 &6185310528032390216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,6 +214,12 @@ PrefabInstance:
 --- !u!4 &1201361494143604562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: c4c11a9929538574181bb2b868318861,
+    type: 3}
+  m_PrefabInstance: {fileID: 6185310528032390216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4524877641257832861 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: c4c11a9929538574181bb2b868318861,
     type: 3}
   m_PrefabInstance: {fileID: 6185310528032390216}
   m_PrefabAsset: {fileID: 0}
