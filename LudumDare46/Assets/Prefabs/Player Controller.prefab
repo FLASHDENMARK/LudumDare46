@@ -1335,6 +1335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   causeOfDamage: 
+  someoneDiedAudio: []
   alertedAudio:
   - {fileID: 8300000, guid: 12d310821e853a04c9527f0074f36978, type: 3}
   - {fileID: 8300000, guid: f2376378e4c51104ab4fc4394cd71c6e, type: 3}
@@ -1560,6 +1561,11 @@ PrefabInstance:
       propertyPath: WeaponSound.Shoot.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: 5dd173be9caf7b444aa2b9525173a473, type: 3}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: isSemiAuto
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4926981407405764656, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: m_LocalPosition.x

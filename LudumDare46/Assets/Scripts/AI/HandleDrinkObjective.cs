@@ -27,6 +27,11 @@ public class HandleDrinkObjective : ObjectiveBase
 
     public void HandleDrink (GameObject obj)
     {
+        if (_controller.IsDead)
+        {
+            base.End();
+        }
+
         switch (drinkState)
         {
             case ObjectState.Off:
