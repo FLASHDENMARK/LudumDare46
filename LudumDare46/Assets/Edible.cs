@@ -17,9 +17,5 @@ public class Edible : MonoBehaviour, IDamageGiver
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
