@@ -2350,8 +2350,8 @@ MonoBehaviour:
   playerLineMask:
     serializedVersion: 2
     m_Bits: 0
-  MinWaitTime: 10
-  MaxWaitTime: 30
+  MinWaitTime: 5
+  MaxWaitTime: 10
   randomDeathForce: 50
   weaponPickups:
   - weaponType: 0
