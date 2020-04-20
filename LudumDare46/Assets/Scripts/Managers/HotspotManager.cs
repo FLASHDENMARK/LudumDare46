@@ -21,7 +21,7 @@ public class HotspotManager : MonoBehaviour
         _hotspot = null;
         position = Vector3.zero;
 
-        foreach (Hotspot hotspot in Hotspots.Where(hotspot => hotspot.IsAllowed).OrderBy(_ => Guid.NewGuid()))
+        foreach (Hotspot hotspot in Hotspots.Where(hotspot => hotspot.IsAllowed).OrderBy(_ => UnityEngine.Random.Range(0, 100)))
         {
             if(hotspot.TakePosition(out position))
             {

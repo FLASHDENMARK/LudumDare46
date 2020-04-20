@@ -2362,8 +2362,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 542335da0a3ec884d8b02826854185c0, type: 3}
   - {fileID: 8300000, guid: c54fc1b1c0621944e9c5244f1179fdf4, type: 3}
   - {fileID: 8300000, guid: 67ab35c99ccb787419172396ede46229, type: 3}
-  MinWaitTime: 5
-  MaxWaitTime: 10
+  MinWaitTime: 25
+  MaxWaitTime: 40
   randomDeathForce: 50
   weaponPickups:
   - weaponType: 0

@@ -624,6 +624,7 @@ MonoBehaviour:
   wasSuccesful: 0
   pickup: {fileID: 0}
   pickupDistance: 2.5
+  onPickup: []
 --- !u!114 &655256160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,10 +869,11 @@ GameObject:
   - component: {fileID: 24676646}
   - component: {fileID: 24676647}
   - component: {fileID: 24676651}
+  - component: {fileID: 24676642}
+  - component: {fileID: 6814493577943833421}
   - component: {fileID: 1004070078}
   - component: {fileID: 24676648}
   - component: {fileID: 24676652}
-  - component: {fileID: 24676642}
   m_Layer: 0
   m_Name: Target IT timeline
   m_TagString: Untagged
@@ -932,7 +934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 120
+  completionTime: 90
   wasSuccesful: 0
 --- !u!114 &24676649
 MonoBehaviour:
@@ -948,7 +950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 0
+  completionTime: 20
   wasSuccesful: 0
   waypoints:
   - {fileID: 0}
@@ -971,10 +973,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 20
+  completionTime: 10
   wasSuccesful: 0
   pickup: {fileID: 0}
   pickupDistance: 2
+  onPickup: []
 --- !u!114 &24676647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 20
+  completionTime: 10
   wasSuccesful: 0
 --- !u!114 &24676651
 MonoBehaviour:
@@ -1005,7 +1008,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 120
+  completionTime: 50
+  wasSuccesful: 0
+--- !u!114 &24676642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004070074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecc898e8b4ad8d40991fdc9e2e0800d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inProgress: 0
+  isComplete: 0
+  completionTime: 0
+  wasSuccesful: 0
+  waypoints: []
+  startAtClosestWaypoint: 0
+  nextWaypointDistance: 2
+  loopUntilCompletionTime: 0
+  distanceToCurrentWaypoint: 0
+--- !u!114 &6814493577943833421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004070074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5a58730628f474780e1821d11965a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inProgress: 0
+  isComplete: 0
+  completionTime: 0
   wasSuccesful: 0
 --- !u!114 &1004070078
 MonoBehaviour:
@@ -1063,27 +1103,6 @@ MonoBehaviour:
   isComplete: 0
   completionTime: 120
   wasSuccesful: 0
---- !u!114 &24676642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004070074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ecc898e8b4ad8d40991fdc9e2e0800d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inProgress: 0
-  isComplete: 0
-  completionTime: 0
-  wasSuccesful: 0
-  waypoints: []
-  startAtClosestWaypoint: 0
-  nextWaypointDistance: 2
-  loopUntilCompletionTime: 0
-  distanceToCurrentWaypoint: 0
 --- !u!1 &1344418492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,6 +1928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adad5344e64d0104a94cb20158c8bd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noFailMode: 0
   TimeScale: 2
   StartHours: 12
   time:

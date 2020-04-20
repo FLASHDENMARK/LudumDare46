@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class WaitObjective : ObjectiveBase
 {
+    public Transform WaitPosition;
+
     public override void Begin (Action<ObjectiveOutcome> endCallback)
     {
-        base.SetNavMeshDestination(transform.position);
+        if(WaitPosition == null)
+        {
+            base.SetNavMeshDestination(transform.position);
+        } else
+        {
+            base.SetNavMeshDestination(WaitPosition.position);
+        }
 
         base.Begin(endCallback);
     }

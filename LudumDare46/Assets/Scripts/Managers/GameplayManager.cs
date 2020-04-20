@@ -20,6 +20,10 @@ namespace Assets.Scripts.Managers
         public float StartHours = 12;
         public static IngameTime GameTime = new IngameTime();
 
+        public bool AllowWipWap = false;
+
+
+
         [SerializeField]
         IngameTime time;
 
@@ -28,6 +32,11 @@ namespace Assets.Scripts.Managers
 
         private void OnEnable ()
         {
+
+#if UNITY_EDITOR
+            AllowWipWap = true;
+#endif
+
             // Deterministic randomness for the win!
             UnityEngine.Random.InitState(0);
 
@@ -130,6 +139,13 @@ namespace Assets.Scripts.Managers
             GameTime.hour = time.hour;
             GameTime.minute = time.minute;
             GameTime.second = time.second;
+
+            if (Input.GetKeyDown(KeyCode.Period))
+                Time.timeScale += 1f;
+            if (Input.GetKeyDown(KeyCode.Comma) && Time.timeScale >= 2f)
+                Time.timeScale -= 1f;
+            if (Input.GetKeyDown(KeyCode.M))
+                Time.timeScale = 1f;
 
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
