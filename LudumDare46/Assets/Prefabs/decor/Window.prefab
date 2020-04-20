@@ -345,6 +345,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3484427491780326898}
     m_Modifications:
+    - target: {fileID: 974871939, guid: 01938ffa0f38afe4eb65ea3125d7cb8b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1550133826, guid: 01938ffa0f38afe4eb65ea3125d7cb8b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5170075717663121152, guid: 01938ffa0f38afe4eb65ea3125d7cb8b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -409,7 +417,7 @@ PrefabInstance:
         type: 3}
       propertyPath: toggleSound
       value: 
-      objectReference: {fileID: 8300000, guid: 672a569e3433a0b4582ee9ffbd25f4bc, type: 3}
+      objectReference: {fileID: 8300000, guid: efbc0040b415bec4e9f2c54c4b143eff, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01938ffa0f38afe4eb65ea3125d7cb8b, type: 3}
 --- !u!1 &3484427492596763559 stripped

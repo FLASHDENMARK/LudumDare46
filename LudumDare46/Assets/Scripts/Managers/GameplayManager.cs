@@ -65,7 +65,7 @@ namespace Assets.Scripts.Managers
 
             HUD.DisplayFailedScreen(failText);
 
-            Time.timeScale = 0.0F;
+            //Time.timeScale = 0.0F;
             yield return new WaitForSeconds(waitTime);
             Time.timeScale = timeScale;
 
