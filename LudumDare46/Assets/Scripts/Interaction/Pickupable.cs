@@ -1,7 +1,7 @@
 ﻿using Assets.Components.Weapons;
 using UnityEngine;
 
-public enum WeaponTypeEnum { Knife, Pistol }
+public enum WeaponTypeEnum { Knife, Pistol, Poison }
 
 [System.Serializable]
 public class PickupableToWeapon

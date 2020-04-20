@@ -2,8 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsumeObjective : MonoBehaviour
+public class ConsumeObjective : ObjectiveBase
 {
+    public override Vector3 GetBeginningVector()
+    {
+        return Vector3.zero;
+    }
+
+    public override Vector3 GetEndingVector()
+    {
+        return Vector3.zero;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

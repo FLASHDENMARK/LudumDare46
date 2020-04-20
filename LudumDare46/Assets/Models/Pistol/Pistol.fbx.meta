@@ -3,7 +3,27 @@ guid: ee12c2384e4e09849860c0967862e615
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PistolBase.001
+    second: {fileID: 2100000, guid: b80df0355b5ce044bb557581c6893963, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PistolHammer.001
+    second: {fileID: 2100000, guid: 6105dd85bf061b2478fb7a94b588aa23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PistolTrigger.001
+    second: {fileID: 2100000, guid: 712e09d2de5dfb145ba11075699ef37f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Supressor.001
+    second: {fileID: 2100000, guid: 9b24a2d12e2959941984c74968e7380b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
