@@ -10,11 +10,15 @@ public class DefaultUnequip : WeaponBehaviorBase
 
 	public override void Execute(WeaponBase weapon)
 	{
-		IsExecuting = true;
+		if (weapon.isEquipped)
+		{
+			weapon.isEquipped = false;
+			IsExecuting = true;
 
-		weapon.Play(weapon.WeaponSound.Unequip);
-		weapon.Play(weapon.WeaponAnimation.Unequip);
+			weapon.Play(weapon.WeaponSound.Unequip);
+			weapon.Play(weapon.WeaponAnimation.Unequip);
 
-		IsExecuting = false;
+			IsExecuting = false;
+		}
 	}
 }

@@ -30,6 +30,7 @@ namespace Assets.Components.Weapons
         public Sound WeaponSound;
         public Animation WeaponAnimation;
         public Behavior WeaponBehavior;
+        internal bool isEquipped;
 
         [Serializable]
         public struct Sound

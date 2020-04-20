@@ -26,5 +26,23 @@ namespace Assets.Scripts.Utility
 
             return angle;
         }
+
+        public static float GetAngle(Transform from, Transform to)
+        {
+            Vector3 target = to.position;
+            target.y = 0;
+            Vector3 tra = from.position;
+            tra.y = 0;
+
+            float cosAngle = Vector3.Dot((target - tra).normalized, from.forward);
+            float angle = Mathf.Acos(cosAngle) * Mathf.Rad2Deg;
+
+            if (float.IsNaN(angle))
+            {
+                angle = 0;
+            }
+
+            return angle;
+        }
     }
 }

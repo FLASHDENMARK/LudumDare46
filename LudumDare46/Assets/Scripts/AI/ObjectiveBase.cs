@@ -22,6 +22,11 @@ public abstract class ObjectiveBase : MonoBehaviour
     {
         _controller = controller;
         _color = color;
+
+        if (_controller == null)
+        {
+            throw new Exception("Controller is null for " + gameObject.name);
+        }
     }
 
     private void Awake ()
@@ -36,8 +41,6 @@ public abstract class ObjectiveBase : MonoBehaviour
             End();
             return;
         }
-
-
 
         if (inProgress)
         {

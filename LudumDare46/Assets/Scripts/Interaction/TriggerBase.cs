@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public abstract class TriggerBase : MonoBehaviour
 {
+    public AudioClip toggleSound;
+
     public bool on = false;
 
     /// <summary>
@@ -32,6 +35,11 @@ public abstract class TriggerBase : MonoBehaviour
     public virtual void ToggleUse ()
     {
         on = !on;
+
+        if (toggleSound != null)
+        {
+            GetComponent<AudioSource>().PlayOneShot(toggleSound);
+        }
 
         if (on)
         {
