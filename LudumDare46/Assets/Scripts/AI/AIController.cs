@@ -17,6 +17,8 @@ public class AIController : ControllerBase
     /// </summary>
     public float observeDistance = 10.0F;
     public float observeAngle = 60.0F;
+    public float alertTimeForWeapon = 1.0F;
+    public float alertTimeForSuspeciousItem = 1.0F;
     public LayerMask playerLineMask;
 
     public int MinWaitTime;
@@ -35,6 +37,9 @@ public class AIController : ControllerBase
     public Vector3 OverridePos;
     public bool IsOverridden;
 
+    private float _alertTimeForWeapon = 1.0F;
+    private float _alertTimeForSuspeciousItem = 1.0F;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -42,6 +47,8 @@ public class AIController : ControllerBase
         _navMeshAgent = GetComponent<NavMeshAgent>();
         roam = true;
 
+        _alertTimeForWeapon = alertTimeForWeapon;
+        _alertTimeForSuspeciousItem = alertTimeForSuspeciousItem;
 
         Vector3 newPos;
         Hotspot newHotspot;
@@ -70,12 +77,40 @@ public class AIController : ControllerBase
         {
             if (playerController.inventoryManager.isWeaponEquipped)
             {
-                HUD.DisplaySubtitles("You have you weapon out", "Fail", 1F);
+                alertTimeForWeapon -= Time.deltaTime;
+
+                if (alertTimeForWeapon <= 0)
+                {
+                    GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
+                }
+                else
+                {
+                    HUD.DisplaySubtitles("GAME", "Do not let them see you with that weapon for too long...", 1F);
+                }
+            }
+            else
+            {
+                alertTimeForWeapon = _alertTimeForWeapon;
             }
 
             if (playerController._interaction.isHoldingSuspiciousItem)
             {
-                HUD.DisplaySubtitles($"You are carrying a {playerController._interaction.suspiciousItemName}. That's illegal!", "Fail", 1F);
+                _alertTimeForSuspeciousItem -= Time.deltaTime;
+
+                string itemName = playerController._interaction.suspiciousItemName;
+                
+                if (_alertTimeForSuspeciousItem <= 0)
+                {
+                    GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
+                }
+                else
+                {
+                    HUD.DisplaySubtitles("GAME", $"Do not let them see you with that {itemName} for too long...", 1F);
+                }
+            }
+            else
+            {
+                alertTimeForSuspeciousItem = _alertTimeForSuspeciousItem;
             }
         }
     }

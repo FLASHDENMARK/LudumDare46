@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Managers
 {
@@ -7,8 +9,10 @@ namespace Assets.Scripts.Managers
     {
         private static PlayerController player;
         public delegate void OnControllerKilled (ControllerBase controller, IDamageGiver attacker);
+        public delegate void OnFailed (string reason, string tip = null);
         private string tempSpeaker = "GAME";
         public static OnControllerKilled OnControllerKilledEvent;
+        public static OnFailed OnFailedEvent;
 
         [Header("InGame Time"), SerializeField]
         public float TimeScale;
@@ -24,11 +28,38 @@ namespace Assets.Scripts.Managers
             UnityEngine.Random.InitState(0);
 
             OnControllerKilledEvent += OnHandleControllerKilled;
+            OnFailedEvent += OnHandledFailedEvent;
         }
 
         private void OnDisable ()
         {
-            OnControllerKilledEvent += OnHandleControllerKilled;
+            OnControllerKilledEvent -= OnHandleControllerKilled;
+            OnFailedEvent -= OnHandledFailedEvent;
+        }
+
+        private void OnHandledFailedEvent(string reason, string tip)
+        {
+            string text = $"{reason}";
+
+            if (string.IsNullOrEmpty(tip))
+            {
+                text += " Tip: " + tip;
+            }
+
+            StartCoroutine(Fail(3, text));
+        }
+
+        IEnumerator Fail(float waitTime, string failText = "You failed")
+        {
+            float timeScale = Time.timeScale;
+
+            HUD.DisplayFailedScreen(failText);
+
+            Time.timeScale = 0.0F;
+            yield return new WaitForSeconds(waitTime);
+            Time.timeScale = timeScale;
+
+            SceneManager.LoadScene(0);
         }
 
         [Serializable]
@@ -78,8 +109,9 @@ namespace Assets.Scripts.Managers
             if (controller is PlayerController)
             {
                 // The player died. Reset
-                HUD.DisplaySubtitles(tempSpeaker, "You died.", 5.0F);
+                OnHandledFailedEvent("You died. You know that is not meant to happen... We never tested that during development...", "Dont die next time :)");
             }
+
             else if (controller is HitmanController)
             {
                 HUD.DisplaySubtitles(tempSpeaker, "A hitman has been killed. Good work.", 5.0F);
@@ -88,28 +120,43 @@ namespace Assets.Scripts.Managers
             {
                 // A civilian died.
 
+                // The target has died
+                if ((controller as AIController).isTarget)
+                {
+                    OnHandledFailedEvent("You failed to protect the target", "Make sure to keep it alive");
+                }
+
                 // The player has killed a civilian
                 if (attacker.DamageGiver is PlayerController)
                 {
                     int i = UnityEngine.Random.Range(0, 3);
 
+                    string fail = "";
+
                     switch (i)
                     {
                         case 0:
-                            HUD.DisplaySubtitles(tempSpeaker, "Do not kill civilians.", 5.0F);
+                            fail = "Do not kill civilians.";
                             break;
                         case 1:
-                            HUD.DisplaySubtitles(tempSpeaker, "You will be punished for killing civilians.", 5.0F);
+                            fail = "You swore to protect the civilians.";
                             break;
                         case 2:
-                            HUD.DisplaySubtitles(tempSpeaker, "Bastian. Hold op med det.", 5.0F);
+                            fail = "You will make sure no harm comes to the civilians.";
                             break;
+                    }
 
+                    OnHandledFailedEvent(fail, null);
+
+                    // The target has died
+                    if ((controller as AIController).isTarget)
+                    {
+                        OnHandledFailedEvent("You killed the target you were meant to protect.", null);
                     }
                 }
                 else if (attacker is HitmanController)
                 {
-                    HUD.DisplaySubtitles(tempSpeaker, "A hitman has killed a target. Do not let them get away with that.", 5.0F);
+                    OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
                 }
             }
         }
