@@ -1,14 +1,16 @@
 ﻿using Assets.Scripts.Managers;
 using UnityEngine;
 
-public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGiver
-{
+public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGiver {
     public float health;
     public float Health { get => health; }
 
     public bool IsDead { get; protected set; }
 
     public ControllerBase DamageGiver => this;
+
+    public string causeOfDamage;
+    public string CauseOfDamage { get => causeOfDamage; }
 
     protected TriggerBase _trigger;
 

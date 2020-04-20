@@ -24,36 +24,32 @@ public class LookAtTargetObjective : ObjectiveBase
 
     public override void End(bool success = false)
     {
-        DisableLine();
-        
+
         if (_controller.IsDead)
         {
-            base.End(false);
-            return;
-        }
-
-        RaycastHit hit;
-        Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
-
-        if (Physics.Raycast(ray, out hit))
+            success = false;
+        } else
         {
-            ControllerBase CB = hit.transform.GetComponent<ControllerBase>();
-            if(CB != null && CB == Target)
-            {
-                success = true;
-                if (!Target.IsDead)
-                {
-                    Target.Die(_controller);
+            RaycastHit hit;
+            Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
 
-                    _controller.GetComponent<AudioSource>().PlayOneShot(sniperfire);
-                }
-                else
+            if (Physics.Raycast(ray, out hit))
+            {
+                ControllerBase CB = hit.transform.GetComponent<ControllerBase>();
+                if (CB != null && CB == Target)
                 {
-                    success = false;
+                    success = true;
+                    _controller.GetComponent<AudioSource>().PlayOneShot(sniperfire);
+                    Target.Die(_controller);
                 }
             }
         }
 
+
+
+
+        lineRenderer.SetPosition(0, _controller.transform.position);
+        lineRenderer.SetPosition(1, _controller.transform.position);
         base.End(success);
     }
 
@@ -67,23 +63,31 @@ public class LookAtTargetObjective : ObjectiveBase
     // Update is called once per frame
     protected override void UpdateObjective()
     {
-        RaycastHit hit;
-        Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
 
-        if (Physics.Raycast(ray, out hit))
+        if (_controller.IsDead)
         {
             lineRenderer.SetPosition(0, _controller.transform.position);
-            lineRenderer.SetPosition(1, hit.point);
-        }
-        else
+            lineRenderer.SetPosition(1, _controller.transform.position);
+        } else
         {
-            lineRenderer.SetPosition(0, _controller.transform.position);
-            lineRenderer.SetPosition(1, Target.transform.position);
+            RaycastHit hit;
+            Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                lineRenderer.SetPosition(0, _controller.transform.position);
+                lineRenderer.SetPosition(1, hit.point);
+            }
+            else
+            {
+                lineRenderer.SetPosition(0, _controller.transform.position);
+                lineRenderer.SetPosition(1, Target.transform.position);
+            }
         }
     }
 
-    private void DisableLine()
-    {
-        lineRenderer.enabled = false;
-    }
+
+
+
+
 }

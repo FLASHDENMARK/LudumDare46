@@ -8,7 +8,10 @@ using UnityEngine;
 
 public class Hotspot : MonoBehaviour
 {
-    private List<Tuple<Vector3, bool>> internalPositions;
+    [SerializeField]
+    public List<Tuple<Vector3, bool>> internalPositions;
+    public bool IsAllowed = true;
+    public List<bool> positionsTaken;
 
     void Awake()
     {
@@ -17,6 +20,11 @@ public class Hotspot : MonoBehaviour
         foreach (Transform child in transform) {
             internalPositions.Add(new Tuple<Vector3, bool>(child.position, false));
         }
+    }
+
+    void Update()
+    {
+        positionsTaken = internalPositions.Select(x => x.Item2).ToList();
     }
 
     public bool TakePosition(out Vector3 position) {
