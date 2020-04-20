@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15841809, g: 0.13333839, b: 0.102169506, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 0
-    m_BakeBackend: 1
+    m_BakeBackend: 2
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 9
     m_PVRSampleCount: 64
@@ -1414,7 +1414,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.88154584, b: 0.5990566, a: 1}
-  m_Intensity: 40
+  m_Intensity: 0.25
   m_Range: 55.45114
   m_SpotAngle: 179
   m_InnerSpotAngle: 169.00732
@@ -6574,7 +6574,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.88154584, b: 0.5990566, a: 1}
-  m_Intensity: 40
+  m_Intensity: 0.25
   m_Range: 55.45114
   m_SpotAngle: 179
   m_InnerSpotAngle: 169.00732
@@ -12595,7 +12595,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.88154584, b: 0.5990566, a: 1}
-  m_Intensity: 10
+  m_Intensity: 0.25
   m_Range: 15
   m_SpotAngle: 179
   m_InnerSpotAngle: 169.00732
@@ -14397,7 +14397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &554775712
 Light:
   m_ObjectHideFlags: 0
@@ -15819,7 +15819,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.88154584, b: 0.5990566, a: 1}
-  m_Intensity: 10
+  m_Intensity: 0.25
   m_Range: 15
   m_SpotAngle: 179
   m_InnerSpotAngle: 169.00732
@@ -25038,7 +25038,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.88154584, b: 0.5990566, a: 1}
-  m_Intensity: 40
+  m_Intensity: 0.25
   m_Range: 55.45114
   m_SpotAngle: 179
   m_InnerSpotAngle: 169.00732
@@ -36740,7 +36740,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.88154584, b: 0.5990566, a: 1}
-  m_Intensity: 40
+  m_Intensity: 0.25
   m_Range: 55.45114
   m_SpotAngle: 179
   m_InnerSpotAngle: 169.00732
@@ -43573,7 +43573,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.88154584, b: 0.5990566, a: 1}
-  m_Intensity: 20
+  m_Intensity: 0.25
   m_Range: 15
   m_SpotAngle: 179
   m_InnerSpotAngle: 169.00732
