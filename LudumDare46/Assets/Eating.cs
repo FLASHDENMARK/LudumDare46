@@ -48,7 +48,8 @@ public class Eating : MonoBehaviour
         Edible edible = food.GetComponent<Edible>();
         if (edible != null && edible.IsPoisonous)
         {
-            //THE PERSON DIED. WHAT TODO?
+            
+            GetComponent<AIController>().Die(edible);
         }
 
         Destroy(food.gameObject);
