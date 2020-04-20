@@ -87,6 +87,7 @@ public class PlayerController : ControllerBase
         if (!flashlight)
         {
             ToggleGadget(inventoryManager.watch, watch);
+            ToggleGadget(inventoryManager.notes, watch);
         }
 
         if (!watch)

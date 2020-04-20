@@ -15,6 +15,8 @@ namespace Assets.Components.Weapons.Behavior
 
 		public ControllerBase DamageGiver { get; set; }
 
+		public string CauseOfDamage { get; }
+
 		// This can be done better
 		private void Awake()
 		{
