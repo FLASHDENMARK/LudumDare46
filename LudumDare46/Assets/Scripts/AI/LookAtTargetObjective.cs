@@ -23,23 +23,31 @@ public class LookAtTargetObjective : ObjectiveBase
 
     public override void End(bool success = false)
     {
-        
-        lineRenderer.SetPosition(0, _controller.transform.position);
-        lineRenderer.SetPosition(1, _controller.transform.position);
 
-        RaycastHit hit;
-        Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
-
-        if (Physics.Raycast(ray, out hit))
+        if (_controller.IsDead)
         {
-            ControllerBase CB = hit.transform.GetComponent<ControllerBase>();
-            if(CB != null && CB == Target)
+            success = false;
+        } else
+        {
+            RaycastHit hit;
+            Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
+
+            if (Physics.Raycast(ray, out hit))
             {
-                success = true;
-                Target.Die(_controller);
+                ControllerBase CB = hit.transform.GetComponent<ControllerBase>();
+                if (CB != null && CB == Target)
+                {
+                    success = true;
+                    Target.Die(_controller);
+                }
             }
         }
 
+
+
+
+        lineRenderer.SetPosition(0, _controller.transform.position);
+        lineRenderer.SetPosition(1, _controller.transform.position);
         base.End(success);
 
     }
@@ -55,18 +63,28 @@ public class LookAtTargetObjective : ObjectiveBase
     void Update()
     {
 
-        RaycastHit hit;
-        Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
-
-        if(Physics.Raycast(ray, out hit))
+        if (_controller.IsDead)
         {
             lineRenderer.SetPosition(0, _controller.transform.position);
-            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.SetPosition(1, _controller.transform.position);
         } else
         {
-            lineRenderer.SetPosition(0, _controller.transform.position);
-            lineRenderer.SetPosition(1, Target.transform.position);
+            RaycastHit hit;
+            Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                lineRenderer.SetPosition(0, _controller.transform.position);
+                lineRenderer.SetPosition(1, hit.point);
+            }
+            else
+            {
+                lineRenderer.SetPosition(0, _controller.transform.position);
+                lineRenderer.SetPosition(1, Target.transform.position);
+            }
         }
+
+
 
 
 

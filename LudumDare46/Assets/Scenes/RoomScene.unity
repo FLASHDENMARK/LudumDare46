@@ -191,6 +191,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3747cb5562f1aa948a8f184aa7941b55, type: 3}
+--- !u!1 &3962579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3962580}
+  - component: {fileID: 3962581}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3962580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -35.6, y: 0, z: 17.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 558656682}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3962581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab77290a23cb8fe4183a79169db14b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6785749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12882,6 +12925,11 @@ PrefabInstance:
       propertyPath: WeaponSound.Equip.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 672a569e3433a0b4582ee9ffbd25f4bc, type: 3}
+    - target: {fileID: 337204351526669319, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+        type: 3}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 1698828709}
     - target: {fileID: 7499300171069922418, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
       propertyPath: m_Name
@@ -14741,9 +14789,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558656681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.88, y: 42.93, z: 34.3}
+  m_LocalPosition: {x: -57.3, y: 46.88, z: 34.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3962580}
   m_Father: {fileID: 1214748137}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35357,6 +35406,7 @@ GameObject:
   - component: {fileID: 1344418497}
   - component: {fileID: 1344418495}
   - component: {fileID: 1344418494}
+  - component: {fileID: 1344418496}
   m_Layer: 0
   m_Name: Sniper Timeline
   m_TagString: Untagged
@@ -35494,6 +35544,27 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1344418496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344418492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecc898e8b4ad8d40991fdc9e2e0800d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inProgress: 0
+  isComplete: 0
+  completionTime: 0
+  wasSuccesful: 0
+  waypoints:
+  - {fileID: 3962581}
+  startAtClosestWaypoint: 0
+  nextWaypointDistance: 2
+  loopUntilCompletionTime: 0
 --- !u!114 &1344418497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35510,6 +35581,7 @@ MonoBehaviour:
   controller: {fileID: 1857134788}
   objectives:
   - {fileID: 1344418494}
+  - {fileID: 1344418496}
   _currentObjective: {fileID: 0}
   loopTimeline: 0
 --- !u!1001 &1348171456
@@ -43552,6 +43624,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b578a25d148d54e8575463401afe6d, type: 3}
+--- !u!4 &1698828709 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7499300170041797731, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+    type: 3}
+  m_PrefabInstance: {fileID: 510215563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1699293359
 PrefabInstance:
   m_ObjectHideFlags: 0
