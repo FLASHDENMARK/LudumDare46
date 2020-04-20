@@ -6,7 +6,6 @@ using UnityEngine;
 public class LookAtTargetObjective : ObjectiveBase
 {
     private bool _active;
-    public float waitBeforeLookingAt = 40.0F;
     public Material SniperMat;
     public LineRenderer lineRenderer;
     public ControllerBase Target;
@@ -73,10 +72,7 @@ public class LookAtTargetObjective : ObjectiveBase
         } 
         else
         {
-            waitBeforeLookingAt -= Time.deltaTime;
 
-            if (waitBeforeLookingAt <= 0)
-            {
                 RaycastHit hit;
                 Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
 
@@ -90,7 +86,6 @@ public class LookAtTargetObjective : ObjectiveBase
                     lineRenderer.SetPosition(0, _controller.transform.position);
                     lineRenderer.SetPosition(1, Target.transform.position);
                 }
-            }
         }
     }
 
