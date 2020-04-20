@@ -1528,7 +1528,7 @@ PrefabInstance:
     - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: Ammo
-      value: 8
+      value: 80000
       objectReference: {fileID: 0}
     - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
@@ -1538,7 +1538,7 @@ PrefabInstance:
     - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: MaxAmmo
-      value: 8
+      value: 80000
       objectReference: {fileID: 0}
     - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
