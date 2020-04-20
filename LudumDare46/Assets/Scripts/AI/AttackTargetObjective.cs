@@ -59,6 +59,8 @@ public class AttackTargetObjective : ObjectiveBase
 
             if (distanceToTarget <= killDistance && angleToTarget <= attackAngle)
             {
+                // dO NOT MOVE ANYMORE
+                base.SetNavMeshDestination(transform.position);
                 _controller.ShootWeapon();
             }
         }

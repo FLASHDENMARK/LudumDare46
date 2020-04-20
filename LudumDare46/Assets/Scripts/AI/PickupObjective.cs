@@ -33,6 +33,8 @@ public class PickupObjective : ObjectiveBase
     {
         if (pickup == null)
         {
+            base.SetNavMeshDestination(transform.position);
+
             End();
 
             return;
