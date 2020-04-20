@@ -82,11 +82,12 @@ public class AIController : ControllerBase
 
                 if (alertTimeForWeapon <= 0)
                 {
-                    if (!_playWeaponAudio)
-                    {
-                        _playWeaponAudio = true;
+                    //if (!_playWeaponAudio)
+                   // {
+                        alertTimeForWeapon = 1.0F;
+                      //  _playWeaponAudio = true;
                         Utility.PlayAudio(alertedAudio, gameObject);
-                    }
+                    //}
                     GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
                 }
                 else
@@ -115,11 +116,12 @@ public class AIController : ControllerBase
                 
                 if (_alertTimeForSuspeciousItem <= 0)
                 {
-                    if (!_playWeaponAudio)
-                    {
-                        _playWeaponAudio = true;
+                    // if (!_playWeaponAudio)
+                    // {
+                    _alertTimeForSuspeciousItem = 1.0F;
+                        //_playWeaponAudio = true;
                         Utility.PlayAudio(alertedAudio, gameObject);
-                    }
+                    //}
 
                     GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
                 }

@@ -5,6 +5,7 @@ namespace Assets.Components.Weapons
 {
     public partial class WeaponBase : MonoBehaviour
     {
+        public bool isSemiAuto = false;
         public void Equip ()
         {
             WeaponBehavior.Equip.Execute(this);
@@ -38,6 +39,11 @@ namespace Assets.Components.Weapons
 
         private void Update()
         {
+            if (isSemiAuto == false)
+            {
+                canShootSemiAutomatic = true;
+            }
+
             if (Input.GetMouseButtonUp(0))
             {
                 canShootSemiAutomatic = true;
