@@ -10,6 +10,8 @@ using UnityEngine.AI;
 
 public class AIController : ControllerBase
 {
+    // Easy
+    public bool isTarget = false;
     /// <summary>
     /// How far the AI can see the actions of the player
     /// </summary>
@@ -210,11 +212,14 @@ public class AIController : ControllerBase
 
     public GameObject happyFace;
     public GameObject deadFace;
-
+    public AudioClip[] deathSounds;
     public override void Die(IDamageGiver damageGiver)
     {
         if (!IsDead)
         {
+            int i = UnityEngine.Random.Range(0, deathSounds.Length - 1);
+            GetComponent<AudioSource>().PlayOneShot(deathSounds[i]);
+
             GameplayManager.OnControllerKilledEvent(this, damageGiver);
 
             happyFace.SetActive(false);
