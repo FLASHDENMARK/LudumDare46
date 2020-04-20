@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 180
+  completionTime: 160
   wasSuccesful: 0
 --- !u!114 &262098062
 MonoBehaviour:
@@ -151,8 +151,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 60
+  completionTime: 10
   wasSuccesful: 0
+  WaitPosition: {fileID: 0}
 --- !u!1 &282743984
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,9 +271,9 @@ MonoBehaviour:
   isComplete: 0
   completionTime: 20
   wasSuccesful: 0
-  stateEquilibrium: 0
+  stateEquilibrium: 1
   trigger: {fileID: 0}
-  triggerRange: 2
+  triggerRange: 3
 --- !u!114 &282743990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +290,7 @@ MonoBehaviour:
   isComplete: 0
   completionTime: 20
   wasSuccesful: 0
-  stateEquilibrium: 0
+  stateEquilibrium: 1
   trigger: {fileID: 0}
   triggerRange: 2
 --- !u!114 &717806679
@@ -343,6 +344,7 @@ MonoBehaviour:
   isComplete: 0
   completionTime: 4
   wasSuccesful: 0
+  WaitPosition: {fileID: 0}
 --- !u!1 &452194033
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 15
+  completionTime: 130
   wasSuccesful: 0
 --- !u!1 &655256158
 GameObject:
@@ -623,8 +625,11 @@ MonoBehaviour:
   completionTime: 30
   wasSuccesful: 0
   pickup: {fileID: 0}
-  pickupDistance: 2.5
-  onPickup: []
+  pickupDistance: 4
+  onPickup:
+  - {fileID: 8300000, guid: fc8b020bd2e3a824ca946b26e6a60898, type: 3}
+  - {fileID: 8300000, guid: cb12b0111c9396842915bfc1571aacde, type: 3}
+  - {fileID: 8300000, guid: c6e2b6588a5b2044785eaf4413241ddb, type: 3}
 --- !u!114 &655256160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,7 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 50
+  completionTime: 110
   wasSuccesful: 0
 --- !u!1 &1004070074
 GameObject:
@@ -915,6 +920,8 @@ MonoBehaviour:
   - {fileID: 24676646}
   - {fileID: 24676647}
   - {fileID: 24676651}
+  - {fileID: 24676642}
+  - {fileID: 6814493577943833421}
   - {fileID: 1004070078}
   - {fileID: 24676648}
   - {fileID: 24676652}
@@ -1024,9 +1031,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 0
+  completionTime: 25
   wasSuccesful: 0
-  waypoints: []
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
   startAtClosestWaypoint: 0
   nextWaypointDistance: 2
   loopUntilCompletionTime: 0
@@ -1045,8 +1054,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 0
+  completionTime: 15
   wasSuccesful: 0
+  WaitPosition: {fileID: 0}
 --- !u!114 &1004070078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 25
+  completionTime: 40
   wasSuccesful: 0
   waypoints:
   - {fileID: 0}
@@ -1087,6 +1097,7 @@ MonoBehaviour:
   isComplete: 0
   completionTime: 30
   wasSuccesful: 0
+  WaitPosition: {fileID: 0}
 --- !u!114 &24676652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,6 +1127,7 @@ GameObject:
   - component: {fileID: 1344418495}
   - component: {fileID: 1344418494}
   - component: {fileID: 1344418496}
+  - component: {fileID: 2042613430}
   m_Layer: 0
   m_Name: Sniper Timeline
   m_TagString: Untagged
@@ -1152,6 +1164,7 @@ MonoBehaviour:
   gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   controller: {fileID: 0}
   objectives:
+  - {fileID: 2042613430}
   - {fileID: 1344418494}
   - {fileID: 1344418496}
   _currentObjective: {fileID: 0}
@@ -1267,7 +1280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 100
+  completionTime: 5
   wasSuccesful: 0
   SniperMat: {fileID: 2100000, guid: fc25878cfc5747f418c3c570e37131d4, type: 2}
   lineRenderer: {fileID: 1344418495}
@@ -1287,7 +1300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 0
+  completionTime: 5
   wasSuccesful: 0
   waypoints:
   - {fileID: 0}
@@ -1295,6 +1308,23 @@ MonoBehaviour:
   nextWaypointDistance: 2
   loopUntilCompletionTime: 0
   distanceToCurrentWaypoint: 0
+--- !u!114 &2042613430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344418492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5a58730628f474780e1821d11965a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inProgress: 0
+  isComplete: 0
+  completionTime: 240
+  wasSuccesful: 0
+  WaitPosition: {fileID: 0}
 --- !u!1 &1366475753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,7 +1671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inProgress: 0
   isComplete: 0
-  completionTime: 100
+  completionTime: 120
   wasSuccesful: 0
 --- !u!1 &2029459444
 GameObject:
@@ -1928,9 +1958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adad5344e64d0104a94cb20158c8bd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noFailMode: 0
-  TimeScale: 2
+  noFailMode: 1
+  TimeScale: 10
   StartHours: 12
+  AllowWipWap: 0
   time:
     hour: 0
     minute: 0
