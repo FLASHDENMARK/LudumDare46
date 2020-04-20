@@ -6,10 +6,12 @@ using UnityEngine;
 public class LookAtTargetObjective : ObjectiveBase
 {
     private bool _active;
+    public float waitBeforeLookingAt = 40.0F;
     public Material SniperMat;
     public LineRenderer lineRenderer;
     public ControllerBase Target;
     public AudioClip sniperfire;
+
     public override Vector3 GetBeginningVector()
     {
         _active = true;
@@ -68,20 +70,26 @@ public class LookAtTargetObjective : ObjectiveBase
         {
             lineRenderer.SetPosition(0, _controller.transform.position);
             lineRenderer.SetPosition(1, _controller.transform.position);
-        } else
+        } 
+        else
         {
-            RaycastHit hit;
-            Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
+            waitBeforeLookingAt -= Time.deltaTime;
 
-            if (Physics.Raycast(ray, out hit))
+            if (waitBeforeLookingAt <= 0)
             {
-                lineRenderer.SetPosition(0, _controller.transform.position);
-                lineRenderer.SetPosition(1, hit.point);
-            }
-            else
-            {
-                lineRenderer.SetPosition(0, _controller.transform.position);
-                lineRenderer.SetPosition(1, Target.transform.position);
+                RaycastHit hit;
+                Ray ray = new Ray(_controller.transform.position, Target.transform.position - _controller.transform.position);
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    lineRenderer.SetPosition(0, _controller.transform.position);
+                    lineRenderer.SetPosition(1, hit.point);
+                }
+                else
+                {
+                    lineRenderer.SetPosition(0, _controller.transform.position);
+                    lineRenderer.SetPosition(1, Target.transform.position);
+                }
             }
         }
     }
