@@ -49,7 +49,6 @@ public class LookAtTargetObjective : ObjectiveBase
         lineRenderer.SetPosition(0, _controller.transform.position);
         lineRenderer.SetPosition(1, _controller.transform.position);
         base.End(success);
-
     }
 
     // Start is called before the first frame update
