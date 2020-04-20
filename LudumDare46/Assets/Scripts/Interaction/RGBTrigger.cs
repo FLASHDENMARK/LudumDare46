@@ -17,6 +17,7 @@ public class RGB
     public void SetInitialColor ()
     {
         initialColor = light.color;
+        light.enabled = false;
     }
 }
 
@@ -36,9 +37,7 @@ public class RGBTrigger : TriggerBase
 
     protected override void Awake()
     {
-        base.Awake();
-
-        
+        base.Awake();   
     }
 
     private void Start()
@@ -48,12 +47,14 @@ public class RGBTrigger : TriggerBase
 
     public override void On ()
     {
+        lights.ForEach(l => l.light.enabled = true);
         _currentRotation = onRotation.rotation;
         _intervalTime = intervalTime;
     }
 
     public override void Off()
     {
+        lights.ForEach(l => l.light.enabled = false);
         _currentRotation = offRotation.rotation;
 
         // Set the colors back to the original colors
