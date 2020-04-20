@@ -35,12 +35,8 @@ namespace Assets.Components.Weapons.Behavior
 
 			bool isHit = Physics.Raycast(ray, out hit, shootDistance, layerMask);
 
-			SuspisiousBehavior.AlertNearbyAI(transform.position, noiseRadius, DamageGiver);
-			//AlertNearbyAI(transform.position);
-
 			if (isHit)
 			{
-				SuspisiousBehavior.AlertNearbyAI(hit.point, noiseRadius, DamageGiver);
 
 				IDamageReceiver damageReceiver = hit.collider.GetComponent<IDamageReceiver>();
 
@@ -48,6 +44,8 @@ namespace Assets.Components.Weapons.Behavior
 				{
 					damageReceiver.ReceiveDamage(damage, this);
 				}
+					
+				SuspisiousBehavior.AlertNearbyAI(hit.point, noiseRadius, DamageGiver);
 
 
 				Rigidbody rigidbody = hit.collider.GetComponent<Rigidbody>();
@@ -60,6 +58,8 @@ namespace Assets.Components.Weapons.Behavior
 				Quaternion rotation = Quaternion.FromToRotation(transform.up, hit.normal);
 				Instantiate(hitEffectTest, hit.point, rotation);
 			}
+
+			SuspisiousBehavior.AlertNearbyAI(transform.position, noiseRadius, DamageGiver);
 
 			weapon.Ammo--;
 		}

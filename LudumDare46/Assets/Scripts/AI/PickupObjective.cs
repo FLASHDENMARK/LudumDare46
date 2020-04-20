@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Managers;
+using Assets.Scripts.Utility;
 using System;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class PickupObjective : ObjectiveBase
 {
     public Pickupable pickup;
     public float pickupDistance = 4.0F;
+    public AudioClip[] onPickup;
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = _color;
@@ -43,6 +45,8 @@ public class PickupObjective : ObjectiveBase
         if (Vector3.Distance(pickup.transform.position, _controller.transform.position) <= pickupDistance)
         {
             _controller.Pickup(pickup);
+
+            Utility.PlayAudio(onPickup, _controller.gameObject);
 
             End();
         }
