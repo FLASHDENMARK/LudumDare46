@@ -3203,6 +3203,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6482514043663747611, guid: 8b0a42b9ac9dd2240b3eb496f4425f23,
+        type: 3}
+      propertyPath: notesGameObject
+      value: 
+      objectReference: {fileID: 2084978882055241564}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b0a42b9ac9dd2240b3eb496f4425f23, type: 3}
 --- !u!4 &97471057 stripped
@@ -11748,6 +11753,11 @@ PrefabInstance:
       propertyPath: Camera
       value: 
       objectReference: {fileID: 2024149578}
+    - target: {fileID: 5824961549379573289, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+        type: 3}
+      propertyPath: notes
+      value: 
+      objectReference: {fileID: 47818300552784651}
     - target: {fileID: 6600793239469402844, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
       propertyPath: layerMask.m_Bits
@@ -42171,6 +42181,11 @@ PrefabInstance:
       propertyPath: randomDeathForce
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: -8753770485708793021, guid: 355f61ae109213144b4b199027f1a139,
+        type: 3}
+      propertyPath: causeOfDamage
+      value: High velocity bullet
+      objectReference: {fileID: 0}
     - target: {fileID: 1290706281862927890, guid: 355f61ae109213144b4b199027f1a139,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -47342,6 +47357,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3747cb5562f1aa948a8f184aa7941b55, type: 3}
+--- !u!114 &47818300552784651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2560059406455131413, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+    type: 3}
+  m_PrefabInstance: {fileID: 510215563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084978882055241564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90013fb83b5ba24eaa4dda899b68bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &132900738426549579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47554,6 +47581,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45c4bf89024eb6f4189555a96b282769, type: 3}
+--- !u!1 &2084978882055241564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 409522656012545941, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
+    type: 3}
+  m_PrefabInstance: {fileID: 510215563}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2253351126308204881
 PrefabInstance:
   m_ObjectHideFlags: 0

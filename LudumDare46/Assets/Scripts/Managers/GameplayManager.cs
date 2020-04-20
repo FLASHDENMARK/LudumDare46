@@ -22,10 +22,15 @@ namespace Assets.Scripts.Managers
         [SerializeField]
         IngameTime time;
 
+        public GameObject notesGameObject;
+        private Notes notes;
+
         private void OnEnable ()
         {
             // Deterministic randomness for the win!
             UnityEngine.Random.InitState(0);
+
+            notes = notesGameObject.GetComponent<Notes>();
 
             OnControllerKilledEvent += OnHandleControllerKilled;
             OnFailedEvent += OnHandledFailedEvent;
@@ -154,8 +159,10 @@ namespace Assets.Scripts.Managers
                         OnHandledFailedEvent("You killed the target you were meant to protect.", null);
                     }
                 }
-                else if (attacker is HitmanController)
+                else if (attacker.DamageGiver is HitmanController)
                 {
+                    HUD.DisplaySubtitles(tempSpeaker, "A hitman has killed a target. Do not let them get away with that.", 5.0F);
+                    notes.TargetDied(GameTime, attacker.DamageGiver.CauseOfDamage);
                     OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
                 }
             }

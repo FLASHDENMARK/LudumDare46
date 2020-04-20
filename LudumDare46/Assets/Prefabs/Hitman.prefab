@@ -1297,6 +1297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  causeOfDamage: Stabbed to death
   isTarget: 0
   observeDistance: 20
   observeAngle: 70
