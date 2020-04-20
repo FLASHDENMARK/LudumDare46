@@ -38,7 +38,7 @@ namespace Assets.Scripts.Managers
 #endif
 
             // Deterministic randomness for the win!
-            UnityEngine.Random.InitState(0);
+            UnityEngine.Random.InitState(42);
 
             notes = notesGameObject.GetComponent<Notes>();
 
