@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145115fc6d7f7584d92f1f46c0da6780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseRadius: 12
+  noiseRadius: 6
   damage: 50
   shootDistance: 100
   rigidbodyForce: 5

@@ -35,29 +35,6 @@ public class PlayerController : ControllerBase
     /// </summary>
     /// <param name="interaction"></param>
 
-    private void OnGUI()
-    {
-        if (_trigger != null && _trigger.isEnabled)
-        {
-            bool hasTriggerText = _trigger.on ? !string.IsNullOrEmpty(_trigger.triggerOffText) : !string.IsNullOrEmpty(_trigger.triggerOnText);
-            string triggerText = null;
-
-            if (hasTriggerText)
-            {
-                string action = _trigger.on ? _trigger.triggerOffText : _trigger.triggerOnText;
-                triggerText = $"Press E to {action}"; 
-            }
-            else
-            {
-                // If no trigger text is set this will be the default UI text
-                string onOff = _trigger.on ? "off" : "on";
-
-                triggerText = $"Press E to switch {_trigger.gameObject.name} " + onOff;
-            }
-
-            GUI.Label(new Rect(30, 30, 400, 30), triggerText);
-        }
-    }
 
 
     // Update is called once per frame
@@ -116,7 +93,37 @@ public class PlayerController : ControllerBase
             TriggerInteraction();
         }
 
+        TriggerInteractionUI();
+
         GameplayManager.DisplayControls(esc);
+    }
+
+    private void TriggerInteractionUI()
+    {
+        if (_trigger != null && _trigger.isEnabled)
+        {
+            bool hasTriggerText = _trigger.on ? !string.IsNullOrEmpty(_trigger.triggerOffText) : !string.IsNullOrEmpty(_trigger.triggerOnText);
+            string triggerText = null;
+
+            if (hasTriggerText)
+            {
+                string action = _trigger.on ? _trigger.triggerOffText : _trigger.triggerOnText;
+                triggerText = $"Press E to {action}";
+            }
+            else
+            {
+                // If no trigger text is set this will be the default UI text
+                string onOff = _trigger.on ? "off" : "on";
+
+                triggerText = $"Press E to switch {_trigger.gameObject.name} " + onOff;
+            }
+
+            HUD.ShowTriggerUI(triggerText);
+        }
+        else
+        {
+            HUD.ShowTriggerUI("");
+        }
     }
 
     private void TriggerInteraction()
@@ -134,9 +141,11 @@ public class PlayerController : ControllerBase
             return;
         }
 
-        if (leftMouse)
+        if (!inspect && _interaction.InteractionPossible())
         {
-            if (!inspect && _interaction.InteractionPossible())
+            HUD.ShowInteractionUI("Press the left mouse to inspect object");
+
+            if (leftMouse)
             {
                 // TODO If we get more gadgets may need a more general system
                 inventoryManager.ToggleGadget(inventoryManager.flashlight, false);
@@ -147,6 +156,11 @@ public class PlayerController : ControllerBase
             }
         }
         else
+        {
+            HUD.ShowInteractionUI("");
+        }
+
+        if(!leftMouse)
         {
             if (inspect)
             {
