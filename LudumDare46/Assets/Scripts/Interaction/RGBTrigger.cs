@@ -38,6 +38,11 @@ public class RGBTrigger : TriggerBase
     {
         base.Awake();
 
+        
+    }
+
+    private void Start()
+    {
         lights.ForEach(l => l.SetInitialColor());
     }
 
