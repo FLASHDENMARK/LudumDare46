@@ -93,25 +93,15 @@ public class AIController : ControllerBase
     {
         RaycastHit hit;
 
-        //Debug.DrawLine(transform.position, controller.transform.position)
-
-        bool isHit = Physics.Linecast(transform.position, controller.transform.position, out hit/*, playerLineMask*/);
-
-        if (isHit)
+        if(Physics.Raycast(transform.position, controller.transform.position - transform.position, out hit))
         {
-            if (hit.collider.GetComponent<PlayerController>())
+            if(hit.transform.tag == "Player")
             {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            } 
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     IEnumerator Roam()
