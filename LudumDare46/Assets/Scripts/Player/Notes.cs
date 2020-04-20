@@ -25,7 +25,9 @@ public class Notes : MonoBehaviour
 
     public void TargetDied(GameplayManager.IngameTime ingameTime, string cause) {
         if (deaths.Where(x => x.Item2 == cause).Count() == 0) {
-            NotesSO.deaths.Add(new Tuple<GameplayManager.IngameTime, string>(ingameTime, cause));
+            GameplayManager.IngameTime newTime = new GameplayManager.IngameTime() { hour = ingameTime.hour, minute = ingameTime.minute, second = ingameTime.second};
+       
+            NotesSO.deaths.Add(new Tuple<GameplayManager.IngameTime, string>(newTime, cause));
             text.text += $"\n\nTime: {(ingameTime.hour < 10 ? "0" : "")}{ingameTime.hour}:{(ingameTime.minute < 10 ? "0" : "")}{ingameTime.minute}\nCause: {cause}";
         }
     }

@@ -7,6 +7,7 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        private float startTime;
         public int numberOfHitmans = 3;
         public int hitmansKilled = 0;
         public bool noFailMode = false;
@@ -31,6 +32,11 @@ namespace Assets.Scripts.Managers
 
         public GameObject notesGameObject;
         private Notes notes;
+
+        private void Awake()
+        {
+            startTime = 0;
+        }
 
         private void OnEnable ()
         {
@@ -154,13 +160,14 @@ namespace Assets.Scripts.Managers
                 _displayControls = !_displayControls;
             }
 
+            startTime += Time.deltaTime;
             //HUD.DisplayControls(_displayControls);
         }
 
 
         private void UpdateIngameTime()
         {
-            float currentTime = Time.time * TimeScale + (StartHours * 3600);
+            float currentTime = startTime * TimeScale + (StartHours * 3600);
             time.hour = Mathf.FloorToInt(currentTime / 3600);
             time.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
             time.second = Mathf.FloorToInt((currentTime % 3600) % 60);
