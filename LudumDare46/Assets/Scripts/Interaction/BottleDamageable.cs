@@ -24,4 +24,8 @@ public class BottleDamageable : MonoBehaviour, IDamageReceiver
     {
         Destroy(this.gameObject);
     }
+
+    public void SomeoneDied(ControllerBase damageGiver)
+    {
+    }
 }

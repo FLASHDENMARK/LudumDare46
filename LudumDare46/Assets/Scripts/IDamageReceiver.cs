@@ -7,4 +7,5 @@
 
     void Die(IDamageGiver damageGiver);
     void Alert(ControllerBase damageGiver);
+    void SomeoneDied(ControllerBase damageGiver);
 }

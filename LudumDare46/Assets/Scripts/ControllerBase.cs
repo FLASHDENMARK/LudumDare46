@@ -15,6 +15,7 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGi
 
     protected TriggerBase _trigger;
 
+    public AudioClip[] someoneDiedAudio;
     public AudioClip[] alertedAudio;
 
     public void ReceiveDamage (float damage, IDamageGiver damageGiver)
@@ -52,6 +53,17 @@ public abstract class ControllerBase : MonoBehaviour, IDamageReceiver, IDamageGi
             Utility.PlayAudio(alertedAudio, gameObject);
 
             GameplayManager.OnFailedEvent("A guest was alerted to suspicious behaviour during the party", null);
+        }
+    }
+
+    public void SomeoneDied (ControllerBase damageGiver)
+    {
+        // You cannot alert yourself
+        if (damageGiver != this && !IsDead)
+        {
+            Utility.PlayAudio(someoneDiedAudio, gameObject);
+
+            GameplayManager.OnFailedEvent("A guest was alerted to a dead body", null);
         }
     }
 }

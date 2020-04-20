@@ -45,7 +45,7 @@ namespace Assets.Components.Weapons.Behavior
 					damageReceiver.ReceiveDamage(damage, this);
 				}
 					
-				SuspisiousBehavior.AlertNearbyAI(hit.point, noiseRadius, DamageGiver);
+				SuspisiousBehavior.AlertNearbyAI(hit.point, noiseRadius, DamageGiver, true);
 
 
 				Rigidbody rigidbody = hit.collider.GetComponent<Rigidbody>();
@@ -59,7 +59,7 @@ namespace Assets.Components.Weapons.Behavior
 				Instantiate(hitEffectTest, hit.point, rotation);
 			}
 
-			SuspisiousBehavior.AlertNearbyAI(transform.position, noiseRadius, DamageGiver);
+			SuspisiousBehavior.AlertNearbyAI(transform.position, noiseRadius, DamageGiver, true);
 
 			weapon.Ammo--;
 		}

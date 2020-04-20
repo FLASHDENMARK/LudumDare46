@@ -7,6 +7,8 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        public int numberOfHitmans = 3;
+        public int hitmansKilled = 0;
         public bool noFailMode = false;
         private static PlayerController player;
         public delegate void OnControllerKilled (ControllerBase controller, IDamageGiver attacker);
@@ -38,7 +40,7 @@ namespace Assets.Scripts.Managers
 #endif
 
             // Deterministic randomness for the win!
-            UnityEngine.Random.InitState(0);
+            UnityEngine.Random.InitState(42);
 
             notes = notesGameObject.GetComponent<Notes>();
 
@@ -174,6 +176,7 @@ namespace Assets.Scripts.Managers
 
             else if (controller is HitmanController)
             {
+                hitmansKilled++;
                 HUD.DisplaySubtitles(tempSpeaker, "A hitman has been killed. Good work.", 5.0F);
             }
             else if (controller is AIController)
@@ -231,6 +234,13 @@ namespace Assets.Scripts.Managers
                     notes.TargetDied(GameTime, attacker.CauseOfDamage);
                     OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
                 }
+            }
+
+            if (!noFailMode && hitmansKilled == numberOfHitmans)
+            {
+                HUD.DisplaySuccessScreen("Success! You successfully managed to keep the VIP alive by eliminating all the hitmans. 'No fail mode' will be turned on in a few seconds... Have fun killing everyone!");
+
+                noFailMode = true;
             }
         }
     }
