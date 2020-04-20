@@ -13,7 +13,7 @@ public class AttackTargetObjective : ObjectiveBase
     public override void Begin(Action<ObjectiveOutcome> endCallback)
     {
         if (weapon != null)
-        weapon.gameObject.SetActive(false);
+            weapon.gameObject.SetActive(false);
 
         base.Begin(endCallback);
         
@@ -25,12 +25,12 @@ public class AttackTargetObjective : ObjectiveBase
 
     protected override void UpdateObjective()
     {
-        if (_controller.pickup == null)
+        /*if (_controller.pickup == null)
         {
             End(false);
 
             return;
-        }
+        }*/
 
 
         float distance = Vector3.Distance(target.transform.position, _controller.transform.position);
