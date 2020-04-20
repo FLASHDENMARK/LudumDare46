@@ -65,7 +65,9 @@ public class AIController : ControllerBase
 
     private bool IsLookingAtPlayer (PlayerController controller)
     {
-        float angle = Utility.GetAngle(controller.transform);
+        Vector3 LookDir = transform.forward;
+        Vector3 LookAtPLayerDir = controller.transform.position - transform.position;
+        float angle = Vector3.Angle(LookDir, LookAtPLayerDir);
 
         return angle <= observeAngle;
     }
