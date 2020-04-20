@@ -12,8 +12,6 @@ public class ProjectileShoot : WeaponBehaviorBase
 
     public Vector3 maxRandomness;
 
-    public Transform shooterTest;
-
     private Vector3 _spawnPointPosition;
 
     private void Awake ()
@@ -35,7 +33,7 @@ public class ProjectileShoot : WeaponBehaviorBase
 
         SpawnPoint.transform.localPosition = _spawnPointPosition + randomness;
 
-        Instantiate(Projectile, SpawnPoint.transform.position, shooterTest.rotation);
+        Instantiate(Projectile, SpawnPoint.transform.position, SpawnPoint.transform.rotation);
 
         //Manager.Spawn(Projectile, SpawnPoint, spawnParameters);
     }

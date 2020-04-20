@@ -1,7 +1,10 @@
-﻿using Assets.Scripts.Managers;
+﻿using Assets.Components.Weapons;
+using Assets.Scripts.Managers;
 using Assets.Scripts.Utility;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,8 +20,8 @@ public class AIController : ControllerBase
     public int MinWaitTime;
     public int MaxWaitTime;
     public float randomDeathForce = 20.0F;
-    public Pickupable pickup;
-    public Transform pickupPosition;
+    public List<PickupableToWeapon> weaponPickups;
+    public WeaponBase currentWeapon;
 
     private HotspotManager hotspotManager;
     private NavMeshAgent _navMeshAgent;
@@ -126,6 +129,7 @@ public class AIController : ControllerBase
                         nextHotspot = newHotspot;
                         _navMeshAgent.SetDestination(nextPosition);
                     }
+
                     yield return new WaitForSeconds(UnityEngine.Random.Range(MinWaitTime, MaxWaitTime));
                 }
             }
@@ -143,10 +147,23 @@ public class AIController : ControllerBase
 
     public void Pickup (Pickupable pickup)
     {
-        this.pickup = pickup;
+        PickupableToWeapon weap = weaponPickups.FirstOrDefault(p => p.weaponType == pickup.weapon);
 
-        pickup.transform.SetParent(pickupPosition.transform);
-        pickup.transform.localPosition = pickupPosition.localPosition;
+        currentWeapon = weap.weapon;
+
+        if (weap == null)
+        {
+            throw new Exception("Could not find the weapon to pickup");
+        }
+        else
+        {
+            currentWeapon.gameObject.SetActive(true);
+        }
+    }
+
+    public void ShootWeapon ()
+    {
+        currentWeapon.Shoot();
     }
 
     private bool HasReachedDestination() {
