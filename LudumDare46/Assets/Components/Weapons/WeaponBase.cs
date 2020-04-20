@@ -36,10 +36,20 @@ namespace Assets.Components.Weapons
 
         }
 
+        private void Update()
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                canShootSemiAutomatic = true;
+            }
+        }
+
+        private bool canShootSemiAutomatic = true;
         public void Shoot ()
         {
-            if (CanShoot)
+            if (CanShoot && canShootSemiAutomatic)
             {
+                canShootSemiAutomatic = false;
                 WeaponBehavior.Shoot.Execute(this);
 
                 if (WeaponBehavior.ShootEffect != null)

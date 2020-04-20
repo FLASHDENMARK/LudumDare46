@@ -876,7 +876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2780222137687759739
 Transform:
   m_ObjectHideFlags: 0
@@ -916,6 +916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4578ba511f82c4ba33f9322728383d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NotesSO: {fileID: 11400000, guid: 146a25dccc6588346a1f39e5d9e3be3c, type: 2}
   text: {fileID: 6404277319335368857}
 --- !u!1 &2729236771238072621
 GameObject:
@@ -1516,9 +1517,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
+      propertyPath: WeaponSound.Shoot.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
       propertyPath: Camera
       value: 
       objectReference: {fileID: 7499300170041797731}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: Ammo
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: SpareAmmo
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: MaxAmmo
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: MaxSpareAmmo
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: WeaponSound.Shoot.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 70a16185092e5d740b0ae967e585dcb8, type: 3}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: WeaponSound.Shoot.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5dd173be9caf7b444aa2b9525173a473, type: 3}
+    - target: {fileID: 1729998007223613421, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: WeaponSound.Shoot.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5dd173be9caf7b444aa2b9525173a473, type: 3}
     - target: {fileID: 4926981407405764656, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1578,6 +1619,16 @@ PrefabInstance:
         type: 3}
       propertyPath: layerMask.m_Bits
       value: 3383
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155648468571012166, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155648468571012166, guid: 5f09e3c7358854c49a06b04579f23a5f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.408
       objectReference: {fileID: 0}
     - target: {fileID: 5761967812554917406, guid: 5f09e3c7358854c49a06b04579f23a5f,
         type: 3}

@@ -126,6 +126,11 @@ namespace Assets.Scripts.Managers
             return player;
         }
 
+        internal static void DisplayControls(bool esc)
+        {
+            HUD.DisplayControls(esc);
+        }
+
         bool _displayControls = false;
 
         private void Update()

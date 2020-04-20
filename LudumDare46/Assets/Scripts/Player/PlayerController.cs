@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Managers;
+using System;
 using UnityEngine;
 
 public class PlayerController : ControllerBase
@@ -34,29 +35,6 @@ public class PlayerController : ControllerBase
     /// </summary>
     /// <param name="interaction"></param>
 
-    private void OnGUI()
-    {
-        if (_trigger != null && _trigger.isEnabled)
-        {
-            bool hasTriggerText = _trigger.on ? !string.IsNullOrEmpty(_trigger.triggerOffText) : !string.IsNullOrEmpty(_trigger.triggerOnText);
-            string triggerText = null;
-
-            if (hasTriggerText)
-            {
-                string action = _trigger.on ? _trigger.triggerOffText : _trigger.triggerOnText;
-                triggerText = $"Press E to {action}"; 
-            }
-            else
-            {
-                // If no trigger text is set this will be the default UI text
-                string onOff = _trigger.on ? "off" : "on";
-
-                triggerText = $"Press E to switch {_trigger.gameObject.name} " + onOff;
-            }
-
-            GUI.Label(new Rect(30, 30, 400, 30), triggerText);
-        }
-    }
 
 
     // Update is called once per frame
@@ -67,12 +45,12 @@ public class PlayerController : ControllerBase
         bool leftMouse = Input.GetMouseButton(0);
         bool rightMouse = Input.GetMouseButton(1);
         bool use = Input.GetKeyDown(KeyCode.E);
-        bool watch = Input.GetKey(KeyCode.Q);
-        bool flashlight = Input.GetKey(KeyCode.Tab);
+        bool watch = Input.GetKey(KeyCode.Tab);
+        bool flashlight = Input.GetKey(KeyCode.F);
         bool esc = Input.GetKey(KeyCode.Escape);
 
         // TODO May need to be expanded if we need more weapons
-        bool weapon = Input.GetKeyDown(KeyCode.Alpha1);
+        bool weapon = Input.GetKeyDown(KeyCode.Q);
 
         Move(move);
 
@@ -114,6 +92,38 @@ public class PlayerController : ControllerBase
         {
             TriggerInteraction();
         }
+
+        TriggerInteractionUI();
+
+        GameplayManager.DisplayControls(esc);
+    }
+
+    private void TriggerInteractionUI()
+    {
+        if (_trigger != null && _trigger.isEnabled)
+        {
+            bool hasTriggerText = _trigger.on ? !string.IsNullOrEmpty(_trigger.triggerOffText) : !string.IsNullOrEmpty(_trigger.triggerOnText);
+            string triggerText = null;
+
+            if (hasTriggerText)
+            {
+                string action = _trigger.on ? _trigger.triggerOffText : _trigger.triggerOnText;
+                triggerText = $"Press E to {action}";
+            }
+            else
+            {
+                // If no trigger text is set this will be the default UI text
+                string onOff = _trigger.on ? "off" : "on";
+
+                triggerText = $"Press E to switch {_trigger.gameObject.name} " + onOff;
+            }
+
+            HUD.ShowTriggerUI(triggerText);
+        }
+        else
+        {
+            HUD.ShowTriggerUI("");
+        }
     }
 
     private void TriggerInteraction()
@@ -131,9 +141,11 @@ public class PlayerController : ControllerBase
             return;
         }
 
-        if (leftMouse)
+        if (!inspect && _interaction.InteractionPossible())
         {
-            if (!inspect && _interaction.InteractionPossible())
+            HUD.ShowInteractionUI("Press the left mouse to inspect object");
+
+            if (leftMouse)
             {
                 // TODO If we get more gadgets may need a more general system
                 inventoryManager.ToggleGadget(inventoryManager.flashlight, false);
@@ -144,6 +156,11 @@ public class PlayerController : ControllerBase
             }
         }
         else
+        {
+            HUD.ShowInteractionUI("");
+        }
+
+        if(!leftMouse)
         {
             if (inspect)
             {

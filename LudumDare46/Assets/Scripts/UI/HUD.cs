@@ -6,12 +6,14 @@ public class HUD : MonoBehaviour
     private static UISubtitles _subtitles;
     private static UIControls _controls;
     private static UIFailedScreen _failedScreen;
+    public static UIInteraction _interactionUI;
 
     private void Awake()
     {
         _subtitles = GetComponent<UISubtitles>();
         _controls = GetComponent<UIControls>();
         _failedScreen = GetComponent<UIFailedScreen>();
+        _interactionUI = GetComponent<UIInteraction>();
     }
 
     public static void DisplaySubtitles (string speaker, string words, float duration = 10.0F)
@@ -27,5 +29,15 @@ public class HUD : MonoBehaviour
     internal static void DisplayFailedScreen (string text)
     {
         _failedScreen.DisplayFail(text);
+    }
+
+    internal static void ShowInteractionUI(string triggerText)
+    {
+        _interactionUI.ShowInteractionUI(triggerText);
+    }
+
+    internal static void ShowTriggerUI(string triggerText)
+    {
+        _interactionUI.ShowTriggerUI(triggerText);
     }
 }
