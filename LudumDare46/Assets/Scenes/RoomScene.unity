@@ -8938,6 +8938,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 410229814}
     m_Modifications:
+    - target: {fileID: 4714500865671139864, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4714500866468434532, guid: efbb6e6b59883cd4db6f8bce9285e22d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8997,6 +9002,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bartable (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714500866468434535, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714500867174237623, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714500867527259309, guid: efbb6e6b59883cd4db6f8bce9285e22d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efbb6e6b59883cd4db6f8bce9285e22d, type: 3}
@@ -12836,6 +12856,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 81908046, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: WeaponSound.Shoot.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 81908046, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: WeaponSound.Equip.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 81908046, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: WeaponSound.Shoot.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 27f6b7e0072426a46b1fc794ce31e18c, type: 3}
+    - target: {fileID: 81908046, guid: 7a94f500fe7ec5646a1ceac6ae7af98c, type: 3}
+      propertyPath: WeaponSound.Equip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 672a569e3433a0b4582ee9ffbd25f4bc, type: 3}
     - target: {fileID: 7499300171069922418, guid: 7a94f500fe7ec5646a1ceac6ae7af98c,
         type: 3}
       propertyPath: m_Name
@@ -32470,7 +32506,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9113213542077597246, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
 --- !u!1001 &1246937669
 PrefabInstance:
@@ -35297,6 +35334,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1279565642}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1344418492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344418493}
+  m_Layer: 0
+  m_Name: Sniper Timeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344418493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344418492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 97471057}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1348171456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52455,6 +52522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window
       objectReference: {fileID: 0}
+    - target: {fileID: 3484427491780326899, guid: 321c42e5659f53a4cbb5d8b515ab6fba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 321c42e5659f53a4cbb5d8b515ab6fba, type: 3}
 --- !u!1001 &4291787247501902791
@@ -52831,7 +52903,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9113213542077597246, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0dee62f11207d7c439aff00245d6fd0d, type: 3}
 --- !u!1001 &5273058164940064734
 PrefabInstance:

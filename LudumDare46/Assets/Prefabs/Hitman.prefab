@@ -1296,8 +1296,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  observeDistance: 10
-  observeAngle: 60
+  observeDistance: 20
+  observeAngle: 70
   playerLineMask:
     serializedVersion: 2
     m_Bits: 0
@@ -1309,6 +1309,7 @@ MonoBehaviour:
     weapon: {fileID: 4229510550529685509}
   - weaponType: 1
     weapon: {fileID: 8753205426434054238}
+  currentWeapon: {fileID: 0}
   OverridePos: {x: 0, y: 0, z: 0}
   IsOverridden: 0
   happyFace: {fileID: 6725988174241733453}
