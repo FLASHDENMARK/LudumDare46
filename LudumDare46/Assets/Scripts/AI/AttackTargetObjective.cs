@@ -30,7 +30,7 @@ public class AttackTargetObjective : ObjectiveBase
 
         if (pullWeaponDistance < killDistance)
         {
-            throw new Exception("Pull weapon distance should noit be less than shoot distance");
+            throw new Exception("Pull weapon distance should not be less than shoot distance");
         }
 
         if (prerequisite != null && !prerequisite.wasSuccesful)
