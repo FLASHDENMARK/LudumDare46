@@ -47,6 +47,12 @@ namespace Assets.Scripts.Utility
 
         internal static void PlayAudio(AudioClip[] audio, GameObject gameObject)
         {
+            if (audio.Length == 0)
+            {
+                Debug.LogWarning("Calling play audio with not audio array");
+                return;
+            }
+
             System.Random r = new System.Random();
 
             int index = r.Next(0, audio.Length);
@@ -55,6 +61,12 @@ namespace Assets.Scripts.Utility
 
         public static void PlayAudio (AudioClip audio, GameObject gameObjectToPlay)
         {
+            if (audio == null)
+            {
+                Debug.LogWarning("Calling play audio with not audio array");
+                return;
+            }
+
             gameObjectToPlay.GetComponent<AudioSource>().PlayOneShot(audio);
         }
     }

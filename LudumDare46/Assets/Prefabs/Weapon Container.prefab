@@ -199,7 +199,7 @@ MonoBehaviour:
   WeaponSound:
     Source: {fileID: 4675402586165186608}
     Shoot:
-    - {fileID: 8300000, guid: 27f6b7e0072426a46b1fc794ce31e18c, type: 3}
+    - {fileID: 8300000, guid: e2b644779e948dd4fb41b993a445b748, type: 3}
     Reload: []
     Equip: []
     Unequip: []

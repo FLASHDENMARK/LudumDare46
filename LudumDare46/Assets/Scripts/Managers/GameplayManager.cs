@@ -74,7 +74,7 @@ namespace Assets.Scripts.Managers
 
             HUD.DisplayFailedScreen(failText);
 
-            Time.timeScale = 0.0F;
+            //Time.timeScale = 0.0F;
             yield return new WaitForSeconds(waitTime);
             Time.timeScale = timeScale;
 
@@ -220,6 +220,10 @@ namespace Assets.Scripts.Managers
                     }
 
                     notes.TargetDied(GameTime, cause);
+                    OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
+                }
+                else if (attacker.CauseOfDamage == "Poison") {
+                    notes.TargetDied(GameTime, attacker.CauseOfDamage);
                     OnHandledFailedEvent("A hitman has killed a target. Do not let them get away with that next time", "");
                 }
             }
