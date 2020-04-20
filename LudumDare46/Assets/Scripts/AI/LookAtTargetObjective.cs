@@ -31,15 +31,27 @@ public class LookAtTargetObjective : ObjectiveBase
     void Update()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, _controller.transform.position - transform.position, out hit))
-        {
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, hit.point);
-        } else
-        {
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, _controller.transform.position);
-        }
 
+
+        if(Physics.Linecast(transform.position, _controller.transform.position, out hit))
+        {
+            lineRenderer.SetPosition(0, _controller.transform.position);
+            lineRenderer.SetPosition(1, hit.point);
+        }
+        else
+        {
+
+        }
+        /*
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, hit.point);
+
+
+
+    /*else
+    {
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, _controller.transform.position);
+    }*/
     }
 }
