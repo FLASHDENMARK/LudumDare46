@@ -81,7 +81,7 @@ public class AIController : ControllerBase
                     {
                         if (playerController.inventoryManager.isWeaponEquipped)
                         {
-                            alertTimeForWeapon -= Time.deltaTime;
+                            alertTimeForWeapon -= 0.05f;
 
                             if (alertTimeForWeapon <= 0)
                             {
@@ -101,7 +101,7 @@ public class AIController : ControllerBase
                                     Utility.PlayAudio(suspecionAudio, gameObject);
                                 }
 
-                                HUD.DisplaySubtitles("GAME", "Do not let them see you with that weapon for too long...", 1F);
+                                HUD.DisplaySubtitles("GAME", "Do not let them see you with that weapon for too long...", 0.05f * 1000f);
                             }
                         }
                         else
@@ -113,7 +113,7 @@ public class AIController : ControllerBase
 
                         if (playerController._interaction.isHoldingSuspiciousItem)
                         {
-                            _alertTimeForSuspeciousItem -= Time.deltaTime;
+                            _alertTimeForSuspeciousItem -= 0.05f;
 
                             string itemName = playerController._interaction.suspiciousItemName;
 
@@ -136,7 +136,7 @@ public class AIController : ControllerBase
                                     Utility.PlayAudio(suspecionAudio, gameObject);
                                 }
 
-                                HUD.DisplaySubtitles("GAME", $"Do not let them see you with that {itemName} for too long...", 1F);
+                                HUD.DisplaySubtitles("GAME", $"Do not let them see you with that {itemName} for too long...", 0.05f * 1000f);
                             }
                         }
                         else
