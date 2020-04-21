@@ -79,7 +79,6 @@ public class Eating : MonoBehaviour
             {
                 foreach(Collider food in foods)
                 {
-                    
                     if (food.GetComponent<Edible>() != null || food.GetComponentInParent<Edible>() != null)
                     {
                         _isEating = true;
