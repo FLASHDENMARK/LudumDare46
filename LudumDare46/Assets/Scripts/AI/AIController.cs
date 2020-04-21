@@ -68,7 +68,7 @@ public class AIController : ControllerBase
 
     IEnumerator SlowUpdate()
     {
-        while (true)
+        while (IsDead == false)
         {
             yield return new WaitForSeconds(0.05f);
             PlayerController playerController = GameplayManager.GetPlayer();
@@ -91,6 +91,7 @@ public class AIController : ControllerBase
                                 //  _playWeaponAudio = true;
                                 Utility.PlayAudio(alertedAudio, gameObject);
                                 //}
+                                Debug.Log(1);
                                 GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
                             }
                             else
@@ -125,7 +126,7 @@ public class AIController : ControllerBase
                                 //_playWeaponAudio = true;
                                 Utility.PlayAudio(alertedAudio, gameObject);
                                 //}
-
+                                Debug.Log(2);
                                 GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
                             }
                             else

@@ -25,32 +25,45 @@ public class SuspisiousBehavior : MonoBehaviour
 		{
 			IDamageReceiver damageReceiver = hitColliders[i].GetComponent<IDamageReceiver>();
 
+			if (hitColliders[i].gameObject.tag == "Player" || damageReceiver == null || damageReceiver.IsDead)
+			{
+				i++;
+				continue;
+			}
+
+
 			if (damageReceiver != null)
 			{
 				if (lineCast)
 				{
 					RaycastHit hit;
 
-					bool isHit = Physics.Linecast(location, hitColliders[i].transform.position, out hit/*, playerLineMask*/);
-					
-					if (isHit && hit.collider.GetComponent<IDamageReceiver>() != null)
+					if(Physics.Raycast(location, hitColliders[i].transform.position - location, out hit))
 					{
-						if (isSuspOnly)
+						AIController AI = hit.collider.GetComponent<AIController>();
+						if (AI != null && AI.IsDead == false)
 						{
-							maxSusp--;
-							damageReceiver.Alert(alerter);
-
-							if (maxSusp == 0)
+							if (isSuspOnly)
 							{
+								maxSusp--;
+								damageReceiver.Alert(alerter);
+								Debug.Log(hitColliders[i].transform.name);
+								if (maxSusp == 0)
+								{
+									break;
+								}
+							}
+							else
+							{
+								damageReceiver.SomeoneDied(alerter);
+								Debug.Log(hitColliders[i].transform.name);
 								break;
 							}
 						}
-						else
-						{
-							damageReceiver.SomeoneDied(alerter);
-							break;
-						}
 					}
+
+					
+					
 				}
 				else
 				{
@@ -60,6 +73,7 @@ public class SuspisiousBehavior : MonoBehaviour
 
 						damageReceiver.Alert(alerter);
 
+						Debug.Log(hitColliders[i].transform.name);
 						if (maxSusp == 0)
 						{
 							break;
@@ -68,6 +82,8 @@ public class SuspisiousBehavior : MonoBehaviour
 					else
 					{
 						damageReceiver.SomeoneDied(alerter);
+
+						Debug.Log(hitColliders[i].transform.name);
 						break;
 					}
 				}
