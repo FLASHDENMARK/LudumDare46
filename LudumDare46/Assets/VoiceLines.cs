@@ -20,8 +20,8 @@ public class VoiceLines : MonoBehaviour
         {
             DontDestroyOnLoad(this.gameObject);
             _instance = this;
-            Utility.PlayAudio(intro, this.gameObject);
         }
+            //Utility.PlayAudio(intro, this.gameObject);
 
     }
 
