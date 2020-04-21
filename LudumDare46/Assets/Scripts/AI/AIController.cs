@@ -60,90 +60,97 @@ public class AIController : ControllerBase
         }
 
         StartCoroutine(Roam());
+        StartCoroutine(SlowUpdate());
     }
 
     private static bool _playWeaponAudio = false;
     private static bool _playItemAudio = false;
 
-    void Update()
+    IEnumerator SlowUpdate()
     {
-        PlayerController playerController = GameplayManager.GetPlayer();
-
-        DebugObserveAngle();
-
-        bool isLookingAtPlayer = IsLookingAtPlayer(playerController);
-        bool isNearPlayer = IsNearPlayer(playerController);
-        bool hasLineOfSightOnPlayer = HasLineOfSight(playerController);
-
-        if (isNearPlayer && isLookingAtPlayer && hasLineOfSightOnPlayer)
+        while (IsDead == false)
         {
-            if (playerController.inventoryManager.isWeaponEquipped)
-            {
-                alertTimeForWeapon -= Time.deltaTime;
+            yield return new WaitForSeconds(0.05f);
+            PlayerController playerController = GameplayManager.GetPlayer();
 
-                if (alertTimeForWeapon <= 0)
+            if (IsNearPlayer(playerController))
+            {
+                if (HasLineOfSight(playerController))
                 {
-                    //if (!_playWeaponAudio)
-                   // {
-                        alertTimeForWeapon = alertTimeAfterInitialDiscovery;
-                      //  _playWeaponAudio = true;
-                        Utility.PlayAudio(alertedAudio, gameObject);
-                    //}
-                    GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
-                }
-                else
-                {
-                    if (!_playWeaponAudio)
+                    if (IsLookingAtPlayer(playerController))
                     {
-                        _playWeaponAudio = true;
-                        Utility.PlayAudio(suspecionAudio, gameObject);
+                        if (playerController.inventoryManager.isWeaponEquipped)
+                        {
+                            alertTimeForWeapon -= 0.05f;
+
+                            if (alertTimeForWeapon <= 0)
+                            {
+                                //if (!_playWeaponAudio)
+                                // {
+                                alertTimeForWeapon = alertTimeAfterInitialDiscovery;
+                                //  _playWeaponAudio = true;
+                                Utility.PlayAudio(alertedAudio, gameObject);
+                                //}
+                                Debug.Log(1);
+                                GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
+                            }
+                            else
+                            {
+                                if (!_playWeaponAudio)
+                                {
+                                    _playWeaponAudio = true;
+                                    Utility.PlayAudio(suspecionAudio, gameObject);
+                                }
+
+                                HUD.DisplaySubtitles("GAME", "Do not let them see you with that weapon for too long...", 0.05f * 1000f);
+                            }
+                        }
+                        else
+                        {
+                            _playWeaponAudio = false;
+                            alertTimeForWeapon = _alertTimeForWeapon;
+                        }
+
+
+                        if (playerController._interaction.isHoldingSuspiciousItem)
+                        {
+                            _alertTimeForSuspeciousItem -= 0.05f;
+
+                            string itemName = playerController._interaction.suspiciousItemName;
+
+                            if (_alertTimeForSuspeciousItem <= 0)
+                            {
+                                // if (!_playWeaponAudio)
+                                // {
+                                _alertTimeForSuspeciousItem = alertTimeAfterInitialDiscovery;
+                                //_playWeaponAudio = true;
+                                Utility.PlayAudio(alertedAudio, gameObject);
+                                //}
+                                Debug.Log(2);
+                                GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
+                            }
+                            else
+                            {
+                                if (!_playItemAudio)
+                                {
+                                    _playItemAudio = true;
+                                    Utility.PlayAudio(suspecionAudio, gameObject);
+                                }
+
+                                HUD.DisplaySubtitles("GAME", $"Do not let them see you with that {itemName} for too long...", 0.05f * 1000f);
+                            }
+                        }
+                        else
+                        {
+                            _playItemAudio = false;
+                            alertTimeForSuspeciousItem = _alertTimeForSuspeciousItem;
+                        }
                     }
-
-                    HUD.DisplaySubtitles("GAME", "Do not let them see you with that weapon for too long...", 1F);
                 }
-            }
-            else
-            {
-                _playWeaponAudio = false;
-                alertTimeForWeapon = _alertTimeForWeapon;
-            }
-
-
-            if (playerController._interaction.isHoldingSuspiciousItem)
-            {
-                _alertTimeForSuspeciousItem -= Time.deltaTime;
-
-                string itemName = playerController._interaction.suspiciousItemName;
-                
-                if (_alertTimeForSuspeciousItem <= 0)
-                {
-                    // if (!_playWeaponAudio)
-                    // {
-                    _alertTimeForSuspeciousItem = alertTimeAfterInitialDiscovery;
-                        //_playWeaponAudio = true;
-                        Utility.PlayAudio(alertedAudio, gameObject);
-                    //}
-
-                    GameplayManager.OnFailedEvent("You were caught carrying a weapon during the party...", "Don't do that... That's rude");
-                }
-                else
-                {
-                    if (!_playItemAudio)
-                    {
-                        _playItemAudio = true;
-                        Utility.PlayAudio(suspecionAudio, gameObject);
-                    }
-
-                    HUD.DisplaySubtitles("GAME", $"Do not let them see you with that {itemName} for too long...", 1F);
-                }
-            }
-            else
-            {
-                _playItemAudio = false;
-                alertTimeForSuspeciousItem = _alertTimeForSuspeciousItem;
             }
         }
     }
+
 
     private bool IsLookingAtPlayer(PlayerController controller)
     {

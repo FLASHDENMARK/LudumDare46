@@ -3042,6 +3042,10 @@ PrefabInstance:
       propertyPath: pickup
       value: 
       objectReference: {fileID: 1371921324}
+    - target: {fileID: 24676646, guid: 8b0a42b9ac9dd2240b3eb496f4425f23, type: 3}
+      propertyPath: pickupDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 24676648, guid: 8b0a42b9ac9dd2240b3eb496f4425f23, type: 3}
       propertyPath: WaitPosition
       value: 
@@ -39478,7 +39482,7 @@ PrefabInstance:
     - target: {fileID: 7416736088902867352, guid: 5871d7bd652653b4e97c84519a309675,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.9969883
+      value: 5.833
       objectReference: {fileID: 0}
     - target: {fileID: 7416736088902867352, guid: 5871d7bd652653b4e97c84519a309675,
         type: 3}

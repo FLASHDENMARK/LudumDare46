@@ -31,8 +31,7 @@ namespace Assets.Components.Weapons.Behavior
 			RaycastHit hit;
 
 			Ray ray = new Ray(weapon.Camera.position, weapon.Camera.forward * shootDistance);
-			Debug.DrawRay(weapon.Camera.position, weapon.Camera.forward * shootDistance);
-
+			
 			bool isHit = Physics.Raycast(ray, out hit, shootDistance, layerMask);
 
 			if (isHit)
