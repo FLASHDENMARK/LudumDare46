@@ -48,6 +48,7 @@ public class PickupObjective : ObjectiveBase
 
             Utility.PlayAudio(onPickup, _controller.gameObject);
 
+            Destroy(pickup.gameObject);
             End();
         }
     }
