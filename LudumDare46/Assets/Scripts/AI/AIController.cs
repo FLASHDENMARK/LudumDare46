@@ -232,6 +232,14 @@ public class AIController : ControllerBase
         }
     }
 
+    internal void SetNavMeshSpeed(int v)
+    {
+        if (!IsDead)
+        {
+            _navMeshAgent.speed = v;
+        }
+    }
+
     public void Pickup(Pickupable pickup)
     {
         PickupableToWeapon weap = weaponPickups.FirstOrDefault(p => p.weaponType == pickup.weapon);

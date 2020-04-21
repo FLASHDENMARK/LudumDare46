@@ -22,6 +22,7 @@ public class PlayerController : ControllerBase
     private bool _allowLook = true;
     public InteractableController _interaction;
     private bool inspect;
+    internal bool cannotUseInventory;
 
     private void Awake()
     {
@@ -54,6 +55,18 @@ public class PlayerController : ControllerBase
 
         Move(move);
 
+        if(_allowLook)
+        {
+            Look(look);
+        } 
+
+        GameplayManager.DisplayControls(esc);
+
+        if (cannotUseInventory)
+        {
+            return;
+        }
+        
         Inspect(leftMouse, rightMouse, look);
 
         if (Input.GetKeyDown(KeyCode.Escape) && inspect == false)
@@ -73,10 +86,6 @@ public class PlayerController : ControllerBase
             ToggleGadget(inventoryManager.flashlight, flashlight);
         }
 
-        if(_allowLook)
-        {
-            Look(look);
-        } 
 
         if (weapon)
         {
@@ -95,7 +104,6 @@ public class PlayerController : ControllerBase
 
         TriggerInteractionUI();
 
-        GameplayManager.DisplayControls(esc);
     }
 
     private void TriggerInteractionUI()
