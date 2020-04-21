@@ -7,6 +7,8 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        private string tempSpeaker = "GAME";
+
         private float startTime;
         public int numberOfHitmans = 3;
         public GameObject RGBManager;
@@ -14,9 +16,8 @@ namespace Assets.Scripts.Managers
         public bool noFailMode = false;
         private static PlayerController player;
         public delegate void OnControllerKilled (ControllerBase controller, IDamageGiver attacker);
-        public delegate void OnFailed (string reason, string tip = null);
-        private string tempSpeaker = "GAME";
         public static OnControllerKilled OnControllerKilledEvent;
+        public delegate void OnFailed (string reason, string tip = null);
         public static OnFailed OnFailedEvent;
 
         [Header("InGame Time"), SerializeField]
@@ -63,6 +64,14 @@ namespace Assets.Scripts.Managers
 
         bool failed = false;
 
+        private void OnGUI()
+        {
+            if (failed)
+            {
+                GUI.Label(new Rect(30, Screen.height - 50, 400, 50), "Press Enter key to go back in time and try again...");
+            }
+        }
+
         private void OnHandledFailedEvent(string reason, string tip)
         {
             if (!failed)
@@ -89,11 +98,26 @@ namespace Assets.Scripts.Managers
 
             HUD.DisplayFailedScreen(failText);
 
+            ObjectiveTimeline.OnPauseTimelineEvent();
+
+            var foundCanvasObjects = FindObjectsOfType<AIController>();
+
+            foreach (AIController controller in foundCanvasObjects)
+            {
+                controller.SetNavMeshSpeed(0);
+                controller.enabled = false;
+            }
+
+            FindObjectOfType<InventoryManager>().enabled = false;
+            FindObjectOfType<InventoryMovement>().enabled = false;
+            GetPlayer().cannotUseInventory = true;
+
             //Time.timeScale = 0.0F;
             yield return new WaitForSeconds(waitTime);
-            Time.timeScale = timeScale;
 
-            SceneManager.LoadScene(1);
+            //Time.timeScale = timeScale;
+
+            //SceneManager.LoadScene(1);
 
         }
 
@@ -151,6 +175,16 @@ namespace Assets.Scripts.Managers
 
         private void Update()
         {
+            if (failed)
+            {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SceneManager.LoadScene(1);
+                }
+
+                return;
+            }
+
             UpdateIngameTime();
             GameTime.hour = time.hour;
             GameTime.minute = time.minute;

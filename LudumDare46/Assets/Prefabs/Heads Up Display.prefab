@@ -398,8 +398,10 @@ MonoBehaviour:
     F: Use flashlight
 
     TAB:
-    Look at watch
+    Look at watch and view kill notes from previous attempts
 
+    . and , increase
+    and decrease time
 
 
 
@@ -995,7 +997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6985801621307999418
 RectTransform:
   m_ObjectHideFlags: 0
