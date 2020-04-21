@@ -7,6 +7,7 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        private bool isEndTimeReached;
         private float startTime;
         public int numberOfHitmans = 3;
         public GameObject RGBManager;
@@ -179,8 +180,9 @@ namespace Assets.Scripts.Managers
             time.hour = Mathf.FloorToInt(currentTime / 3600);
             time.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
             time.second = Mathf.FloorToInt((currentTime % 3600) % 60);
-            if (time.hour >= 12 && time.minute >= 50)
+            if (time.hour >= 12 && time.minute >= 50 && !isEndTimeReached)
             {
+                isEndTimeReached = true;
                 EndGame();
             }
         }
