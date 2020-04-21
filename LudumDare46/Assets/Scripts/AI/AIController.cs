@@ -311,6 +311,8 @@ public class AIController : ControllerBase
             var interactable = gameObject.AddComponent<Interactable>();
             var sb = gameObject.AddComponent<SuspisiousBehavior>();
             sb.isOnlySuspicious = false;
+            sb.lineCast = true;
+            sb.radius = 5f;
 
             //sb.damageGiver = damageGiver.DamageGiver;
             //sb.lineCast = true;

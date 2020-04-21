@@ -11,19 +11,29 @@ public class VoiceLines : MonoBehaviour
     public AudioClip fail;
     public AudioClip Win;
 
-    
+    private int failPlays = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
-        _instance = this;
-        Utility.PlayAudio(intro, this.gameObject);
+        if (_instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            _instance = this;
+        }
+            //Utility.PlayAudio(intro, this.gameObject);
+
     }
 
     public void PlayFail()
     {
-        Utility.PlayAudio(fail, this.gameObject);
+        GetComponent<AudioSource>().Stop();
+        if (failPlays <=1)
+        {
+            Utility.PlayAudio(fail, this.gameObject);
+            failPlays++;
+        }
+        
     }
 
     public void PlayWin()
