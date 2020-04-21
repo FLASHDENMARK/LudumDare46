@@ -8,6 +8,8 @@ namespace Assets.Scripts.Managers
     public class GameplayManager : MonoBehaviour
     {
         private bool isEndTimeReached;
+        private string tempSpeaker = "GAME";
+
         private float startTime;
         public int numberOfHitmans = 3;
         public GameObject RGBManager;
@@ -15,9 +17,8 @@ namespace Assets.Scripts.Managers
         public bool noFailMode = false;
         private static PlayerController player;
         public delegate void OnControllerKilled (ControllerBase controller, IDamageGiver attacker);
-        public delegate void OnFailed (string reason, string tip = null);
-        private string tempSpeaker = "GAME";
         public static OnControllerKilled OnControllerKilledEvent;
+        public delegate void OnFailed (string reason, string tip = null);
         public static OnFailed OnFailedEvent;
 
         [Header("InGame Time"), SerializeField]
@@ -25,29 +26,29 @@ namespace Assets.Scripts.Managers
         public float StartHours = 12;
         public static IngameTime GameTime = new IngameTime();
 
-        public bool AllowWipWap = false;
+        public bool AllowWipWap = false;
 
-
-
+
+
         [SerializeField]
         IngameTime time;
 
         public GameObject notesGameObject;
         private Notes notes;
 
-        private void Awake()
-        {
-            startTime = 0;
+        private void Awake()
+        {
+            startTime = 0;
         }
 
         private void OnEnable ()
-        {
-
+        {
+
 #if UNITY_EDITOR
-            AllowWipWap = true;
+            AllowWipWap = true;
 #endif
-
-            // Deterministic randomness for the win!
+
+            // Deterministic randomness for the win!
             UnityEngine.Random.InitState(42);
 
             notes = notesGameObject.GetComponent<Notes>();
@@ -64,11 +65,22 @@ namespace Assets.Scripts.Managers
 
         bool failed = false;
 
+        private void OnGUI()
+        {
+            if (failed)
+            {
+                var style = new GUIStyle();
+                style.fontSize = 24;
+                style.normal.textColor = Color.white;
+                GUI.Label(new Rect(30, Screen.height - 50, 400, 50), "Press Enter key to go back in time and try again...", style);
+            }
+        }
+
         private void OnHandledFailedEvent(string reason, string tip)
         {
-            if (!failed)
-            {
-                failed = true;
+            if (!failed)
+            {
+                failed = true;
                 string failedTime = GameTime.ToString();
                 string text = $"You failed your target at '{failedTime}'. {reason}";
 
@@ -80,7 +92,7 @@ namespace Assets.Scripts.Managers
                 if (!noFailMode)
                 {
                     StartCoroutine(Fail(3, text));
-                }
+                }
             }
         }
 
@@ -90,11 +102,26 @@ namespace Assets.Scripts.Managers
 
             HUD.DisplayFailedScreen(failText);
 
+            ObjectiveTimeline.OnPauseTimelineEvent();
+
+            var foundCanvasObjects = FindObjectsOfType<AIController>();
+
+            foreach (AIController controller in foundCanvasObjects)
+            {
+                controller.SetNavMeshSpeed(0);
+                controller.enabled = false;
+            }
+
+            FindObjectOfType<InventoryManager>().enabled = false;
+            FindObjectOfType<InventoryMovement>().enabled = false;
+            GetPlayer().cannotUseInventory = true;
+
             //Time.timeScale = 0.0F;
             yield return new WaitForSeconds(waitTime);
-            Time.timeScale = timeScale;
 
-            SceneManager.LoadScene(1);
+            //Time.timeScale = timeScale;
+
+            //SceneManager.LoadScene(1);
 
         }
 
@@ -152,6 +179,16 @@ namespace Assets.Scripts.Managers
 
         private void Update()
         {
+            if (failed)
+            {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    SceneManager.LoadScene(1);
+                }
+
+                return;
+            }
+
             UpdateIngameTime();
             GameTime.hour = time.hour;
             GameTime.minute = time.minute;
@@ -180,21 +217,21 @@ namespace Assets.Scripts.Managers
             time.hour = Mathf.FloorToInt(currentTime / 3600);
             time.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
             time.second = Mathf.FloorToInt((currentTime % 3600) % 60);
-            if (time.hour >= 12 && time.minute >= 50 && !isEndTimeReached)
-            {
-                isEndTimeReached = true;
-                EndGame();
+            if (time.hour >= 12 && time.minute >= 50 && !isEndTimeReached)
+            {
+                isEndTimeReached = true;
+                EndGame();
             }
         }
 
-        void EndGame ()
-        {
-            HUD.DisplaySuccessScreen("Success! You successfully managed to keep the VIP alive by eliminating all the hitmans. 'No fail mode' will be turned on in a few seconds... Have fun killing everyone!");
-
-            RGBManager.SetActive(true);
-            
-            noFailMode = true;
-            VoiceLines._instance.PlayWin();
+        void EndGame ()
+        {
+            HUD.DisplaySuccessScreen("Success! You successfully managed to keep the VIP alive by eliminating all the hitmans. 'No fail mode' will be turned on in a few seconds... Have fun killing everyone!");
+
+            RGBManager.SetActive(true);
+            
+            noFailMode = true;
+            VoiceLines._instance.PlayWin();
         }
 
         void OnHandleControllerKilled (ControllerBase controller, IDamageGiver attacker)
@@ -216,7 +253,7 @@ namespace Assets.Scripts.Managers
 
                 // The target has died
                 if ((controller as AIController).isTarget)
-                {
+                {
                     VoiceLines._instance.PlayFail();
                     OnHandledFailedEvent("You failed to protect the target", "Make sure to keep it alive");
                 }
@@ -268,10 +305,10 @@ namespace Assets.Scripts.Managers
                 }
             }
 
-            if (!noFailMode && hitmansKilled == numberOfHitmans)
-            {
-
-                EndGame();
+            if (!noFailMode && hitmansKilled == numberOfHitmans)
+            {
+
+                EndGame();
             }
         }
     }

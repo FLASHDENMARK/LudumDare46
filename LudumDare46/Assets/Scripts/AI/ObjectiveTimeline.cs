@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Managers;
+﻿using Assets.Scripts;
+using Assets.Scripts.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,6 +13,21 @@ public class ObjectiveTimeline : MonoBehaviour
 
     public bool loopTimeline;
 
+    public delegate void OnPauseTimeline ();
+    public static OnPauseTimeline OnPauseTimelineEvent;
+
+    private bool isPaused = false;
+
+    public void OnEnable()
+    {
+        OnPauseTimelineEvent += OnHandlePauseTimelineEvent;
+    }
+
+    private void OnDisable()
+    {
+        OnPauseTimelineEvent -= OnHandlePauseTimelineEvent;
+    }
+
     private void Start ()
     {
         objectives.ForEach(o => o.Initialize(controller, gizmoColor));
@@ -23,9 +39,16 @@ public class ObjectiveTimeline : MonoBehaviour
         }
     }
 
+    private void OnHandlePauseTimelineEvent ()
+    {
+        isPaused = true;
+
+        _currentObjective.enabled = false;
+    }
+
     private void OnObjectiveCompleted (ObjectiveOutcome outcome)
     {
-        if (outcome.controllerDied)
+        if (outcome.controllerDied || isPaused)
         {
             _currentObjective = null;
         }
@@ -57,7 +80,7 @@ public class ObjectiveTimeline : MonoBehaviour
     void Update ()
     {
         //timer += Time.deltaTime;
-        if (_currentObjective)
+        if (_currentObjective && !isPaused)
         {
             _currentObjective.completionTime -= Time.deltaTime;
 

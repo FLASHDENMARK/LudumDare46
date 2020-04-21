@@ -398,8 +398,10 @@ MonoBehaviour:
     F: Use flashlight
 
     TAB:
-    Look at watch
+    Look at watch and view kill notes from previous attempts
 
+    . and , increase
+    and decrease time
 
 
 
