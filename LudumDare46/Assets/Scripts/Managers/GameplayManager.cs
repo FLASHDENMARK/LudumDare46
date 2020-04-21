@@ -93,7 +93,7 @@ namespace Assets.Scripts.Managers
             yield return new WaitForSeconds(waitTime);
             Time.timeScale = timeScale;
 
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
 
         }
 
@@ -179,6 +179,10 @@ namespace Assets.Scripts.Managers
             time.hour = Mathf.FloorToInt(currentTime / 3600);
             time.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
             time.second = Mathf.FloorToInt((currentTime % 3600) % 60);
+            if (time.hour >= 12 && time.minute >= 50)
+            {
+                EndGame();
+            }
         }
 
         void EndGame ()
@@ -186,7 +190,7 @@ namespace Assets.Scripts.Managers
             HUD.DisplaySuccessScreen("Success! You successfully managed to keep the VIP alive by eliminating all the hitmans. 'No fail mode' will be turned on in a few seconds... Have fun killing everyone!");
 
             RGBManager.SetActive(true);
-
+            
             noFailMode = true;
             VoiceLines._instance.PlayWin();
         }
