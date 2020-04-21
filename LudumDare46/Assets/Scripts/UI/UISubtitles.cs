@@ -17,7 +17,7 @@ public class UISubtitles : MonoBehaviour
         _subtitleTextColor = subtitle.GetComponent<Text>().color;
     }
 
-    public void DisplaySubtitles (string speaker, string words, float duration = 10.0F)
+    public void DisplaySubtitles (string speaker, string words, float duration = 3.0F)
     {
         subtitleBackground.GetComponent<Image>().color = _subtitleBackgroundColor;
         subtitle.GetComponent<Text>().color = _subtitleTextColor;
