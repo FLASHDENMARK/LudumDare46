@@ -68,7 +68,10 @@ namespace Assets.Scripts.Managers
         {
             if (failed)
             {
-                GUI.Label(new Rect(30, Screen.height - 50, 400, 50), "Press Enter key to go back in time and try again...");
+                var style = new GUIStyle();
+                style.fontSize = 24;
+                style.normal.textColor = Color.white;
+                GUI.Label(new Rect(30, Screen.height - 50, 400, 50), "Press Enter key to go back in time and try again...", style);
             }
         }
 
