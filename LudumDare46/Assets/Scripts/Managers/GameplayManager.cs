@@ -7,7 +7,9 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        private float startTime;
         public int numberOfHitmans = 3;
+        public GameObject RGBManager;
         public int hitmansKilled = 0;
         public bool noFailMode = false;
         private static PlayerController player;
@@ -32,6 +34,11 @@ namespace Assets.Scripts.Managers
         public GameObject notesGameObject;
         private Notes notes;
 
+        private void Awake()
+        {
+            startTime = 0;
+        }
+
         private void OnEnable ()
         {
 
@@ -54,19 +61,25 @@ namespace Assets.Scripts.Managers
             OnFailedEvent -= OnHandledFailedEvent;
         }
 
+        bool failed = false;
+
         private void OnHandledFailedEvent(string reason, string tip)
         {
-            string failedTime = GameTime.ToString();
-            string text = $"You failed your target at '{failedTime}'. {reason}";
-
-            if (!string.IsNullOrEmpty(tip))
+            if (!failed)
             {
-                text += " Tip: " + tip;
-            }
+                failed = true;
+                string failedTime = GameTime.ToString();
+                string text = $"You failed your target at '{failedTime}'. {reason}";
 
-            if (!noFailMode)
-            {
-                StartCoroutine(Fail(3, text));
+                if (!string.IsNullOrEmpty(tip))
+                {
+                    text += " Tip: " + tip;
+                }
+
+                if (!noFailMode)
+                {
+                    StartCoroutine(Fail(3, text));
+                }
             }
         }
 
@@ -154,16 +167,26 @@ namespace Assets.Scripts.Managers
                 _displayControls = !_displayControls;
             }
 
+            startTime += Time.deltaTime;
             //HUD.DisplayControls(_displayControls);
         }
 
 
         private void UpdateIngameTime()
         {
-            float currentTime = Time.time * TimeScale + (StartHours * 3600);
+            float currentTime = startTime * TimeScale + (StartHours * 3600);
             time.hour = Mathf.FloorToInt(currentTime / 3600);
             time.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
             time.second = Mathf.FloorToInt((currentTime % 3600) % 60);
+        }
+
+        void EndGame ()
+        {
+            HUD.DisplaySuccessScreen("Success! You successfully managed to keep the VIP alive by eliminating all the hitmans. 'No fail mode' will be turned on in a few seconds... Have fun killing everyone!");
+
+            RGBManager.SetActive(true);
+
+            noFailMode = true;
         }
 
         void OnHandleControllerKilled (ControllerBase controller, IDamageGiver attacker)
@@ -238,9 +261,7 @@ namespace Assets.Scripts.Managers
 
             if (!noFailMode && hitmansKilled == numberOfHitmans)
             {
-                HUD.DisplaySuccessScreen("Success! You successfully managed to keep the VIP alive by eliminating all the hitmans. 'No fail mode' will be turned on in a few seconds... Have fun killing everyone!");
-
-                noFailMode = true;
+                EndGame();
             }
         }
     }
