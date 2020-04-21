@@ -26,7 +26,19 @@ public class PickupObjective : ObjectiveBase
             return;
         }
 
-        base.SetNavMeshDestination(pickup.transform);
+        if(_controller.GetType() == typeof(AIController))
+        {
+            if (Vector3.Distance(_controller.transform.position, pickup.transform.position) < 5)
+            {
+                base.SetNavMeshDestination(pickup.transform);
+            }
+        } else
+        {
+            base.SetNavMeshDestination(pickup.transform);
+        }
+
+
+
 
         base.Begin(endCallback);
     }
