@@ -229,16 +229,21 @@ public class AIController : ControllerBase
     {
         PickupableToWeapon weap = weaponPickups.FirstOrDefault(p => p.weaponType == pickup.weapon);
 
-        currentWeapon = weap.weapon;
+        if(weap != null)
+        {
+            currentWeapon = weap.weapon;
 
-        if (weap == null)
-        {
-            throw new Exception("Could not find the weapon to pickup");
+            if (weap == null)
+            {
+                throw new Exception("Could not find the weapon to pickup");
+            }
+            else
+            {
+                currentWeapon.gameObject.SetActive(true);
+            }
         }
-        else
-        {
-            currentWeapon.gameObject.SetActive(true);
-        }
+
+        
     }
 
     public void ShootWeapon()

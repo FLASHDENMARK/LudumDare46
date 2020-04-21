@@ -7,6 +7,7 @@ namespace Assets.Scripts.Managers
 {
     public class GameplayManager : MonoBehaviour
     {
+        private float startTime;
         public int numberOfHitmans = 3;
         public GameObject RGBManager;
         public int hitmansKilled = 0;
@@ -32,6 +33,11 @@ namespace Assets.Scripts.Managers
 
         public GameObject notesGameObject;
         private Notes notes;
+
+        private void Awake()
+        {
+            startTime = 0;
+        }
 
         private void OnEnable ()
         {
@@ -88,6 +94,7 @@ namespace Assets.Scripts.Managers
             Time.timeScale = timeScale;
 
             SceneManager.LoadScene(0);
+
         }
 
         [Serializable]
@@ -161,13 +168,14 @@ namespace Assets.Scripts.Managers
                 _displayControls = !_displayControls;
             }
 
+            startTime += Time.deltaTime;
             //HUD.DisplayControls(_displayControls);
         }
 
 
         private void UpdateIngameTime()
         {
-            float currentTime = Time.time * TimeScale + (StartHours * 3600);
+            float currentTime = startTime * TimeScale + (StartHours * 3600);
             time.hour = Mathf.FloorToInt(currentTime / 3600);
             time.minute = Mathf.FloorToInt((currentTime % 3600) / 60);
             time.second = Mathf.FloorToInt((currentTime % 3600) % 60);
@@ -180,6 +188,7 @@ namespace Assets.Scripts.Managers
             RGBManager.SetActive(true);
 
             noFailMode = true;
+            VoiceLines._instance.PlayWin();
         }
 
         void OnHandleControllerKilled (ControllerBase controller, IDamageGiver attacker)
@@ -202,6 +211,7 @@ namespace Assets.Scripts.Managers
                 // The target has died
                 if ((controller as AIController).isTarget)
                 {
+                    VoiceLines._instance.PlayFail();
                     OnHandledFailedEvent("You failed to protect the target", "Make sure to keep it alive");
                 }
 
@@ -254,6 +264,7 @@ namespace Assets.Scripts.Managers
 
             if (!noFailMode && hitmansKilled == numberOfHitmans)
             {
+
                 EndGame();
             }
         }
