@@ -17,7 +17,7 @@ public class UIFailedScreen : MonoBehaviour
 
     internal void DisplaySuccess(string v, bool enable)
     {
-        successScreen.SetActive(enable);
-        successText.text = v;
+        //successScreen.SetActive(enable);
+        //successText.text = v;
     }
 }
