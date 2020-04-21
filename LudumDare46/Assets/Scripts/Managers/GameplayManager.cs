@@ -94,6 +94,7 @@ namespace Assets.Scripts.Managers
             Time.timeScale = timeScale;
 
             SceneManager.LoadScene(0);
+
         }
 
         [Serializable]
@@ -187,6 +188,7 @@ namespace Assets.Scripts.Managers
             RGBManager.SetActive(true);
 
             noFailMode = true;
+            VoiceLines._instance.PlayWin();
         }
 
         void OnHandleControllerKilled (ControllerBase controller, IDamageGiver attacker)
@@ -209,6 +211,7 @@ namespace Assets.Scripts.Managers
                 // The target has died
                 if ((controller as AIController).isTarget)
                 {
+                    VoiceLines._instance.PlayFail();
                     OnHandledFailedEvent("You failed to protect the target", "Make sure to keep it alive");
                 }
 
@@ -261,6 +264,7 @@ namespace Assets.Scripts.Managers
 
             if (!noFailMode && hitmansKilled == numberOfHitmans)
             {
+
                 EndGame();
             }
         }
