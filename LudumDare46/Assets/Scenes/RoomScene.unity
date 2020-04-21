@@ -3062,6 +3062,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1974006217}
+    - target: {fileID: 262098063, guid: 8b0a42b9ac9dd2240b3eb496f4425f23, type: 3}
+      propertyPath: completionTime
+      value: 140
+      objectReference: {fileID: 0}
     - target: {fileID: 262098064, guid: 8b0a42b9ac9dd2240b3eb496f4425f23, type: 3}
       propertyPath: controller
       value: 
@@ -3372,6 +3376,11 @@ PrefabInstance:
       propertyPath: WaitPosition
       value: 
       objectReference: {fileID: 1159855122}
+    - target: {fileID: 8941250905990239254, guid: 8b0a42b9ac9dd2240b3eb496f4425f23,
+        type: 3}
+      propertyPath: completionTime
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b0a42b9ac9dd2240b3eb496f4425f23, type: 3}
 --- !u!1001 &97508587
