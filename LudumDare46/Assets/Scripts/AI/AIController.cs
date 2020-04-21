@@ -102,7 +102,7 @@ public class AIController : ControllerBase
                                     Utility.PlayAudio(suspecionAudio, gameObject);
                                 }
 
-                                HUD.DisplaySubtitles("GAME", "Do not let them see you with that weapon for too long...", 0.05f * 1000f);
+                                HUD.DisplaySubtitles("GAME", "Do not let them see you with that weapon for too long...", 1f);
                             }
                         }
                         else
